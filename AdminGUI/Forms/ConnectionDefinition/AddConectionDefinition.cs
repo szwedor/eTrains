@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Services;
 
 namespace AdminGUI.Forms
 {
@@ -18,10 +12,10 @@ namespace AdminGUI.Forms
             InitializeComponent();
         }
 
-        private StationManagment sm;
+       // private StationManagment sm;
         private Button SelectStationDeparture;
         private Button SelectStationArrival;
-        private List<DomainModel.Models.Station> Stations;
+       // private List<DomainModel.Models.Station> Stations;
         private ListBox ListOfStations;
         private Button OK;
         private DateTimePicker hourTimePicker;
@@ -102,8 +96,8 @@ namespace AdminGUI.Forms
         this.Controls.Add(ListOfStations);
          
 
-             sm=new StationManagment();
-        ListOfStations.DataSource = sm.AllStations();
+          //   sm=new StationManagment();
+      //  ListOfStations.DataSource = sm.AllStations();
             ListOfStations.DisplayMember = "Name";
 
             DoubleBuffered = true;
@@ -116,7 +110,7 @@ namespace AdminGUI.Forms
                 SelectStationDeparture.Text= "Wybierz stacje początkową";
             departureStation = arrivalStation = null;
             SaveButton.Enabled = false;
-            ListOfStations.DataSource = sm.AllStations();
+         //   ListOfStations.DataSource = sm.AllStations();
         }
         private bool departure = false;
         private bool arrival = false;
@@ -179,9 +173,9 @@ namespace AdminGUI.Forms
 
         protected override void SaveClick(object sender, EventArgs e)
         {
-            ConnectionManagment m=new ConnectionManagment();
-            if (m.AddNewConnection(departureStation, arrivalStation, hourTimePicker.Value.Hour,
-                minutesTimePicker.Value.Minute, price,departureStation.Name+" "+arrivalStation.Name))
+         //   ConnectionManagment m=new ConnectionManagment();
+         //   if (m.AddNewConnection(departureStation, arrivalStation, hourTimePicker.Value.Hour,
+          //      minutesTimePicker.Value.Minute, price,departureStation.Name+" "+arrivalStation.Name))
             {
                  base.SaveClick(sender, e);
                 base.returnButton.PerformClick();

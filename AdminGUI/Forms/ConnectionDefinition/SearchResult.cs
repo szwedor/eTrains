@@ -1,16 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Forms.VisualStyles;
-using DomainModel.Models;
-using Services;
 
 namespace AdminGUI.Forms.ConnectionDefinition
 {
@@ -94,7 +85,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
         private void Loading(object sender, EventArgs e)
         {
             
-            l = m.Find(departureStation, arivalStation, price, hour);
+        //    l = m.Find(departureStation, arivalStation, price, hour);
             result.Rows.Clear();
             for (int i = 0; i < l.Count; i++)
             {
@@ -127,7 +118,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
         private DomainModel.Models.Station departureStation;
         private int price;
         private int hour;
-        ConnectionManagment m = new ConnectionManagment();
+        //ConnectionManagment m = new ConnectionManagment();
         public void NewSearch(DomainModel.Models.Station Departure, DomainModel.Models.Station Arrival, int price, int hour)
         {
           
@@ -135,7 +126,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             arivalStation = Arrival;
             this.price = price;
             this.hour = hour;
-            l = m.Find(departureStation, arivalStation, price, hour);
+        //    l = m.Find(departureStation, arivalStation, price, hour);
             Background.Visible = true;
         }
     }

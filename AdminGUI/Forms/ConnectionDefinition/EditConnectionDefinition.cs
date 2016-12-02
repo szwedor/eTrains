@@ -1,15 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminGUI.Forms.ConnectionDefinition;
-using DomainModel.Models;
-using Services;
 
 namespace AdminGUI.Forms
 {
@@ -20,7 +13,7 @@ namespace AdminGUI.Forms
             InitializeComponent();
         }
 
-        private StationManagment sm;
+      //  private StationManagment sm;
         private Button SelectStationDeparture;
         private Button SelectStationArrival;
         private List<DomainModel.Models.Station> Stations;
@@ -29,7 +22,7 @@ namespace AdminGUI.Forms
         private DateTimePicker hourTimePicker;
         private DateTimePicker minutesTimePicker;
         private TextBox PriceBox;
-        private ConnectionManagment m;
+     //   private ConnectionManagment m;
         private CheckBox ArrivalCheckbox;
         private CheckBox DepartureCheckbox;
         private CheckBox priceCheckBox;
@@ -69,8 +62,8 @@ namespace AdminGUI.Forms
             SaveButton.Enabled = true;
 
 
-            sm = new StationManagment();
-            Stations = sm.AllStations();
+           // sm = new StationManagment();
+         //   Stations = sm.AllStations();
             SaveButton.Text = "Szukaj";
             SelectStationDeparture = Program.MakeStylishButton(new Size(Background.Width - 2*Program.padding * 2-SaveButton.Width, SaveButton.Height),
                     new Point(Program.padding, SaveButton.Location.Y + SaveButton.Size.Height + Program.padding),
@@ -132,8 +125,8 @@ namespace AdminGUI.Forms
             ListOfStations.Size = Background.Size;
             this.Controls.Add(ListOfStations);
 
-            sm = new StationManagment();
-            ListOfStations.DataSource = sm.AllStations();
+       //     sm = new StationManagment();
+       //     ListOfStations.DataSource = sm.AllStations();
             ListOfStations.DisplayMember = "Name";
 
             DoubleBuffered = true;
@@ -149,7 +142,7 @@ namespace AdminGUI.Forms
             SelectStationDeparture.Text = "Wybierz stacje początkową";
             departureStation = arrivalStation = null;
             SaveButton.Enabled = false;
-            ListOfStations.DataSource = sm.AllStations();
+     //       ListOfStations.DataSource = sm.AllStations();
     }
     private bool departure = false;
         private bool arrival = false;

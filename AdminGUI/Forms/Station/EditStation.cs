@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Services;
 
 namespace AdminGUI.Forms.Station
 {
@@ -21,7 +14,7 @@ namespace AdminGUI.Forms.Station
         private Button SelectStation;
         private ListBox ListOfStations;
         private TextBox NewNameStation;
-        private StationManagment sm;
+      //  private StationManagment sm;
         public EditStation(Size s, Panel returnP) : base(s, returnP)
         {
             SelectStation = Program.MakeStylishButton(SaveButton.Size,
@@ -40,8 +33,8 @@ namespace AdminGUI.Forms.Station
             NewNameStation.Size = SaveButton.Size;
             NewNameStation.Location = new Point(SaveButton.Location.X,SelectStation.Location.Y+SelectStation.Height+Program.padding);
             Background.Controls.Add(NewNameStation);
-            sm=new StationManagment();
-            ListOfStations.DataSource = sm.AllStations();
+        //    sm=new StationManagment();
+        //    ListOfStations.DataSource = sm.AllStations();
             ListOfStations.DisplayMember = "Name";
             DoubleBuffered = true;
             this.VisibleChanged+=new EventHandler(Loading);
@@ -54,7 +47,7 @@ namespace AdminGUI.Forms.Station
             SelectStation.Text = "Wybierz stacje";
             SaveButton.Enabled = false;
             NewNameStation.Text = "";
-            ListOfStations.DataSource = sm.AllStations();
+        //    ListOfStations.DataSource = sm.AllStations();
         }
 
         private bool locked = false;
@@ -82,7 +75,7 @@ namespace AdminGUI.Forms.Station
             ListOfStations.Enabled = true;
             locked = false;
             SelectStation.Text = "Wybierz stacje";
-            if (sm.ChangeStation(ListOfStations.SelectedItem as DomainModel.Models.Station, NewNameStation.Text))
+        //    if (sm.ChangeStation(ListOfStations.SelectedItem as DomainModel.Models.Station, NewNameStation.Text))
             {
                 ListOfStations.DisplayMember = "";
                 ListOfStations.DisplayMember = "Name";

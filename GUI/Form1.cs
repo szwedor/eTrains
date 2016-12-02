@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
-using DomainModel.Models;
-using Services;
 using System.Text.RegularExpressions;
+using DomainModel.Models;
+using GUI.StationService;
+
 
 namespace GUI
 {
@@ -18,7 +18,7 @@ namespace GUI
         
         public User newUser = new User();
         public DateTime dt=new DateTime();
-        public Reservation r;
+      //  public Reservation r;
         public ImageList ilLarge = new ImageList();
         public ImageList ilSmall = new ImageList();
 
@@ -36,20 +36,20 @@ namespace GUI
                 StringBuilder ss = new StringBuilder();
                 foreach (SyndicationItem item in feed.Items)
                 {
-                    
+
                     ss.Append("<div style=\"background-color:#008080;color:#FFFFFF;font-family:Century Gothic\">");
                     ss.Append("<h3>");
                     ss.AppendLine(item.Title.Text);
                     ss.Append("</h3>");
-                      ss.Append("<p  >");
+                    ss.Append("<p  >");
                     ss.AppendLine(item.Summary.Text);
                     ss.Append("</p>");
                     ss.Append("</div>");
                     ss.AppendLine();
                 }
                 webBrowser1.DocumentText = ss.ToString();
-                
-                
+
+
             }
             catch (System.Net.WebException)
             {
@@ -57,11 +57,11 @@ namespace GUI
             }
             dateTimePicker.MinDate=DateTime.Today;
             boxPass.PasswordChar = '*';
-
-            r=new Reservation();
-            listBoxTo.DataSource = r.ArrivalStations();
+            var x = new StationManagmentClient();
+        //    r=new Reservation();
+            listBoxTo.DataSource = x.AllStations();
             listBoxTo.DisplayMember = "Name";
-            listBoxFrom.DataSource= r.DepartureStations();
+        //    listBoxFrom.DataSource= r.DepartureStations();
             listBoxFrom.DisplayMember = "Name";
             DoubleBuffered = true;
             textBox3.PasswordChar = '*';
@@ -89,13 +89,13 @@ namespace GUI
         private void LogIn_Click(object sender, EventArgs e)
         {
             textValidation.Visible = false;
-            newUser = r.FindUser(boxLogin.Text.ToString());
+        //    newUser = r.FindUser(boxLogin.Text.ToString());
             if (newUser == null)
             {
                 textValidation.Visible = true;
                 return;
             }
-            if (r.ValidateUser(newUser,boxPass.Text.ToString()))
+         //   if (r.ValidateUser(newUser,boxPass.Text.ToString()))
             {
                 textLogin.Visible = false;
                 boxLogin.Visible = false;
@@ -117,9 +117,9 @@ namespace GUI
                 
                 this.Controls.AddRange(new Control[] { welcome });
             }
-            else
+        //    else
             {
-                textValidation.Visible = true;
+        //        textValidation.Visible = true;
             }
         }
 
@@ -224,7 +224,7 @@ namespace GUI
                 textBox5.Visible = true;
                 button1.Visible = true;
             }
-            else if(!r.FindEmail(textBox2.Text.ToString()))
+           // else if(!r.FindEmail(textBox2.Text.ToString()))
             {
                 MessageBox.Show("Podany mail już istnieje ");
                 SearchPanel.Visible = false;
@@ -242,7 +242,7 @@ namespace GUI
                 textBox5.Visible = true;
                 button1.Visible = true;
             }
-            else
+           // else
             {
                 welcome.Text = "Witaj  " + name;
                 welcome.ForeColor = Color.White;
@@ -268,7 +268,7 @@ namespace GUI
                 newUser.PassWord = hashpass;
                 newUser.Email = textBox2.Text.ToString();
                 newUser.PhoneNo = textBox5.Text.ToString();
-                r.AddUser(newUser);
+            //    r.AddUser(newUser);
             }
 
         }
@@ -287,7 +287,7 @@ namespace GUI
             Error.Visible = false;
             myconnections = null;
           
-            myconnections = r.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
+          //  myconnections = r.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
             if (myconnections.Count == 0)
             {
                 webBrowser1.Visible = false;
@@ -354,20 +354,20 @@ namespace GUI
                 
                 int seat;
                 
-                if (-1==(seat=r.MakeReservation(dataGridView1.SelectedRows[0].Tag as Connection)))
+              //  if (-1==(seat=r.MakeReservation(dataGridView1.SelectedRows[0].Tag as Connection)))
                 {
                     Gratulation.Text = "Niestety wszystkie miejsca zostały już zajęte";
                     Gratulation.BackColor = Color.MistyRose;
                     
                 }
-                else
+               // else
                 {
 
-                    string place = seat.ToString();
+                 //   string place = seat.ToString();
                     StringBuilder str = new StringBuilder();
                     str.Append("Udało Ci się zarezerwować bilet. Twój numer miejsca to:  ");
                     str.Append(Environment.NewLine);
-                    str.Append(place.ToString());
+                //    str.Append(place.ToString());
                 
                     Gratulation.Text = str.ToString();
                 

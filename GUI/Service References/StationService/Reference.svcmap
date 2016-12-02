@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="db03853c-f290-4d86-8160-de94ae9ea4c5" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8080/S/mex" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="mex.xsd" MetadataType="Schema" ID="c78afba6-d248-40ab-8121-031d1b134f65" SourceId="1" SourceUrl="http://localhost:8080/S/mex?xsd=xsd0" />
+    <MetadataFile FileName="mex1.xsd" MetadataType="Schema" ID="821bf6d9-c694-4092-8ea9-4ff9345fabf5" SourceId="1" SourceUrl="http://localhost:8080/S/mex?xsd=xsd3" />
+    <MetadataFile FileName="mex2.xsd" MetadataType="Schema" ID="d611f1d2-fade-41b8-85c7-c7eeed8a5e8e" SourceId="1" SourceUrl="http://localhost:8080/S/mex?xsd=xsd1" />
+    <MetadataFile FileName="StationManagment.wsdl" MetadataType="Wsdl" ID="73149e5b-6c9f-49d5-bc0b-01c2733bef16" SourceId="1" SourceUrl="http://localhost:8080/S/mex" />
+    <MetadataFile FileName="mex3.xsd" MetadataType="Schema" ID="3f7b5551-6467-4796-a56d-2de2f7cbdcf8" SourceId="1" SourceUrl="http://localhost:8080/S/mex?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

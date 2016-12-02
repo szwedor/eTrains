@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Activities.Expressions;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminGUI.Forms
@@ -41,8 +34,8 @@ namespace AdminGUI.Forms
         protected override void SaveClick(object sender, EventArgs e)
         {
             
-            var s = new Services.StationManagment();
-            if(s.Add(newStation.Text))
+       //     var s = new Services.StationManagment();
+       //     if(s.Add(newStation.Text))
             base.SaveClick(sender, e);
             returnButton.PerformClick();
             Name.Text = "Podaj nową stacje";

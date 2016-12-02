@@ -1,15 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Data.Odbc;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Services;
 
 namespace AdminGUI.Forms.ConnectionDefinition
 {
@@ -20,7 +11,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             InitializeComponent();
         }
 
-        private StationManagment sm;
+      //  private StationManagment sm;
         private Button SelectStationDeparture;
         private Button SelectStationArrival;
         private ListBox ListOfStations;
@@ -36,7 +27,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             this.cd = cd;
             departureStation = cd.Departure;
             arrivalStation = cd.Arrival;
-            sm=new StationManagment();
+        //    sm=new StationManagment();
             SaveButton.Text = "Zapisz";
         SelectStationDeparture = Program.MakeStylishButton(new Size(Background.Width - Program.padding * 2, SaveButton.Height), 
                 new Point(Program.padding, SaveButton.Location.Y+SaveButton.Size.Height+Program.padding),
@@ -114,8 +105,8 @@ namespace AdminGUI.Forms.ConnectionDefinition
             ListOfStations.Size = Background.Size;
         this.Controls.Add(ListOfStations);
          
-            sm=new StationManagment();
-        ListOfStations.DataSource = sm.AllStations();
+      //      sm=new StationManagment();
+      //  ListOfStations.DataSource = sm.AllStations();
             ListOfStations.DisplayMember = "Name";
 
             DoubleBuffered = true;
@@ -126,7 +117,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             DialogResult dialogResult = MessageBox.Show("Czy chcesz usunąć to połączenie?", "Usunięcie", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-                m.MakeArchival(cd);
+             //   m.MakeArchival(cd);
                 this.returnButton.PerformClick();
             }
             else if (dialogResult == DialogResult.No)
@@ -193,7 +184,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             }
 
         }
-         ConnectionManagment m=new ConnectionManagment();
+      //   ConnectionManagment m=new ConnectionManagment();
         protected override void SaveClick(object sender, EventArgs e)
         {
           
@@ -204,7 +195,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             cd.TravelTime=new TimeSpan(hourTimePicker.Value.Hour,minutesTimePicker.Value.Minute,0);
             cd.Price = price;
             
-            m.UpdateConnection(cd);
+         //   m.UpdateConnection(cd);
             base.ReturnPanelClick(sender,e);
             base.SaveClick(sender, e);
             this.Dispose();

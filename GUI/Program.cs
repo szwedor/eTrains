@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Autofac;
-using Domain;
-using DomainModel;
-using Services;
 
 namespace GUI
 {
@@ -18,12 +12,12 @@ namespace GUI
         [STAThread]
         static void Main()
         {
-            var builder = new ContainerBuilder();
+            //var builder = new ContainerBuilder();
 
-            builder.RegisterType<UnitOfWork>().SingleInstance().As<IUnitOfWork>(); ;
-            var c = builder.Build();
-            var scope = c.BeginLifetimeScope();
-            StationManagment.Scope = ConnectionManagment.Scope = Reservation.Scope = StationLocal.Scope = scope;
+            //builder.RegisterType<UnitOfWork>().SingleInstance().As<IUnitOfWork>(); ;
+            //var c = builder.Build();
+            //var scope = c.BeginLifetimeScope();
+            //StationManagment.Scope = ConnectionManagment.Scope = Reservation.Scope = StationLocal.Scope = scope;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

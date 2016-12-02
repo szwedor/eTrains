@@ -1,17 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AdminGUI.Forms;
 using AdminGUI.Forms.ConnectionDefinition;
 using AdminGUI.Forms.Station;
-using Microsoft.Win32;
-using Services;
 
 namespace AdminGUI
 {
@@ -174,8 +167,8 @@ namespace AdminGUI
         private void LoginClick(object sender, EventArgs e)
         {
             {
-                StationLocal ul=new StationLocal();
-                if (!ul.logAdmin(Email.Text, Password.Text))
+           //     StationLocal ul=new StationLocal();
+            //    if (!ul.logAdmin(Email.Text, Password.Text))
                 {
                     Password.BackColor = Color.Red;
                     Email.BackColor=Color.Red;
