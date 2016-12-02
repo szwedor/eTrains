@@ -12,13 +12,7 @@ namespace GUI
         [STAThread]
         static void Main()
         {
-            //var builder = new ContainerBuilder();
-
-            //builder.RegisterType<UnitOfWork>().SingleInstance().As<IUnitOfWork>(); ;
-            //var c = builder.Build();
-            //var scope = c.BeginLifetimeScope();
-            //StationManagment.Scope = ConnectionManagment.Scope = Reservation.Scope = StationLocal.Scope = scope;
-
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
