@@ -9,6 +9,7 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using DomainModel.Models;
 using GUI.StationService;
+using GUI.ConnectionService;
 
 
 namespace GUI
@@ -21,8 +22,9 @@ namespace GUI
       //  public Reservation r;
         public ImageList ilLarge = new ImageList();
         public ImageList ilSmall = new ImageList();
-
-        List<Connection> myconnections = new List<Connection>();
+        StationManagmentClient StationClient = new StationManagmentClient();
+        ConnectionManagmentClient ConnectionClient = new ConnectionManagmentClient();
+        List<ConnectionDefinition> myconnections = new List<ConnectionDefinition>();
 
         public Form1()
         {
@@ -57,12 +59,13 @@ namespace GUI
             }
             dateTimePicker.MinDate=DateTime.Today;
             boxPass.PasswordChar = '*';
-            var x = new StationManagmentClient();
+           
         //    r=new Reservation();
-            listBoxTo.DataSource = x.AllStations();
+            listBoxTo.DataSource = StationClient.AllStations();
             listBoxTo.DisplayMember = "Name";
-        //    listBoxFrom.DataSource= r.DepartureStations();
-            listBoxFrom.DisplayMember = "Name";
+            //    listBoxFrom.DataSource= r.DepartureStations();
+            listBoxFrom.DataSource = StationClient.AllStations();
+                listBoxFrom.DisplayMember = "Name";
             DoubleBuffered = true;
             textBox3.PasswordChar = '*';
         }
@@ -286,8 +289,10 @@ namespace GUI
             SearchPanel.Visible = false;
             Error.Visible = false;
             myconnections = null;
-          
-          //  myconnections = r.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
+
+            //  myconnections = r.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
+
+            myconnections = ConnectionClient.Find(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, -1, dt.Hour).ToList();
             if (myconnections.Count == 0)
             {
                 webBrowser1.Visible = false;
@@ -314,10 +319,10 @@ namespace GUI
                         var x = new DataGridViewRow();
                         x.Tag = myconnections[i];
                         dataGridView1.Rows.Add(x);
-                        dataGridView1.Rows[i].Cells[0].Value = myconnections[i].ConnectionDefinition.Departure.Name;
-                        dataGridView1.Rows[i].Cells[1].Value = myconnections[i].ConnectionDefinition.Arrival.Name;
-                        dataGridView1.Rows[i].Cells[2].Value = myconnections[i].DepartureTime.ToShortTimeString();
-                        dataGridView1.Rows[i].Cells[3].Value = myconnections[i].ConnectionDefinition.Price;
+                        dataGridView1.Rows[i].Cells[0].Value = myconnections[i].Departure.Name;
+                        dataGridView1.Rows[i].Cells[1].Value = myconnections[i].Arrival.Name;
+                        dataGridView1.Rows[i].Cells[2].Value = myconnections[i].TravelTime;
+                        dataGridView1.Rows[i].Cells[3].Value = myconnections[i].Price;
 
                     }
                 
