@@ -19,13 +19,14 @@ namespace GUI
         
         public User newUser = new User();
         public DateTime dt=new DateTime();
-      //  public Reservation r;
+        Button myaccount = new Button();
+        //  public Reservation r;
         public ImageList ilLarge = new ImageList();
         public ImageList ilSmall = new ImageList();
         StationManagmentClient StationClient = new StationManagmentClient();
         ConnectionManagmentClient ConnectionClient = new ConnectionManagmentClient();
         List<ConnectionDefinition> myconnections = new List<ConnectionDefinition>();
-
+        UserAccount ua = new UserAccount();
         public Form1()
         {
             
@@ -58,20 +59,20 @@ namespace GUI
                 webBrowser1.DocumentText = "<h1 style=\"color:red\"> Brak połączenia z Internetem</h1>";
             }
             dateTimePicker.MinDate=DateTime.Today;
-            boxPass.PasswordChar = '*';
-           
-        //    r=new Reservation();
+
+
+            //    r=new Reservation();
+            //    listBoxFrom.DataSource= r.DepartureStations();
+
             listBoxTo.DataSource = StationClient.AllStations();
             listBoxTo.DisplayMember = "Name";
-            //    listBoxFrom.DataSource= r.DepartureStations();
             listBoxFrom.DataSource = StationClient.AllStations();
-                listBoxFrom.DisplayMember = "Name";
+            listBoxFrom.DisplayMember = "Name";
             DoubleBuffered = true;
-            textBox3.PasswordChar = '*';
+            
         }
         private void FROM_Click(object sender, EventArgs e)
         {
-          
             listBoxFrom.Visible = !listBoxFrom.Visible;
         }
         private void listBoxFrom_MouseDown(object sender, MouseEventArgs e)
@@ -89,192 +90,7 @@ namespace GUI
             listBoxTo.Visible = false;
         }
        
-        private void LogIn_Click(object sender, EventArgs e)
-        {
-            textValidation.Visible = false;
-        //    newUser = r.FindUser(boxLogin.Text.ToString());
-            if (newUser == null)
-            {
-                textValidation.Visible = true;
-                return;
-            }
-         //   if (r.ValidateUser(newUser,boxPass.Text.ToString()))
-            {
-                textLogin.Visible = false;
-                boxLogin.Visible = false;
-                textPass.Visible = false;
-                boxPass.Visible = false;
-                LogIn.Visible = false;
-                Rejestration.Visible = false;
-                textRejestr.Visible = false;
-                pictureBox1.Visible = false;
-                TextBox welcome = new TextBox();
-                welcome.BackColor = Color.Teal;
-                welcome.Text = "Witaj  " + boxLogin.Text.ToString();
-                welcome.ForeColor = Color.White;
-                welcome.Font = new Font("Century Gothic", 14);
-                welcome.Location = new Point(502, 12);
-                welcome.Size = new Size(478, 70);
-                welcome.TextAlign = HorizontalAlignment.Center;
-                welcome.ReadOnly = true;
-                
-                this.Controls.AddRange(new Control[] { welcome });
-            }
-        //    else
-            {
-        //        textValidation.Visible = true;
-            }
-        }
-
-        private void Rejestration_Click(object sender, EventArgs e)
-        {
-            SearchPanel.Visible = false;
-            pictureBox3.Visible = false;
-            webBrowser1.Visible = false;
-            textBox6.Visible = true;
-            textBox7.Visible = true;
-            textBox8.Visible = true;
-            textBox9.Visible = true;
-            textBox10.Visible = true;
-            textBox1.Visible = true;
-            textBox2.Visible = true;
-            textBox3.Visible = true;
-            textBox4.Visible = true;
-            textBox5.Visible = true;
-            button1.Visible = true;          
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            SearchPanel.Visible = true;
-            pictureBox3.Visible = true;
-            webBrowser1.Visible = true;
-            textBox6.Visible = false;
-            textBox7.Visible = false;
-            textBox8.Visible = false;
-            textBox9.Visible = false;
-            textBox10.Visible = false;
-            textBox1.Visible = false;
-            textBox2.Visible = false;
-            textBox3.Visible = false;
-            textBox4.Visible = false;
-            textBox5.Visible = false;
-            button1.Visible = false;
-
-
-            textLogin.Visible = false;
-            boxLogin.Visible = false;
-            textPass.Visible = false;
-            boxPass.Visible = false;
-            LogIn.Visible = false;
-            Rejestration.Visible = false;
-            textRejestr.Visible = false;
-            pictureBox1.Visible = false;
-            TextBox welcome = new TextBox();
-            welcome.BackColor = Color.Teal;
-            string name = textBox1.Text.ToString();
-            if(textBox5.Text.Any(x => char.IsLetter(x)))
-                {
-                    MessageBox.Show("Zły format tefonu! ");
-                SearchPanel.Visible = false;
-                pictureBox3.Visible = false;
-                webBrowser1.Visible = false;
-                textBox6.Visible = true;
-                textBox7.Visible = true;
-                textBox8.Visible = true;
-                textBox9.Visible = true;
-                textBox10.Visible = true;
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-                textBox3.Visible = true;
-                textBox4.Visible = true;
-                textBox5.Visible = true;
-                button1.Visible = true;
-            }
-            else if (!emailIsValid(textBox2.Text.ToString()) || textBox2.Text.Length==0)
-            {
-                MessageBox.Show("Zły format mail! ");
-                SearchPanel.Visible = false;
-                pictureBox3.Visible = false;
-                webBrowser1.Visible = false;
-                textBox6.Visible = true;
-                textBox7.Visible = true;
-                textBox8.Visible = true;
-                textBox9.Visible = true;
-                textBox10.Visible = true;
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-                textBox3.Visible = true;
-                textBox4.Visible = true;
-                textBox5.Visible = true;
-                button1.Visible = true;
-            }
-            else if (textBox3.Text.Length == 0)
-            {
-                MessageBox.Show("Brak hasła! ");
-                SearchPanel.Visible = false;
-                pictureBox3.Visible = false;
-                webBrowser1.Visible = false;
-                textBox6.Visible = true;
-                textBox7.Visible = true;
-                textBox8.Visible = true;
-                textBox9.Visible = true;
-                textBox10.Visible = true;
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-                textBox3.Visible = true;
-                textBox4.Visible = true;
-                textBox5.Visible = true;
-                button1.Visible = true;
-            }
-           // else if(!r.FindEmail(textBox2.Text.ToString()))
-            {
-                MessageBox.Show("Podany mail już istnieje ");
-                SearchPanel.Visible = false;
-                pictureBox3.Visible = false;
-                webBrowser1.Visible = false;
-                textBox6.Visible = true;
-                textBox7.Visible = true;
-                textBox8.Visible = true;
-                textBox9.Visible = true;
-                textBox10.Visible = true;
-                textBox1.Visible = true;
-                textBox2.Visible = true;
-                textBox3.Visible = true;
-                textBox4.Visible = true;
-                textBox5.Visible = true;
-                button1.Visible = true;
-            }
-           // else
-            {
-                welcome.Text = "Witaj  " + name;
-                welcome.ForeColor = Color.White;
-                welcome.Font = new Font("Century Gothic", 24);
-                welcome.Location = new Point(502, 12);
-                welcome.Size = new Size(478, 70);
-                welcome.Multiline = true;
-                welcome.TextAlign = HorizontalAlignment.Center;
-                welcome.ReadOnly = true;
-                this.Controls.AddRange(new Control[] { welcome });
-
-
-                newUser = new User();
-                newUser.FirstName = textBox1.Text.ToString();
-                newUser.LastName = textBox4.Text.ToString();
-                string hashpass;
-                using (var sha = new System.Security.Cryptography.SHA256Managed())
-                {
-                    byte[] textData = System.Text.Encoding.UTF8.GetBytes(textBox3.Text.ToString());
-                    byte[] hash = sha.ComputeHash(textData);
-                    hashpass = BitConverter.ToString(hash).Replace("-", String.Empty);
-                }
-                newUser.PassWord = hashpass;
-                newUser.Email = textBox2.Text.ToString();
-                newUser.PhoneNo = textBox5.Text.ToString();
-            //    r.AddUser(newUser);
-            }
-
-        }
+      
         private void Find_Click(object sender, EventArgs e)
         {
             dt = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day,
@@ -328,20 +144,15 @@ namespace GUI
                 
             }
         }
-       
-        
-
         private void RezervationButton_Click(object sender, EventArgs e)
         {
-
-          
             if (dataGridView1.SelectedRows.Count==0)
             {
                 MessageBox.Show("Najpierw wybierz połączenie");
                 return;
             }
             Gratulation.Visible = false;
-            if (LogIn.Visible == true)
+            if ( ua.log== false)
             {
                 Gratulation.Text = "Aby zarezerwowac bilet musisz być zalogowany !";
                 Gratulation.BackColor = Color.MistyRose;
@@ -382,27 +193,6 @@ namespace GUI
             }
             Gratulation.Visible = true;
         }
-        public static bool emailIsValid(string email)
-        {
-            string expresion;
-            expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
-            if (Regex.IsMatch(email, expresion))
-            {
-                if (Regex.Replace(email, expresion, string.Empty).Length == 0)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
-
         private void ConnectionDetails_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -413,6 +203,12 @@ namespace GUI
             //dataGridView1.SelectedRows[0].Tag as Connection
             Form ConnectionDefinitionWindow = new ConnectionDefinitionWindow();
             ConnectionDefinitionWindow.Show();
+        }
+        private void myaccount_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            //UserAccount ua = new UserAccount();
+            ua.Show();
         }
     }
 }
