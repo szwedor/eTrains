@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.LoginPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textValidation = new System.Windows.Forms.TextBox();
             this.Rejestration = new System.Windows.Forms.Button();
@@ -36,7 +38,6 @@
             this.textRejestr = new System.Windows.Forms.TextBox();
             this.boxPass = new System.Windows.Forms.TextBox();
             this.LogIn = new System.Windows.Forms.Button();
-            this.textPass = new System.Windows.Forms.TextBox();
             this.boxLogin = new System.Windows.Forms.TextBox();
             this.ButtonsPanel = new System.Windows.Forms.Panel();
             this.LogOut = new System.Windows.Forms.Button();
@@ -55,6 +56,7 @@
             this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nrmiejsca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RejestrationPanel = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.textBox9 = new System.Windows.Forms.TextBox();
@@ -66,16 +68,26 @@
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
+            this.PassPanel = new System.Windows.Forms.Panel();
+            this.AddNewPass = new System.Windows.Forms.Button();
+            this.NewPassBox = new System.Windows.Forms.TextBox();
+            this.OldPassBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.LoginPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.MyticketsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.RejestrationPanel.SuspendLayout();
+            this.PassPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // LoginPanel
             // 
+            this.LoginPanel.Controls.Add(this.label2);
             this.LoginPanel.Controls.Add(this.label1);
             this.LoginPanel.Controls.Add(this.textValidation);
             this.LoginPanel.Controls.Add(this.Rejestration);
@@ -83,12 +95,21 @@
             this.LoginPanel.Controls.Add(this.textRejestr);
             this.LoginPanel.Controls.Add(this.boxPass);
             this.LoginPanel.Controls.Add(this.LogIn);
-            this.LoginPanel.Controls.Add(this.textPass);
             this.LoginPanel.Controls.Add(this.boxLogin);
             this.LoginPanel.Location = new System.Drawing.Point(240, 188);
             this.LoginPanel.Name = "LoginPanel";
             this.LoginPanel.Size = new System.Drawing.Size(697, 202);
             this.LoginPanel.TabIndex = 48;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(314, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(38, 16);
+            this.label2.TabIndex = 59;
+            this.label2.Text = "Hasło";
             // 
             // label1
             // 
@@ -181,21 +202,6 @@
             this.LogIn.Text = "Zaloguj się";
             this.LogIn.UseVisualStyleBackColor = false;
             this.LogIn.Click += new System.EventHandler(this.LogIn_Click);
-            // 
-            // textPass
-            // 
-            this.textPass.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.textPass.BackColor = System.Drawing.Color.White;
-            this.textPass.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textPass.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textPass.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.textPass.Location = new System.Drawing.Point(329, 58);
-            this.textPass.Multiline = true;
-            this.textPass.Name = "textPass";
-            this.textPass.ReadOnly = true;
-            this.textPass.Size = new System.Drawing.Size(49, 57);
-            this.textPass.TabIndex = 51;
-            this.textPass.Text = "Hasło";
             // 
             // boxLogin
             // 
@@ -354,6 +360,7 @@
             // 
             // RejestrationPanel
             // 
+            this.RejestrationPanel.Controls.Add(this.label3);
             this.RejestrationPanel.Controls.Add(this.textBox1);
             this.RejestrationPanel.Controls.Add(this.textBox10);
             this.RejestrationPanel.Controls.Add(this.textBox9);
@@ -370,13 +377,22 @@
             this.RejestrationPanel.Size = new System.Drawing.Size(697, 238);
             this.RejestrationPanel.TabIndex = 51;
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(3, -3);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(143, 30);
+            this.label3.TabIndex = 60;
+            this.label3.Text = "Rejestracja";
+            // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(158, 32);
+            this.textBox1.Location = new System.Drawing.Point(158, 56);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(243, 20);
             this.textBox1.TabIndex = 61;
-            this.textBox1.Visible = false;
             // 
             // textBox10
             // 
@@ -384,14 +400,13 @@
             this.textBox10.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox10.ForeColor = System.Drawing.Color.Red;
-            this.textBox10.Location = new System.Drawing.Point(53, 33);
+            this.textBox10.Location = new System.Drawing.Point(52, 58);
             this.textBox10.Multiline = true;
             this.textBox10.Name = "textBox10";
             this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(100, 20);
             this.textBox10.TabIndex = 60;
             this.textBox10.Text = "Imię";
-            this.textBox10.Visible = false;
             // 
             // textBox9
             // 
@@ -399,22 +414,20 @@
             this.textBox9.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox9.ForeColor = System.Drawing.Color.Red;
-            this.textBox9.Location = new System.Drawing.Point(53, 59);
+            this.textBox9.Location = new System.Drawing.Point(52, 84);
             this.textBox9.Multiline = true;
             this.textBox9.Name = "textBox9";
             this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(100, 20);
             this.textBox9.TabIndex = 59;
             this.textBox9.Text = "Nazwisko";
-            this.textBox9.Visible = false;
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(159, 58);
+            this.textBox4.Location = new System.Drawing.Point(159, 82);
             this.textBox4.Name = "textBox4";
             this.textBox4.Size = new System.Drawing.Size(243, 20);
             this.textBox4.TabIndex = 58;
-            this.textBox4.Visible = false;
             // 
             // textBox8
             // 
@@ -422,27 +435,25 @@
             this.textBox8.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox8.ForeColor = System.Drawing.Color.Red;
-            this.textBox8.Location = new System.Drawing.Point(52, 137);
+            this.textBox8.Location = new System.Drawing.Point(51, 162);
             this.textBox8.Multiline = true;
             this.textBox8.Name = "textBox8";
             this.textBox8.ReadOnly = true;
             this.textBox8.Size = new System.Drawing.Size(100, 20);
             this.textBox8.TabIndex = 57;
             this.textBox8.Text = "Telefon";
-            this.textBox8.Visible = false;
             // 
             // AddAccount
             // 
             this.AddAccount.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.AddAccount.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddAccount.ForeColor = System.Drawing.Color.White;
-            this.AddAccount.Location = new System.Drawing.Point(517, 81);
+            this.AddAccount.Location = new System.Drawing.Point(224, 207);
             this.AddAccount.Name = "AddAccount";
             this.AddAccount.Size = new System.Drawing.Size(116, 23);
             this.AddAccount.TabIndex = 14;
             this.AddAccount.Text = "Dołącz";
             this.AddAccount.UseVisualStyleBackColor = false;
-            this.AddAccount.Visible = false;
             this.AddAccount.Click += new System.EventHandler(this.AddAccount_Click);
             // 
             // textBox7
@@ -451,22 +462,20 @@
             this.textBox7.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox7.ForeColor = System.Drawing.Color.Red;
-            this.textBox7.Location = new System.Drawing.Point(53, 85);
+            this.textBox7.Location = new System.Drawing.Point(52, 110);
             this.textBox7.Multiline = true;
             this.textBox7.Name = "textBox7";
             this.textBox7.ReadOnly = true;
             this.textBox7.Size = new System.Drawing.Size(100, 20);
             this.textBox7.TabIndex = 56;
             this.textBox7.Text = "Hasło";
-            this.textBox7.Visible = false;
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(158, 110);
+            this.textBox2.Location = new System.Drawing.Point(158, 134);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(243, 20);
             this.textBox2.TabIndex = 53;
-            this.textBox2.Visible = false;
             // 
             // textBox6
             // 
@@ -474,43 +483,105 @@
             this.textBox6.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.999999F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox6.ForeColor = System.Drawing.Color.Red;
-            this.textBox6.Location = new System.Drawing.Point(52, 111);
+            this.textBox6.Location = new System.Drawing.Point(51, 136);
             this.textBox6.Multiline = true;
             this.textBox6.Name = "textBox6";
             this.textBox6.ReadOnly = true;
             this.textBox6.Size = new System.Drawing.Size(100, 20);
             this.textBox6.TabIndex = 55;
             this.textBox6.Text = "Adres e-mail";
-            this.textBox6.Visible = false;
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(158, 84);
+            this.textBox3.Location = new System.Drawing.Point(158, 108);
             this.textBox3.Name = "textBox3";
             this.textBox3.Size = new System.Drawing.Size(243, 20);
             this.textBox3.TabIndex = 52;
-            this.textBox3.Visible = false;
             // 
             // textBox5
             // 
-            this.textBox5.Location = new System.Drawing.Point(158, 137);
+            this.textBox5.Location = new System.Drawing.Point(158, 161);
             this.textBox5.Name = "textBox5";
             this.textBox5.Size = new System.Drawing.Size(243, 20);
             this.textBox5.TabIndex = 54;
-            this.textBox5.Visible = false;
+            // 
+            // PassPanel
+            // 
+            this.PassPanel.Controls.Add(this.AddNewPass);
+            this.PassPanel.Controls.Add(this.NewPassBox);
+            this.PassPanel.Controls.Add(this.OldPassBox);
+            this.PassPanel.Controls.Add(this.label5);
+            this.PassPanel.Controls.Add(this.label4);
+            this.PassPanel.Location = new System.Drawing.Point(398, 13);
+            this.PassPanel.Name = "PassPanel";
+            this.PassPanel.Size = new System.Drawing.Size(539, 111);
+            this.PassPanel.TabIndex = 52;
+            // 
+            // AddNewPass
+            // 
+            this.AddNewPass.BackColor = System.Drawing.Color.MediumSpringGreen;
+            this.AddNewPass.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddNewPass.ForeColor = System.Drawing.Color.White;
+            this.AddNewPass.Location = new System.Drawing.Point(311, 33);
+            this.AddNewPass.Name = "AddNewPass";
+            this.AddNewPass.Size = new System.Drawing.Size(123, 29);
+            this.AddNewPass.TabIndex = 60;
+            this.AddNewPass.Text = "Zmień hasło";
+            this.AddNewPass.UseVisualStyleBackColor = false;
+            this.AddNewPass.Click += new System.EventHandler(this.AddNewPass_Click);
+            // 
+            // NewPassBox
+            // 
+            this.NewPassBox.Location = new System.Drawing.Point(116, 58);
+            this.NewPassBox.Name = "NewPassBox";
+            this.NewPassBox.Size = new System.Drawing.Size(135, 20);
+            this.NewPassBox.TabIndex = 63;
+            // 
+            // OldPassBox
+            // 
+            this.OldPassBox.Location = new System.Drawing.Point(116, 21);
+            this.OldPassBox.Name = "OldPassBox";
+            this.OldPassBox.Size = new System.Drawing.Size(135, 20);
+            this.OldPassBox.TabIndex = 60;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5.Location = new System.Drawing.Point(40, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(72, 16);
+            this.label5.TabIndex = 61;
+            this.label5.Text = "Nowe hasło";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(40, 23);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(68, 16);
+            this.label4.TabIndex = 60;
+            this.label4.Text = "Stare hasło";
+            // 
+            // userBindingSource
+            // 
+            this.userBindingSource.DataSource = typeof(DomainModel.Models.User);
             // 
             // UserAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(985, 594);
+            this.ClientSize = new System.Drawing.Size(985, 620);
+            this.Controls.Add(this.PassPanel);
             this.Controls.Add(this.RejestrationPanel);
             this.Controls.Add(this.MyticketsPanel);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.ButtonsPanel);
             this.Controls.Add(this.LoginPanel);
             this.Name = "UserAccount";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "UserAccount";
             this.LoginPanel.ResumeLayout(false);
             this.LoginPanel.PerformLayout();
@@ -520,6 +591,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.RejestrationPanel.ResumeLayout(false);
             this.RejestrationPanel.PerformLayout();
+            this.PassPanel.ResumeLayout(false);
+            this.PassPanel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -533,7 +607,6 @@
         private System.Windows.Forms.TextBox textRejestr;
         private System.Windows.Forms.TextBox boxPass;
         private System.Windows.Forms.Button LogIn;
-        private System.Windows.Forms.TextBox textPass;
         private System.Windows.Forms.TextBox boxLogin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel ButtonsPanel;
@@ -564,5 +637,14 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel PassPanel;
+        private System.Windows.Forms.TextBox NewPassBox;
+        private System.Windows.Forms.TextBox OldPassBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button AddNewPass;
+        private System.Windows.Forms.BindingSource userBindingSource;
     }
 }

@@ -20,6 +20,7 @@ namespace GUI
             ButtonsPanel.Visible = false;
             MyticketsPanel.Visible = false;
             RejestrationPanel.Visible = false;
+            PassPanel.Visible = false;
             boxPass.PasswordChar = '*';
             textBox3.PasswordChar = '*';
             
@@ -27,12 +28,16 @@ namespace GUI
 
         private void Mytickets_Click(object sender, EventArgs e)
         {
-
+            LoginPanel.Visible = false;
+            MyticketsPanel.Location = new Point(240, 188);
+            MyticketsPanel.Visible = true;
         }
 
         private void ChangePass_Click(object sender, EventArgs e)
         {
-
+            MyticketsPanel.Visible = false;
+            PassPanel.Location = new Point(240, 188);
+            PassPanel.Visible = true;
         }
 
         private void Search_Click(object sender, EventArgs e)
@@ -54,7 +59,9 @@ namespace GUI
             if (true/*r.ValidateUser(newUser, boxPass.Text.ToString())*/)
             {
                 LoginPanel.Visible = false;
+                MyticketsPanel.Location = new Point(240, 188);
                 MyticketsPanel.Visible = true;
+                ButtonsPanel.Visible = true;
                 log = true;
             }
             else
@@ -67,6 +74,7 @@ namespace GUI
         private void Rejestration_Click(object sender, EventArgs e)
         {
             LoginPanel.Visible = false;
+            RejestrationPanel.Location = new Point(240, 188);
             RejestrationPanel.Visible = true;
         }
         public static bool emailIsValid(string email)
@@ -166,6 +174,11 @@ namespace GUI
             Form1 form = new Form1();
             this.Hide();
             form.Show();
+
+        }
+
+        private void AddNewPass_Click(object sender, EventArgs e)
+        {
 
         }
     }

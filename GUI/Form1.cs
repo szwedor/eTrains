@@ -210,5 +210,11 @@ namespace GUI
             //UserAccount ua = new UserAccount();
             ua.Show();
         }
+
+        private void UserAccount_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            ua.Show();
+        }
     }
 }

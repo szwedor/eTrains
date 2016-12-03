@@ -55,6 +55,7 @@
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.UserAccount = new System.Windows.Forms.Button();
             this.SearchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -337,7 +338,7 @@
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox3.Location = new System.Drawing.Point(502, 289);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(471, 273);
+            this.pictureBox3.Size = new System.Drawing.Size(471, 306);
             this.pictureBox3.TabIndex = 34;
             this.pictureBox3.TabStop = false;
             // 
@@ -356,9 +357,25 @@
             this.pictureBox4.BackColor = System.Drawing.Color.Teal;
             this.pictureBox4.Location = new System.Drawing.Point(12, 106);
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(471, 456);
+            this.pictureBox4.Size = new System.Drawing.Size(471, 489);
             this.pictureBox4.TabIndex = 19;
             this.pictureBox4.TabStop = false;
+            // 
+            // UserAccount
+            // 
+            this.UserAccount.BackColor = System.Drawing.Color.Teal;
+            this.UserAccount.FlatAppearance.BorderSize = 0;
+            this.UserAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.UserAccount.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.UserAccount.ForeColor = System.Drawing.Color.White;
+            this.UserAccount.Location = new System.Drawing.Point(44, 559);
+            this.UserAccount.Name = "UserAccount";
+            this.UserAccount.Size = new System.Drawing.Size(112, 23);
+            this.UserAccount.TabIndex = 60;
+            this.UserAccount.Text = ">> Moje konto";
+            this.UserAccount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.UserAccount.UseVisualStyleBackColor = false;
+            this.UserAccount.Click += new System.EventHandler(this.UserAccount_Click);
             // 
             // Form1
             // 
@@ -366,7 +383,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.ClientSize = new System.Drawing.Size(985, 594);
+            this.ClientSize = new System.Drawing.Size(985, 620);
+            this.Controls.Add(this.UserAccount);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.listBoxTo);
             this.Controls.Add(this.labelDate);
@@ -429,6 +447,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lprzesiadek;
         private System.Windows.Forms.Button ConnectionDetails;
+        private System.Windows.Forms.Button UserAccount;
     }
 }
 
