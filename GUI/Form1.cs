@@ -403,5 +403,16 @@ namespace GUI
             }
         }
 
+        private void ConnectionDetails_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Najpierw wybierz połączenie");
+                return;
+            }
+            //dataGridView1.SelectedRows[0].Tag as Connection
+            Form ConnectionDefinitionWindow = new ConnectionDefinitionWindow();
+            ConnectionDefinitionWindow.Show();
+        }
     }
 }

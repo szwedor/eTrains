@@ -57,10 +57,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gratulation = new System.Windows.Forms.Label();
             this.RezervationButton = new System.Windows.Forms.Button();
             this.Error = new System.Windows.Forms.Label();
@@ -73,6 +69,12 @@
             this.labelTo = new System.Windows.Forms.Label();
             this.labelDate = new System.Windows.Forms.Label();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lprzesiadek = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ConnectionDetails = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -411,12 +413,13 @@
             // 
             // SearchPanel
             // 
+            this.SearchPanel.Controls.Add(this.ConnectionDetails);
             this.SearchPanel.Controls.Add(this.dataGridView1);
             this.SearchPanel.Controls.Add(this.Gratulation);
             this.SearchPanel.Controls.Add(this.RezervationButton);
             this.SearchPanel.Location = new System.Drawing.Point(989, 106);
             this.SearchPanel.Name = "SearchPanel";
-            this.SearchPanel.Size = new System.Drawing.Size(452, 456);
+            this.SearchPanel.Size = new System.Drawing.Size(472, 456);
             this.SearchPanel.TabIndex = 50;
             this.SearchPanel.Visible = false;
             // 
@@ -432,7 +435,8 @@
             this.Column1,
             this.Column2,
             this.Column3,
-            this.Column4});
+            this.Column4,
+            this.Lprzesiadek});
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.Location = new System.Drawing.Point(4, 4);
@@ -441,32 +445,8 @@
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.ShowEditingIcon = false;
-            this.dataGridView1.Size = new System.Drawing.Size(442, 250);
+            this.dataGridView1.Size = new System.Drawing.Size(465, 250);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Odjazd";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Przyjazd";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Czas Odjazdu";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Cena";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
             // 
             // Gratulation
             // 
@@ -599,6 +579,50 @@
             this.webBrowser1.Size = new System.Drawing.Size(471, 164);
             this.webBrowser1.TabIndex = 59;
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Odjazd";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Przyjazd";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Czas Odjazdu";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Cena";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 50;
+            // 
+            // Lprzesiadek
+            // 
+            this.Lprzesiadek.HeaderText = "Liczba przesiadek";
+            this.Lprzesiadek.Name = "Lprzesiadek";
+            this.Lprzesiadek.ReadOnly = true;
+            // 
+            // ConnectionDetails
+            // 
+            this.ConnectionDetails.BackColor = System.Drawing.Color.Brown;
+            this.ConnectionDetails.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConnectionDetails.ForeColor = System.Drawing.Color.White;
+            this.ConnectionDetails.Location = new System.Drawing.Point(6, 258);
+            this.ConnectionDetails.Name = "ConnectionDetails";
+            this.ConnectionDetails.Size = new System.Drawing.Size(26, 23);
+            this.ConnectionDetails.TabIndex = 4;
+            this.ConnectionDetails.Text = "i";
+            this.ConnectionDetails.UseVisualStyleBackColor = false;
+            this.ConnectionDetails.Click += new System.EventHandler(this.ConnectionDetails_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -696,10 +720,6 @@
         private System.Windows.Forms.Label Gratulation;
         private System.Windows.Forms.TextBox boxPass;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.DateTimePicker hoursTimePicker;
         private System.Windows.Forms.DateTimePicker MinutesTimePicer;
@@ -708,6 +728,12 @@
         private System.Windows.Forms.Label labelTo;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Lprzesiadek;
+        private System.Windows.Forms.Button ConnectionDetails;
     }
 }
 
