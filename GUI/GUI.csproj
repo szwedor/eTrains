@@ -99,17 +99,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\ConnectionService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Service References\ReservationService\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Service References\StationService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -153,45 +143,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\ConnectionService\ConnectionManagment.wsdl" />
-    <None Include="Service References\ConnectionService\mex.xsd">
+    <None Include="Service References\ReservationService\ReservationManagment.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ConnectionService\mex1.xsd">
+    <None Include="Service References\ReservationService\ReservationManagment1.wsdl" />
+    <None Include="Service References\ReservationService\ReservationManagment1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ConnectionService\mex2.xsd">
+    <None Include="Service References\ReservationService\ReservationManagment2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ConnectionService\mex3.xsd">
+    <None Include="Service References\ReservationService\ReservationManagment3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ReservationService\mex.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ReservationService\mex1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ReservationService\mex2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ReservationService\mex3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\ReservationService\ReservationManagment.wsdl" />
-    <None Include="Service References\StationService\mex.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StationService\mex1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StationService\mex2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StationService\mex3.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\StationService\StationManagment.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -229,21 +193,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\ConnectionService\" />
     <WCFMetadataStorage Include="Service References\ReservationService\" />
-    <WCFMetadataStorage Include="Service References\StationService\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StationService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StationService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\StationService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\ReservationService\configuration91.svcinfo" />
@@ -258,16 +208,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ConnectionService\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ConnectionService\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\ConnectionService\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
+    <None Include="Service References\ReservationService\ReservationManagment.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

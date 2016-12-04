@@ -9,7 +9,9 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -19,14 +21,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8080/R/mex" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:2106/ReservationManagment.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="mex.xsd" MetadataType="Schema" ID="9b16ac79-924a-406c-8be1-47a17500c6c2" SourceId="1" SourceUrl="http://localhost:8080/R/mex?xsd=xsd3" />
-    <MetadataFile FileName="mex1.xsd" MetadataType="Schema" ID="ccf910ac-aa04-4a55-98fc-184c0782ab69" SourceId="1" SourceUrl="http://localhost:8080/R/mex?xsd=xsd0" />
-    <MetadataFile FileName="mex2.xsd" MetadataType="Schema" ID="62bbb37d-7ec5-4e3a-b3e2-f22ec69c9bbc" SourceId="1" SourceUrl="http://localhost:8080/R/mex?xsd=xsd2" />
-    <MetadataFile FileName="mex3.xsd" MetadataType="Schema" ID="030f83be-8551-42c3-861e-02534b4b118d" SourceId="1" SourceUrl="http://localhost:8080/R/mex?xsd=xsd1" />
-    <MetadataFile FileName="ReservationManagment.wsdl" MetadataType="Wsdl" ID="f83fdd22-d172-413b-95d5-7e4c8448f71f" SourceId="1" SourceUrl="http://localhost:8080/R/mex" />
+    <MetadataFile FileName="ReservationManagment1.wsdl" MetadataType="Wsdl" ID="b9908356-d4ff-4746-8aab-1b16e4c03d8a" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?wsdl" />
+    <MetadataFile FileName="ReservationManagment.xsd" MetadataType="Schema" ID="9ecaa763-28ae-40c2-a742-607b6d785ecd" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?xsd=xsd3" />
+    <MetadataFile FileName="ReservationManagment1.xsd" MetadataType="Schema" ID="893b6e20-9e68-4bf4-af38-a82771b838b9" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?xsd=xsd2" />
+    <MetadataFile FileName="ReservationManagment2.xsd" MetadataType="Schema" ID="61464c13-98c9-4ede-8771-0252372f77c8" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReservationManagment.disco" MetadataType="Disco" ID="c0bd9119-b600-40c3-97c6-33b188210946" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?disco" />
+    <MetadataFile FileName="ReservationManagment3.xsd" MetadataType="Schema" ID="3e6343c9-eb04-4601-b9ba-92fac278e19c" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

@@ -8,8 +8,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Text.RegularExpressions;
 using DomainModel.Models;
-using GUI.StationService;
-using GUI.ConnectionService;
+using GUI.ReservationService;
 
 
 namespace GUI
@@ -22,9 +21,9 @@ namespace GUI
         //  public Reservation r;
         public ImageList ilLarge = new ImageList();
         public ImageList ilSmall = new ImageList();
-        StationManagmentClient StationClient = new StationManagmentClient();
-        ConnectionManagmentClient ConnectionClient = new ConnectionManagmentClient();
-        List<ConnectionDefinition> myconnections = new List<ConnectionDefinition>();
+        ReservationManagmentClient reservationManagment=new ReservationManagmentClient();
+        ReservationManagmentUnsecureClient reservationManagmentUnsecureClient=new ReservationManagmentUnsecureClient();
+        List<Connection> myconnections = new List<Connection>();
         UserAccount ua = new UserAccount();
         public Form1()
         {
@@ -62,10 +61,10 @@ namespace GUI
 
             //    r=new Reservation();
             //    listBoxFrom.DataSource= r.DepartureStations();
-
-            listBoxTo.DataSource = StationClient.AllStations();
+            
+            listBoxTo.DataSource = reservationManagmentUnsecureClient.AllStations();
             listBoxTo.DisplayMember = "Name";
-            listBoxFrom.DataSource = StationClient.AllStations();
+            listBoxFrom.DataSource = reservationManagmentUnsecureClient.AllStations();
             listBoxFrom.DisplayMember = "Name";
             DoubleBuffered = true;
             
@@ -105,9 +104,9 @@ namespace GUI
             Error.Visible = false;
             myconnections = null;
 
-            //  myconnections = r.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
+             myconnections = reservationManagmentUnsecureClient.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
 
-            myconnections = ConnectionClient.Find(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, -1, dt.Hour).ToList();
+          //  myconnections = reservationManagmentUnsecureClient.F(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, -1, dt.Hour).ToList();
             if (myconnections.Count == 0)
             {
                 webBrowser1.Visible = false;
@@ -134,10 +133,10 @@ namespace GUI
                         var x = new DataGridViewRow();
                         x.Tag = myconnections[i];
                         dataGridView1.Rows.Add(x);
-                        dataGridView1.Rows[i].Cells[0].Value = myconnections[i].Departure.Name;
-                        dataGridView1.Rows[i].Cells[1].Value = myconnections[i].Arrival.Name;
-                        dataGridView1.Rows[i].Cells[2].Value = myconnections[i].TravelTime;
-                        dataGridView1.Rows[i].Cells[3].Value = myconnections[i].Price;
+                        dataGridView1.Rows[i].Cells[0].Value = myconnections[i].ConnectionDefinition.Departure.Name;
+                        dataGridView1.Rows[i].Cells[1].Value = myconnections[i].ConnectionDefinition.Arrival.Name;
+                        dataGridView1.Rows[i].Cells[2].Value = myconnections[i].DepartureTime;
+                        dataGridView1.Rows[i].Cells[3].Value = myconnections[i].ConnectionDefinition.Price;
 
                     }
                 
