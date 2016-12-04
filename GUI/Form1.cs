@@ -19,7 +19,6 @@ namespace GUI
         
         public User newUser = new User();
         public DateTime dt=new DateTime();
-        Button myaccount = new Button();
         //  public Reservation r;
         public ImageList ilLarge = new ImageList();
         public ImageList ilSmall = new ImageList();
@@ -203,12 +202,6 @@ namespace GUI
             //dataGridView1.SelectedRows[0].Tag as Connection
             Form ConnectionDefinitionWindow = new ConnectionDefinitionWindow();
             ConnectionDefinitionWindow.Show();
-        }
-        private void myaccount_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            //UserAccount ua = new UserAccount();
-            ua.Show();
         }
 
         private void UserAccount_Click(object sender, EventArgs e)

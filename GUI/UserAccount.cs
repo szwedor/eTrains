@@ -13,7 +13,8 @@ namespace GUI
 {
     public partial class UserAccount : Form
     {
-        public bool log = false;
+        public bool log;
+        //public Form1 form = new Form1();
         public UserAccount()
         {
             InitializeComponent();
@@ -170,8 +171,9 @@ namespace GUI
 
         private void LogOut_Click(object sender, EventArgs e)
         {
-            log = false;
+
             Form1 form = new Form1();
+            log = false;
             this.Hide();
             form.Show();
 
