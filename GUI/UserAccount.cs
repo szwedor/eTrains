@@ -50,6 +50,9 @@ namespace GUI
 
         private void LogIn_Click(object sender, EventArgs e)
         {
+            managemenct client przekazac
+                w try login serclient .login catch blad logowania;
+            validacja sprawdzic czy istnieje taki login z takim has,em
             textValidation.Visible = false;
             //newUser = r.FindUser(boxLogin.Text.ToString());
             //if (newUser == null)

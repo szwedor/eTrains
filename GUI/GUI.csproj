@@ -49,10 +49,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>E8A9A2E7F0C545C5B04FE4DF011E82E305DFD71F</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>5B03FBD06E1F54A63D91160BF8405A6F7056E153</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>GUI_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -124,6 +125,7 @@
     <EmbeddedResource Include="UserAccount.resx">
       <DependentUpon>UserAccount.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="certyfikat.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\DomainModel.Models.Connection.datasource" />
     <None Include="Properties\DataSources\DomainModel.Models.ConnectionDefinition.datasource" />
