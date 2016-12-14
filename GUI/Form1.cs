@@ -9,7 +9,8 @@ using System.Xml;
 using System.Text.RegularExpressions;
 using DomainModel.Models;
 using GUI.ReservationService;
-
+using System.Globalization;
+using System.Diagnostics;
 
 namespace GUI
 {
@@ -24,12 +25,13 @@ namespace GUI
         ReservationManagmentClient reservationManagment=new ReservationManagmentClient();
         ReservationManagmentUnsecureClient reservationManagmentUnsecureClient=new ReservationManagmentUnsecureClient();
         List<Connection> myconnections = new List<Connection>();
-        UserAccount ua = new UserAccount();
+        UserAccount ua;
         public Form1()
         {
-            
+            if (Debugger.IsAttached)
+                CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             InitializeComponent();
-
+            ua = new UserAccount(this);
             try
             {
                 XmlReader reader = XmlReader.Create("http://wiadomosci.wp.pl/ver,rss,rss.xml");

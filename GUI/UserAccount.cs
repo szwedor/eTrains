@@ -8,20 +8,33 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GUI.UserService;
+using System.IdentityModel.Selectors;
 
 namespace GUI
 {
     public partial class UserAccount : Form
     {
         public bool log;
-        //public Form1 form = new Form1();
-        public UserAccount()
+        public Form1 oldform;
+        public UserAccount(Form1 f)
         {
+            if (log)
+            {
+                LoginPanel.Visible = false;
+                MyticketsPanel.Visible = true;
+                ButtonsPanel.Visible = true;
+            }
             InitializeComponent();
-            ButtonsPanel.Visible = false;
-            MyticketsPanel.Visible = false;
-            RejestrationPanel.Visible = false;
-            PassPanel.Visible = false;
+            
+            oldform = f;
+            if (!log)
+            {
+                ButtonsPanel.Visible = false;
+                MyticketsPanel.Visible = false;
+                RejestrationPanel.Visible = false;
+                PassPanel.Visible = false;
+            }
             boxPass.PasswordChar = '*';
             textBox3.PasswordChar = '*';
             
@@ -50,29 +63,33 @@ namespace GUI
 
         private void LogIn_Click(object sender, EventArgs e)
         {
-            managemenct client przekazac
-                w try login serclient .login catch blad logowania;
-            validacja sprawdzic czy istnieje taki login z takim has,em
-            textValidation.Visible = false;
-            //newUser = r.FindUser(boxLogin.Text.ToString());
-            //if (newUser == null)
-            //{
-            //    textValidation.Visible = true;
-            //    return;
-            //}
-            if (true/*r.ValidateUser(newUser, boxPass.Text.ToString())*/)
+            UserManagmentClient userManagment = new UserManagmentClient();
+            UserManagmentUnsecureClient userManagmentUnsecureClient = new UserManagmentUnsecureClient();
+           
+            try
             {
+
+                //userManagment.ClientCredentials.ServiceCertificate.Authentication.CustomCertificateValidator =
+                //new ();
+                userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
+                userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
+                
+                
+                userManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+               System.ServiceModel.Security.X509CertificateValidationMode.None;
+                userManagment.Login();
+            }
+            catch (Exception ex)
+            {
+                textValidation.Visible = true;
+                log = false;
+            }
+           
                 LoginPanel.Visible = false;
                 MyticketsPanel.Location = new Point(240, 188);
                 MyticketsPanel.Visible = true;
                 ButtonsPanel.Visible = true;
                 log = true;
-            }
-            else
-            {
-                textValidation.Visible = true;
-                log = false;
-            }
         }
 
         private void Rejestration_Click(object sender, EventArgs e)
