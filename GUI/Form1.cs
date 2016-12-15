@@ -19,13 +19,13 @@ namespace GUI
         
         public User newUser = new User();
         public DateTime dt=new DateTime();
-        //  public Reservation r;
         public ImageList ilLarge = new ImageList();
         public ImageList ilSmall = new ImageList();
         ReservationManagmentClient reservationManagment=new ReservationManagmentClient();
         ReservationManagmentUnsecureClient reservationManagmentUnsecureClient=new ReservationManagmentUnsecureClient();
         List<Connection> myconnections = new List<Connection>();
         UserAccount ua;
+        public bool log = false;
         public Form1()
         {
             if (Debugger.IsAttached)
@@ -152,7 +152,7 @@ namespace GUI
                 return;
             }
             Gratulation.Visible = false;
-            if ( ua.log== false)
+            if ( log== false)
             {
                 Gratulation.Text = "Aby zarezerwowac bilet musisz być zalogowany !";
                 Gratulation.BackColor = Color.MistyRose;

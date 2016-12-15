@@ -15,20 +15,20 @@ namespace GUI
 {
     public partial class UserAccount : Form
     {
-        public bool log;
         public Form1 oldform;
         public UserAccount(Form1 f)
         {
-            if (log)
+            
+            InitializeComponent();
+            
+            oldform = f;
+            if (oldform.log)
             {
                 LoginPanel.Visible = false;
                 MyticketsPanel.Visible = true;
                 ButtonsPanel.Visible = true;
             }
-            InitializeComponent();
-            
-            oldform = f;
-            if (!log)
+            if (!oldform.log)
             {
                 ButtonsPanel.Visible = false;
                 MyticketsPanel.Visible = false;
@@ -68,28 +68,26 @@ namespace GUI
            
             try
             {
-
-                //userManagment.ClientCredentials.ServiceCertificate.Authentication.CustomCertificateValidator =
-                //new ();
                 userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
                 userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
                 
                 
                 userManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
-               System.ServiceModel.Security.X509CertificateValidationMode.None;
+                System.ServiceModel.Security.X509CertificateValidationMode.None;
+
                 userManagment.Login();
             }
             catch (Exception ex)
             {
                 textValidation.Visible = true;
-                log = false;
+                oldform.log = false;
             }
            
-                LoginPanel.Visible = false;
-                MyticketsPanel.Location = new Point(240, 188);
-                MyticketsPanel.Visible = true;
-                ButtonsPanel.Visible = true;
-                log = true;
+            LoginPanel.Visible = false;
+            MyticketsPanel.Location = new Point(240, 188);
+            MyticketsPanel.Visible = true;
+            ButtonsPanel.Visible = true;
+            oldform.log = true;
         }
 
         private void Rejestration_Click(object sender, EventArgs e)
@@ -193,7 +191,7 @@ namespace GUI
         {
 
             Form1 form = new Form1();
-            log = false;
+            oldform.log = false;
             this.Hide();
             form.Show();
 
