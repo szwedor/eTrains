@@ -7,23 +7,23 @@ namespace AdminGUI.Forms.ConnectionDefinition
 {
     public partial class SearchResult : ControlTemplete
     {
-        private List<DomainModel.Models.ConnectionDefinition> l;
+        private List<DomainModel.Models.ConnectionDefinition> _l;
 
         public SearchResult()
         {
             InitializeComponent();
         }
 
-        private DataGridView result;
+        private DataGridView _result;
        
         public SearchResult(Size s, Panel returnP,Mode mode=Mode.Edit) : base(s, returnP)
         {
             InitializeComponent();
 
             SaveButton.Text = "Wybierz";
-            result=new DataGridView();
-            result.Size = new Size(Background.Width,Background.Height-SaveButton.Height-2*Program.padding);
-            result.Location = new Point(0,SaveButton.Height+2*Program.padding);
+            _result=new DataGridView();
+            _result.Size = new Size(Background.Width,Background.Height-SaveButton.Height-2*Program.Padding);
+            _result.Location = new Point(0,SaveButton.Height+2*Program.Padding);
             DataGridViewColumn c1 = new DataGridViewColumn();
             c1.Name = "name";
             c1.HeaderText = "Nazwa";
@@ -46,18 +46,18 @@ namespace AdminGUI.Forms.ConnectionDefinition
             c5.Name = "TravelSpan";
             c5.HeaderText = "Czas przejazdu";
             c5.CellTemplate = new DataGridViewTextBoxCell();
-            result.Columns.Add(c1);
-            result.Columns.Add(c2);
-            result.Columns.Add(c3);
-            result.Columns.Add(c4);
-            result.Columns.Add(c5);
-            result.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
-            result.AllowUserToAddRows =
-                result.AllowUserToDeleteRows = result.AllowUserToResizeColumns = result.AllowUserToResizeRows = false;
-            result.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            result.EditMode= DataGridViewEditMode.EditProgrammatically;
-            result.SelectionMode= DataGridViewSelectionMode.FullRowSelect;
-            result.MultiSelect = false;
+            _result.Columns.Add(c1);
+            _result.Columns.Add(c2);
+            _result.Columns.Add(c3);
+            _result.Columns.Add(c4);
+            _result.Columns.Add(c5);
+            _result.AutoSizeColumnsMode=DataGridViewAutoSizeColumnsMode.Fill;
+            _result.AllowUserToAddRows =
+                _result.AllowUserToDeleteRows = _result.AllowUserToResizeColumns = _result.AllowUserToResizeRows = false;
+            _result.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            _result.EditMode= DataGridViewEditMode.EditProgrammatically;
+            _result.SelectionMode= DataGridViewSelectionMode.FullRowSelect;
+            _result.MultiSelect = false;
             //l = m.Find(departureStation, arivalStation, price, hour);
             //for (int i=0;i<l.Count;i++)
             //{
@@ -65,14 +65,14 @@ namespace AdminGUI.Forms.ConnectionDefinition
                
             //}
             SaveButton.Enabled = true;
-            Background.Controls.Add(result);
+            Background.Controls.Add(_result);
             Background.Visible = false;
             Background.VisibleChanged += new EventHandler(Loading);
-            this.mode = mode;
+            this._mode = mode;
 
         }
 
-        private Mode mode;
+        private Mode _mode;
         public enum Mode
         {
             Edit,Remove,NewConnection
@@ -86,24 +86,24 @@ namespace AdminGUI.Forms.ConnectionDefinition
         {
             
         //    l = m.Find(departureStation, arivalStation, price, hour);
-            result.Rows.Clear();
-            for (int i = 0; i < l.Count; i++)
+            _result.Rows.Clear();
+            for (int i = 0; i < _l.Count; i++)
             {
-                result.Rows.Add(l[i].Name, l[i].Departure.Name, l[i].Arrival.Name, l[i].Price, l[i].TravelTime);
+                _result.Rows.Add(_l[i].Name, _l[i].Departure.Name, _l[i].Arrival.Name, _l[i].Price, _l[i].TravelTime);
 
             }
         }
         protected override void SaveClick(object sender, EventArgs e)
         {
-            switch (mode)
+            switch (_mode)
             {
                    case Mode.Edit:
-                    ModifyResult mr = new ModifyResult(Size, Background, l[(int)result.SelectedRows[0].Index]);
+                    ModifyResult mr = new ModifyResult(Size, Background, _l[(int)_result.SelectedRows[0].Index]);
                     this.Controls.Add(mr);
                     break;
                    
                 case Mode.NewConnection:
-                    AddNewConnection add=new AddNewConnection(Size, Background, l[(int)result.SelectedRows[0].Index]);
+                    AddNewConnection add=new AddNewConnection(Size, Background, _l[(int)_result.SelectedRows[0].Index]);
                     this.Controls.Add(add);
                     break;
             }
@@ -114,18 +114,18 @@ namespace AdminGUI.Forms.ConnectionDefinition
 
        
 
-        private DomainModel.Models.Station arivalStation;
-        private DomainModel.Models.Station departureStation;
-        private int price;
-        private int hour;
+        private DomainModel.Models.Station _arivalStation;
+        private DomainModel.Models.Station _departureStation;
+        private int _price;
+        private int _hour;
         //ConnectionManagment m = new ConnectionManagment();
-        public void NewSearch(DomainModel.Models.Station Departure, DomainModel.Models.Station Arrival, int price, int hour)
+        public void NewSearch(DomainModel.Models.Station departure, DomainModel.Models.Station arrival, int price, int hour)
         {
           
-            departureStation = Departure;
-            arivalStation = Arrival;
-            this.price = price;
-            this.hour = hour;
+            _departureStation = departure;
+            _arivalStation = arrival;
+            this._price = price;
+            this._hour = hour;
         //    l = m.Find(departureStation, arivalStation, price, hour);
             Background.Visible = true;
         }

@@ -27,7 +27,7 @@ namespace AdminGUI
         public static Font DefaultFont=new System.Drawing.Font("Century Gothic", 14, System.Drawing.FontStyle.Bold,
                      System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
-        public static int padding = 10;
+        public static int Padding = 10;
         public static Color BackColor = Color.MediumSpringGreen;
         public static Color ForeColor = Color.White;
         public static Button MakeStylishButton(Size s, Point l,string t)

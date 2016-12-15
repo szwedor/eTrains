@@ -17,21 +17,21 @@ namespace GUI
     public partial class Form1 : Form
     {
         
-        public User newUser = new User();
-        public DateTime dt=new DateTime();
+        public User NewUser = new User();
+        public DateTime Dt=new DateTime();
         //  public Reservation r;
-        public ImageList ilLarge = new ImageList();
-        public ImageList ilSmall = new ImageList();
-        ReservationManagmentClient reservationManagment=new ReservationManagmentClient();
-        ReservationManagmentUnsecureClient reservationManagmentUnsecureClient=new ReservationManagmentUnsecureClient();
-        List<Connection> myconnections = new List<Connection>();
-        UserAccount ua;
+        public ImageList IlLarge = new ImageList();
+        public ImageList IlSmall = new ImageList();
+        ReservationManagmentClient _reservationManagment=new ReservationManagmentClient();
+        ReservationManagmentUnsecureClient _reservationManagmentUnsecureClient=new ReservationManagmentUnsecureClient();
+        List<Connection> _myconnections = new List<Connection>();
+        UserAccount _ua;
         public Form1()
         {
             if (Debugger.IsAttached)
                 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             InitializeComponent();
-            ua = new UserAccount(this);
+            _ua = new UserAccount(this);
             try
             {
                 XmlReader reader = XmlReader.Create("http://wiadomosci.wp.pl/ver,rss,rss.xml");
@@ -64,9 +64,9 @@ namespace GUI
             //    r=new Reservation();
             //    listBoxFrom.DataSource= r.DepartureStations();
             
-            listBoxTo.DataSource = reservationManagmentUnsecureClient.AllStations();
+            listBoxTo.DataSource = _reservationManagmentUnsecureClient.AllStations();
             listBoxTo.DisplayMember = "Name";
-            listBoxFrom.DataSource = reservationManagmentUnsecureClient.AllStations();
+            listBoxFrom.DataSource = _reservationManagmentUnsecureClient.AllStations();
             listBoxFrom.DisplayMember = "Name";
             DoubleBuffered = true;
             
@@ -93,7 +93,7 @@ namespace GUI
       
         private void Find_Click(object sender, EventArgs e)
         {
-            dt = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day,
+            Dt = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day,
              hoursTimePicker.Value.Hour, MinutesTimePicer.Value.Minute, 0);
          
             //newli.Location = SearchListView.Location;
@@ -104,12 +104,12 @@ namespace GUI
             Gratulation.Visible = false;
             SearchPanel.Visible = false;
             Error.Visible = false;
-            myconnections = null;
+            _myconnections = null;
 
-             myconnections = reservationManagmentUnsecureClient.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
+             _myconnections = _reservationManagmentUnsecureClient.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, Dt);
 
           //  myconnections = reservationManagmentUnsecureClient.F(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, -1, dt.Hour).ToList();
-            if (myconnections.Count == 0)
+            if (_myconnections.Count == 0)
             {
                 webBrowser1.Visible = false;
                 StringBuilder mystb = new StringBuilder();
@@ -130,15 +130,15 @@ namespace GUI
                 dataGridView1.Rows.Clear();
                
                 
-                    for(int i=0;i<myconnections.Count;i++)
+                    for(int i=0;i<_myconnections.Count;i++)
                     {
                         var x = new DataGridViewRow();
-                        x.Tag = myconnections[i];
+                        x.Tag = _myconnections[i];
                         dataGridView1.Rows.Add(x);
-                        dataGridView1.Rows[i].Cells[0].Value = myconnections[i].ConnectionDefinition.Departure.Name;
-                        dataGridView1.Rows[i].Cells[1].Value = myconnections[i].ConnectionDefinition.Arrival.Name;
-                        dataGridView1.Rows[i].Cells[2].Value = myconnections[i].DepartureTime;
-                        dataGridView1.Rows[i].Cells[3].Value = myconnections[i].ConnectionDefinition.Price;
+                        dataGridView1.Rows[i].Cells[0].Value = _myconnections[i].ConnectionDefinition.Departure.Name;
+                        dataGridView1.Rows[i].Cells[1].Value = _myconnections[i].ConnectionDefinition.Arrival.Name;
+                        dataGridView1.Rows[i].Cells[2].Value = _myconnections[i].DepartureTime;
+                        dataGridView1.Rows[i].Cells[3].Value = _myconnections[i].ConnectionDefinition.Price;
 
                     }
                 
@@ -152,15 +152,15 @@ namespace GUI
                 return;
             }
             Gratulation.Visible = false;
-            if ( ua.log== false)
+            if ( _ua.Log== false)
             {
                 Gratulation.Text = "Aby zarezerwowac bilet musisz być zalogowany !";
                 Gratulation.BackColor = Color.MistyRose;
             }
             else
             {
-                dt = (dataGridView1.SelectedRows[0].Tag as Connection).DepartureTime;
-                if (dt < DateTime.Now)
+                Dt = (dataGridView1.SelectedRows[0].Tag as Connection).DepartureTime;
+                if (Dt < DateTime.Now)
                 {
                     MessageBox.Show("Pociąg już odjechał" );
                     return;
@@ -201,14 +201,14 @@ namespace GUI
                 return;
             }
             //dataGridView1.SelectedRows[0].Tag as Connection
-            Form ConnectionDefinitionWindow = new ConnectionDefinitionWindow();
-            ConnectionDefinitionWindow.Show();
+            Form connectionDefinitionWindow = new ConnectionDefinitionWindow();
+            connectionDefinitionWindow.Show();
         }
 
         private void UserAccount_Click(object sender, EventArgs e)
         {
             this.Hide();
-            ua.Show();
+            _ua.Show();
         }
     }
 }

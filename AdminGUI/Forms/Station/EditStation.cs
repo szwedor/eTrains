@@ -11,74 +11,74 @@ namespace AdminGUI.Forms.Station
             InitializeComponent();
         }
 
-        private Button SelectStation;
-        private ListBox ListOfStations;
-        private TextBox NewNameStation;
+        private Button _selectStation;
+        private ListBox _listOfStations;
+        private TextBox _newNameStation;
       //  private StationManagment sm;
         public EditStation(Size s, Panel returnP) : base(s, returnP)
         {
-            SelectStation = Program.MakeStylishButton(SaveButton.Size,
-                new Point(SaveButton.Location.X , SaveButton.Location.Y+SaveButton.Size.Height+Program.padding),
+            _selectStation = Program.MakeStylishButton(SaveButton.Size,
+                new Point(SaveButton.Location.X , SaveButton.Location.Y+SaveButton.Size.Height+Program.Padding),
                 "Wybierz stacje");
-            SelectStation.Click+=new System.EventHandler(SelectStationClick);
-            Background.Controls.Add(SelectStation);
-            returnButton.Width *= 2;
-            ListOfStations=new ListBox();
-            ListOfStations.Location=new Point(returnButton.Location.X,returnButton.Location.Y+returnButton.Height+Program.padding);
-            ListOfStations.Size=new Size(returnButton.Width, Background.Height-ListOfStations.Height+2*Program.padding);
-            Background.Controls.Add(ListOfStations);
+            _selectStation.Click+=new System.EventHandler(SelectStationClick);
+            Background.Controls.Add(_selectStation);
+            ReturnButton.Width *= 2;
+            _listOfStations=new ListBox();
+            _listOfStations.Location=new Point(ReturnButton.Location.X,ReturnButton.Location.Y+ReturnButton.Height+Program.Padding);
+            _listOfStations.Size=new Size(ReturnButton.Width, Background.Height-_listOfStations.Height+2*Program.Padding);
+            Background.Controls.Add(_listOfStations);
 
-            NewNameStation = new TextBox();
-            NewNameStation.Font = Program.DefaultFont;
-            NewNameStation.Size = SaveButton.Size;
-            NewNameStation.Location = new Point(SaveButton.Location.X,SelectStation.Location.Y+SelectStation.Height+Program.padding);
-            Background.Controls.Add(NewNameStation);
+            _newNameStation = new TextBox();
+            _newNameStation.Font = Program.DefaultFont;
+            _newNameStation.Size = SaveButton.Size;
+            _newNameStation.Location = new Point(SaveButton.Location.X,_selectStation.Location.Y+_selectStation.Height+Program.Padding);
+            Background.Controls.Add(_newNameStation);
         //    sm=new StationManagment();
         //    ListOfStations.DataSource = sm.AllStations();
-            ListOfStations.DisplayMember = "Name";
+            _listOfStations.DisplayMember = "Name";
             DoubleBuffered = true;
             this.VisibleChanged+=new EventHandler(Loading);
         }
 
         private void Loading(object sender, EventArgs e)
         {
-            ListOfStations.Enabled = true;
-            locked = false;
-            SelectStation.Text = "Wybierz stacje";
+            _listOfStations.Enabled = true;
+            _locked = false;
+            _selectStation.Text = "Wybierz stacje";
             SaveButton.Enabled = false;
-            NewNameStation.Text = "";
+            _newNameStation.Text = "";
         //    ListOfStations.DataSource = sm.AllStations();
         }
 
-        private bool locked = false;
+        private bool _locked = false;
         private void SelectStationClick(object sender, EventArgs e)
         {
-            if(ListOfStations.SelectedItem==null) return;
-            if (locked)
+            if(_listOfStations.SelectedItem==null) return;
+            if (_locked)
             {
-                ListOfStations.Enabled=true;
-                locked = false;
-                SelectStation.Text = "Wybierz stacje";
+                _listOfStations.Enabled=true;
+                _locked = false;
+                _selectStation.Text = "Wybierz stacje";
                 SaveButton.Enabled = false;
-                NewNameStation.Text = "";
+                _newNameStation.Text = "";
                 return;
             }
-            SelectStation.Text = "Wybrano stacje";
-            ListOfStations.Enabled = false;
+            _selectStation.Text = "Wybrano stacje";
+            _listOfStations.Enabled = false;
             SaveButton.Enabled = true;
-            locked = true;
-            NewNameStation.Text = (ListOfStations.SelectedItem as DomainModel.Models.Station).Name;
+            _locked = true;
+            _newNameStation.Text = (_listOfStations.SelectedItem as DomainModel.Models.Station).Name;
         }
 
         protected override void SaveClick(object sender, EventArgs e)
         {
-            ListOfStations.Enabled = true;
-            locked = false;
-            SelectStation.Text = "Wybierz stacje";
+            _listOfStations.Enabled = true;
+            _locked = false;
+            _selectStation.Text = "Wybierz stacje";
         //    if (sm.ChangeStation(ListOfStations.SelectedItem as DomainModel.Models.Station, NewNameStation.Text))
             {
-                ListOfStations.DisplayMember = "";
-                ListOfStations.DisplayMember = "Name";
+                _listOfStations.DisplayMember = "";
+                _listOfStations.DisplayMember = "Name";
                 base.SaveClick(sender, e);
             }
             

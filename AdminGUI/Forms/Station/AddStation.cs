@@ -11,23 +11,23 @@ namespace AdminGUI.Forms
             InitializeComponent();
         }
 
-        private Label Name;
-        private TextBox newStation;
+        private Label _name;
+        private TextBox _newStation;
         public AddStation(Size s, Panel returnP) : base(s, returnP)
         {
             SaveButton.Text = "Dodaj";
-            Name=new Label();
-            Name.Location=new Point(SaveButton.Location.X-SaveButton.Width-Program.padding,SaveButton.Location.Y+2*SaveButton.Height);
-            Name.Font = Program.DefaultFont;
-            Name.Size = SaveButton.Size;
-            Name.Text = "Podaj nową stacje";
-            Background.Controls.Add(Name);
+            _name=new Label();
+            _name.Location=new Point(SaveButton.Location.X-SaveButton.Width-Program.Padding,SaveButton.Location.Y+2*SaveButton.Height);
+            _name.Font = Program.DefaultFont;
+            _name.Size = SaveButton.Size;
+            _name.Text = "Podaj nową stacje";
+            Background.Controls.Add(_name);
 
-            newStation=new TextBox();
-            newStation.Font = Program.DefaultFont;
-            newStation.Size = SaveButton.Size;
-            newStation.Location=new Point(Name.Location.X,Name.Location.Y+Name.Size.Height);
-            Background.Controls.Add(newStation);
+            _newStation=new TextBox();
+            _newStation.Font = Program.DefaultFont;
+            _newStation.Size = SaveButton.Size;
+            _newStation.Location=new Point(_name.Location.X,_name.Location.Y+_name.Size.Height);
+            Background.Controls.Add(_newStation);
             SaveButton.Enabled = true;
         }
 
@@ -37,9 +37,9 @@ namespace AdminGUI.Forms
        //     var s = new Services.StationManagment();
        //     if(s.Add(newStation.Text))
             base.SaveClick(sender, e);
-            returnButton.PerformClick();
-            Name.Text = "Podaj nową stacje";
-            newStation.Text = "";
+            ReturnButton.PerformClick();
+            _name.Text = "Podaj nową stacje";
+            _newStation.Text = "";
         }
     }
 }

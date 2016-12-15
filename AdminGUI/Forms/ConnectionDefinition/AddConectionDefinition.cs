@@ -13,57 +13,57 @@ namespace AdminGUI.Forms
         }
 
        // private StationManagment sm;
-        private Button SelectStationDeparture;
-        private Button SelectStationArrival;
+        private Button _selectStationDeparture;
+        private Button _selectStationArrival;
        // private List<DomainModel.Models.Station> Stations;
-        private ListBox ListOfStations;
-        private Button OK;
-        private DateTimePicker hourTimePicker;
-        private DateTimePicker minutesTimePicker;
-        private TextBox PriceBox;
+        private ListBox _listOfStations;
+        private Button _ok;
+        private DateTimePicker _hourTimePicker;
+        private DateTimePicker _minutesTimePicker;
+        private TextBox _priceBox;
         public AddConectionDefinition(Size s, Panel returnP) : base(s,returnP)
         {
             
            
             SaveButton.Text = "Dodaj";
-            SelectStationDeparture = Program.MakeStylishButton(new Size(Background.Width - Program.padding * 2, SaveButton.Height), 
-                new Point(Program.padding, SaveButton.Location.Y+SaveButton.Size.Height+Program.padding),
+            _selectStationDeparture = Program.MakeStylishButton(new Size(Background.Width - Program.Padding * 2, SaveButton.Height), 
+                new Point(Program.Padding, SaveButton.Location.Y+SaveButton.Size.Height+Program.Padding),
                 "Wybierz stacje początkową");
-            SelectStationDeparture.Click+=new System.EventHandler(SelectStationDepartureClick);
-            Background.Controls.Add(SelectStationDeparture);
+            _selectStationDeparture.Click+=new System.EventHandler(SelectStationDepartureClick);
+            Background.Controls.Add(_selectStationDeparture);
 
-            SelectStationArrival = Program.MakeStylishButton(new Size(Background.Width-Program.padding*2 , SaveButton.Height),
-               new Point(Program.padding, SelectStationDeparture.Location.Y + SaveButton.Size.Height + Program.padding),
+            _selectStationArrival = Program.MakeStylishButton(new Size(Background.Width-Program.Padding*2 , SaveButton.Height),
+               new Point(Program.Padding, _selectStationDeparture.Location.Y + SaveButton.Size.Height + Program.Padding),
                "Wybierz stacje końcową");
-            SelectStationArrival.Click += new System.EventHandler(SelectStationArrivalClick);
-            Background.Controls.Add(SelectStationArrival);
-            SelectStationArrival.Enabled = false;
+            _selectStationArrival.Click += new System.EventHandler(SelectStationArrivalClick);
+            Background.Controls.Add(_selectStationArrival);
+            _selectStationArrival.Enabled = false;
 
-            Label TravelTime;
-            TravelTime = new Label();
-            TravelTime.Location = new Point(Program.padding, SaveButton.Location.Y +  4*SaveButton.Height);
-            TravelTime.Font = Program.DefaultFont;
-            TravelTime.Size = SaveButton.Size;
-            TravelTime.Text = "Podaj długość przejazdu hh:mm";
-             Background.Controls.Add(TravelTime);
-            hourTimePicker=new DateTimePicker();
-            hourTimePicker.Format=DateTimePickerFormat.Custom;
-            hourTimePicker.ShowUpDown = true;
-            hourTimePicker.CustomFormat = "HH";
-            hourTimePicker.Location=new Point(TravelTime.Location.X+TravelTime.Size.Width,TravelTime.Location.Y);
-            hourTimePicker.Font = Program.DefaultFont;
-            hourTimePicker.Size=new Size(55,20);
-            Background.Controls.Add(hourTimePicker);
+            Label travelTime;
+            travelTime = new Label();
+            travelTime.Location = new Point(Program.Padding, SaveButton.Location.Y +  4*SaveButton.Height);
+            travelTime.Font = Program.DefaultFont;
+            travelTime.Size = SaveButton.Size;
+            travelTime.Text = "Podaj długość przejazdu hh:mm";
+             Background.Controls.Add(travelTime);
+            _hourTimePicker=new DateTimePicker();
+            _hourTimePicker.Format=DateTimePickerFormat.Custom;
+            _hourTimePicker.ShowUpDown = true;
+            _hourTimePicker.CustomFormat = "HH";
+            _hourTimePicker.Location=new Point(travelTime.Location.X+travelTime.Size.Width,travelTime.Location.Y);
+            _hourTimePicker.Font = Program.DefaultFont;
+            _hourTimePicker.Size=new Size(55,20);
+            Background.Controls.Add(_hourTimePicker);
 
 
-            minutesTimePicker = new DateTimePicker();
-            minutesTimePicker.Format = DateTimePickerFormat.Custom;
-            minutesTimePicker.ShowUpDown = true;
-            minutesTimePicker.CustomFormat = "mm";
-            minutesTimePicker.Location = new Point(hourTimePicker.Location.X + hourTimePicker.Size.Width, TravelTime.Location.Y);
-            minutesTimePicker.Font = Program.DefaultFont;
-            minutesTimePicker.Size = new Size(55, 20);
-            Background.Controls.Add(minutesTimePicker);
+            _minutesTimePicker = new DateTimePicker();
+            _minutesTimePicker.Format = DateTimePickerFormat.Custom;
+            _minutesTimePicker.ShowUpDown = true;
+            _minutesTimePicker.CustomFormat = "mm";
+            _minutesTimePicker.Location = new Point(_hourTimePicker.Location.X + _hourTimePicker.Size.Width, travelTime.Location.Y);
+            _minutesTimePicker.Font = Program.DefaultFont;
+            _minutesTimePicker.Size = new Size(55, 20);
+            Background.Controls.Add(_minutesTimePicker);
 
             Label Price;
             Price = new Label();
@@ -73,32 +73,32 @@ namespace AdminGUI.Forms
             Price.Text = "Podaj cenę";
             Background.Controls.Add(Price);
 
-            PriceBox = new TextBox();
-            PriceBox.Font = Program.DefaultFont;
-            PriceBox.TextChanged += new System.EventHandler(TextChanged);
-            PriceBox.Location=new Point(Price.Location.X+Price.Width,Price.Location.Y);
-            PriceBox.Size = Price.Size;
-            Background.Controls.Add(PriceBox);
-            OK = new Button()
+            _priceBox = new TextBox();
+            _priceBox.Font = Program.DefaultFont;
+            _priceBox.TextChanged += new System.EventHandler(TextChanged);
+            _priceBox.Location=new Point(Price.Location.X+Price.Width,Price.Location.Y);
+            _priceBox.Size = Price.Size;
+            Background.Controls.Add(_priceBox);
+            _ok = new Button()
             {
                 Size = new Size(100, 25),
                 Text = "Wybierz stacje",
                 Location = new Point(Width/2 - 50, Height-30),
 
             };
-            Controls.Add(OK);
-            OK.Click+=new System.EventHandler(AcceptStationClick);
-            OK.Visible = false;
-            returnButton.Width *= 2;
-            ListOfStations=new ListBox();
-            ListOfStations.Location = Background.Location;
-            ListOfStations.Size = Background.Size;
-        this.Controls.Add(ListOfStations);
+            Controls.Add(_ok);
+            _ok.Click+=new System.EventHandler(AcceptStationClick);
+            _ok.Visible = false;
+            ReturnButton.Width *= 2;
+            _listOfStations=new ListBox();
+            _listOfStations.Location = Background.Location;
+            _listOfStations.Size = Background.Size;
+        this.Controls.Add(_listOfStations);
          
 
           //   sm=new StationManagment();
       //  ListOfStations.DataSource = sm.AllStations();
-            ListOfStations.DisplayMember = "Name";
+            _listOfStations.DisplayMember = "Name";
 
             DoubleBuffered = true;
             this.VisibleChanged += new EventHandler(Loading);
@@ -106,66 +106,66 @@ namespace AdminGUI.Forms
 
         private void Loading(object sender, EventArgs e)
         {
-            SelectStationArrival.Text = "Wybierz stacje końcową";
-                SelectStationDeparture.Text= "Wybierz stacje początkową";
-            departureStation = arrivalStation = null;
+            _selectStationArrival.Text = "Wybierz stacje końcową";
+                _selectStationDeparture.Text= "Wybierz stacje początkową";
+            _departureStation = _arrivalStation = null;
             SaveButton.Enabled = false;
          //   ListOfStations.DataSource = sm.AllStations();
         }
-        private bool departure = false;
-        private bool arrival = false;
-        private DomainModel.Models.Station departureStation;
-        private DomainModel.Models.Station arrivalStation;
+        private bool _departure = false;
+        private bool _arrival = false;
+        private DomainModel.Models.Station _departureStation;
+        private DomainModel.Models.Station _arrivalStation;
         private void AcceptStationClick(object sender, EventArgs e)
         {
-            if (ListOfStations.SelectedItem == null) return;
+            if (_listOfStations.SelectedItem == null) return;
             Background.Visible = true;
 
-            if (departure)
+            if (_departure)
             {
-                departure = false;
-                departureStation= (ListOfStations.SelectedItem as DomainModel.Models.Station);
-                SelectStationArrival.Enabled = true;
-                SelectStationDeparture.Text = "Stacja początkowa: " + departureStation.Name;
+                _departure = false;
+                _departureStation= (_listOfStations.SelectedItem as DomainModel.Models.Station);
+                _selectStationArrival.Enabled = true;
+                _selectStationDeparture.Text = "Stacja początkowa: " + _departureStation.Name;
             }
-            else if (arrival)
+            else if (_arrival)
             {
-                departure = false;
-                arrivalStation = (ListOfStations.SelectedItem as DomainModel.Models.Station);
-                SelectStationArrival.Text = "Stacja końcowa: " + arrivalStation.Name;
+                _departure = false;
+                _arrivalStation = (_listOfStations.SelectedItem as DomainModel.Models.Station);
+                _selectStationArrival.Text = "Stacja końcowa: " + _arrivalStation.Name;
             }
-            OK.Visible = false;
+            _ok.Visible = false;
 
         }
 
         private void SelectStationArrivalClick(object sender, EventArgs e)
         {
-            arrival = true;
+            _arrival = true;
             Background.Visible = false;
-            OK.Visible = true;
+            _ok.Visible = true;
         }
 
         private void SelectStationDepartureClick(object sender, EventArgs e)
         {
-            OK.Visible = true;
-            departure = true;
+            _ok.Visible = true;
+            _departure = true;
             Background.Visible = false;
         }
 
-        private int price;
+        private int _price;
         private void TextChanged(object sender, EventArgs e)
         {
 
            
-            if (!int.TryParse(PriceBox.Text, out price))
+            if (!int.TryParse(_priceBox.Text, out _price))
             {
                 SaveButton.Enabled = false;
-                if (PriceBox.Text.Length != 0)
-                    PriceBox.Text = PriceBox.Text.Remove(PriceBox.Text.Length - 1);
+                if (_priceBox.Text.Length != 0)
+                    _priceBox.Text = _priceBox.Text.Remove(_priceBox.Text.Length - 1);
             }
             else
             {
-                if (arrival != null && departure != null)
+                if (_arrival != null && _departure != null)
                     SaveButton.Enabled = true;
             }
 
@@ -178,7 +178,7 @@ namespace AdminGUI.Forms
           //      minutesTimePicker.Value.Minute, price,departureStation.Name+" "+arrivalStation.Name))
             {
                  base.SaveClick(sender, e);
-                base.returnButton.PerformClick();
+                base.ReturnButton.PerformClick();
             }
            
         }

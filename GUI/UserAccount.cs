@@ -15,11 +15,11 @@ namespace GUI
 {
     public partial class UserAccount : Form
     {
-        public bool log;
-        public Form1 oldform;
+        public bool Log;
+        private Form1 _oldform;
         public UserAccount(Form1 f)
         {
-            if (log)
+            if (Log)
             {
                 LoginPanel.Visible = false;
                 MyticketsPanel.Visible = true;
@@ -27,8 +27,8 @@ namespace GUI
             }
             InitializeComponent();
             
-            oldform = f;
-            if (!log)
+            _oldform = f;
+            if (!Log)
             {
                 ButtonsPanel.Visible = false;
                 MyticketsPanel.Visible = false;
@@ -56,9 +56,9 @@ namespace GUI
 
         private void Search_Click(object sender, EventArgs e)
         {
-            Form1 form = new Form1();
+          
             this.Hide();
-            form.Show();
+            _oldform.Show();
         }
 
         private void LogIn_Click(object sender, EventArgs e)
@@ -73,23 +73,24 @@ namespace GUI
                 //new ();
                 userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
                 userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
-                
-                
+
+
                 userManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
-               System.ServiceModel.Security.X509CertificateValidationMode.None;
+                    System.ServiceModel.Security.X509CertificateValidationMode.PeerOrChainTrust;
                 userManagment.Login();
             }
             catch (Exception ex)
             {
                 textValidation.Visible = true;
-                log = false;
+                Log = false;
+                return;
             }
            
                 LoginPanel.Visible = false;
                 MyticketsPanel.Location = new Point(240, 188);
                 MyticketsPanel.Visible = true;
                 ButtonsPanel.Visible = true;
-                log = true;
+                Log = true;
         }
 
         private void Rejestration_Click(object sender, EventArgs e)
@@ -98,7 +99,7 @@ namespace GUI
             RejestrationPanel.Location = new Point(240, 188);
             RejestrationPanel.Visible = true;
         }
-        public static bool emailIsValid(string email)
+        public static bool EmailIsValid(string email)
         {
             string expresion;
             expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
@@ -126,7 +127,7 @@ namespace GUI
                 MessageBox.Show("Zły format tefonu! ");
                 return;
             }
-            else if (!emailIsValid(textBox2.Text.ToString()) || textBox2.Text.Length == 0)
+            else if (!EmailIsValid(textBox2.Text.ToString()) || textBox2.Text.Length == 0)
             {
                 MessageBox.Show("Zły format mail! ");
                 return;
@@ -180,8 +181,8 @@ namespace GUI
                 return;
             }
             //dataGridView1.SelectedRows[0].Tag as Connection
-            Form ConnectionDefinitionWindow = new ConnectionDefinitionWindow();
-            ConnectionDefinitionWindow.Show();
+            Form connectionDefinitionWindow = new ConnectionDefinitionWindow();
+            connectionDefinitionWindow.Show();
         }
 
         private void DeleteReservation_Click(object sender, EventArgs e)
@@ -192,10 +193,10 @@ namespace GUI
         private void LogOut_Click(object sender, EventArgs e)
         {
 
-            Form1 form = new Form1();
-            log = false;
+           
+            Log = false;
             this.Hide();
-            form.Show();
+            _oldform.Show();
 
         }
 
