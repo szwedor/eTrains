@@ -7,7 +7,7 @@ namespace AdminGUI.Forms
 {
     public partial class AddNewConnection : ControlTemplete
     {
-        private DomainModel.Models.ConnectionDefinition connectionDefinition;
+        private DomainModel.Models.ConnectionDefinition _connectionDefinition;
 
         public AddNewConnection()
         {
@@ -19,17 +19,17 @@ namespace AdminGUI.Forms
             InitializeComponent();
         }
 
-        private Label Connection;
-        private DateTimePicker starTimePicker;
-        private Label from;
-        private DateTimePicker toTimePicker;
-        private Label frequency;
-        private TextBox freqTextBox;
-        private DateTimePicker hourTimePicker;
-        private DateTimePicker minDateTimePicker;
+        private Label _connection;
+        private DateTimePicker _starTimePicker;
+        private Label _from;
+        private DateTimePicker _toTimePicker;
+        private Label _frequency;
+        private TextBox _freqTextBox;
+        private DateTimePicker _hourTimePicker;
+        private DateTimePicker _minDateTimePicker;
         public AddNewConnection(Size s, Panel returnP, DomainModel.Models.ConnectionDefinition connectionDefinition) : this(s, returnP)
         {
-            this.connectionDefinition = connectionDefinition;
+            this._connectionDefinition = connectionDefinition;
             StringBuilder sb=new StringBuilder();
             sb.Append(connectionDefinition.Name)
                 .Append(" Z:")
@@ -41,104 +41,104 @@ namespace AdminGUI.Forms
                 .Append(Environment.NewLine)
                 .Append("Czas Przejazdu:")
                 .Append(connectionDefinition.TravelTime);
-             Connection = new Label()
+             _connection = new Label()
             {
                 Location =
-                    new Point(returnButton.Location.X, returnButton.Height + Program.padding + returnButton.Location.Y),
-                Size = new Size(returnButton.Width,returnButton.Height*3),
+                    new Point(ReturnButton.Location.X, ReturnButton.Height + Program.Padding + ReturnButton.Location.Y),
+                Size = new Size(ReturnButton.Width,ReturnButton.Height*3),
                 Font = Program.DefaultFont,
                 Text = sb.ToString()
             };
-            Background.Controls.Add(Connection);
+            Background.Controls.Add(_connection);
 
             
 
-             starTimePicker = new DateTimePicker()
+             _starTimePicker = new DateTimePicker()
             {
-                Location = new Point(SaveButton.Location.X , SaveButton.Location.Y+SaveButton.Height*2+Program.padding),
+                Location = new Point(SaveButton.Location.X , SaveButton.Location.Y+SaveButton.Height*2+Program.Padding),
                 MinDate = DateTime.Today,
                 MaxDate = DateTime.Today.AddMonths(3),
                 
             };
-            Background.Controls.Add(starTimePicker);
+            Background.Controls.Add(_starTimePicker);
 
-             from = new Label()
+             _from = new Label()
             {
                 Location =
-                    new Point(starTimePicker.Location.X, -starTimePicker.Height +starTimePicker.Location.Y-Program.padding),
-                Size = new Size(returnButton.Width, returnButton.Height),
+                    new Point(_starTimePicker.Location.X, -_starTimePicker.Height +_starTimePicker.Location.Y-Program.Padding),
+                Size = new Size(ReturnButton.Width, ReturnButton.Height),
                 Font = Program.DefaultFont,
                 Text = "Zakres dat przejazdów"
             };
-           Background.Controls.Add(from);
+           Background.Controls.Add(_from);
 
 
-             toTimePicker = new DateTimePicker()
+             _toTimePicker = new DateTimePicker()
             {
-                Location =new Point(starTimePicker.Location.X,starTimePicker.Location.Y + starTimePicker.Height * 2),
+                Location =new Point(_starTimePicker.Location.X,_starTimePicker.Location.Y + _starTimePicker.Height * 2),
                 MinDate = DateTime.Today,
                 MaxDate = DateTime.Today.AddMonths(12),
             };
-            Background.Controls.Add(toTimePicker);
+            Background.Controls.Add(_toTimePicker);
 
-             frequency = new Label()
+             _frequency = new Label()
             {
                 Location =
-                    new Point(from.Location.X-from.Width, from.Location.Y),
-                Size = new Size(returnButton.Width, returnButton.Height),
+                    new Point(_from.Location.X-_from.Width, _from.Location.Y),
+                Size = new Size(ReturnButton.Width, ReturnButton.Height),
                 Font = Program.DefaultFont,
                 Text = "Częstotliwość w dniach"
             };
             
-             freqTextBox = new TextBox()
+             _freqTextBox = new TextBox()
             {
                 Location =
-                    new Point(from.Location.X - from.Width, starTimePicker.Location.Y),
-                Size = new Size(frequency.Width-Program.padding, 40),
-                Font = frequency.Font
+                    new Point(_from.Location.X - _from.Width, _starTimePicker.Location.Y),
+                Size = new Size(_frequency.Width-Program.Padding, 40),
+                Font = _frequency.Font
 
 
         };
-            Background.Controls.Add(freqTextBox);Background.Controls.Add(frequency);
-            freqTextBox.TextChanged+=new EventHandler(TextChanged);
+            Background.Controls.Add(_freqTextBox);Background.Controls.Add(_frequency);
+            _freqTextBox.TextChanged+=new EventHandler(TextChanged);
 
-            Label TravelTime;
-            TravelTime = new Label();
-            TravelTime.Location = new Point(Program.padding+Connection.Width, SaveButton.Location.Y + 4 * SaveButton.Height);
-            TravelTime.Font = Program.DefaultFont;
-            TravelTime.Size = SaveButton.Size;
-            TravelTime.Text = "Podaj godzinę odjazdu";
-            Background.Controls.Add(TravelTime);
+            Label travelTime;
+            travelTime = new Label();
+            travelTime.Location = new Point(Program.Padding+_connection.Width, SaveButton.Location.Y + 4 * SaveButton.Height);
+            travelTime.Font = Program.DefaultFont;
+            travelTime.Size = SaveButton.Size;
+            travelTime.Text = "Podaj godzinę odjazdu";
+            Background.Controls.Add(travelTime);
 
-            hourTimePicker = new DateTimePicker();
-            hourTimePicker.Format = DateTimePickerFormat.Custom;
-            hourTimePicker.ShowUpDown = true;
-            hourTimePicker.CustomFormat = "HH";
-            hourTimePicker.Location = new Point(TravelTime.Location.X + TravelTime.Size.Width, TravelTime.Location.Y);
-            hourTimePicker.Font = Program.DefaultFont;
-            hourTimePicker.Size = new Size(55, 20);
-            Background.Controls.Add(hourTimePicker);
+            _hourTimePicker = new DateTimePicker();
+            _hourTimePicker.Format = DateTimePickerFormat.Custom;
+            _hourTimePicker.ShowUpDown = true;
+            _hourTimePicker.CustomFormat = "HH";
+            _hourTimePicker.Location = new Point(travelTime.Location.X + travelTime.Size.Width, travelTime.Location.Y);
+            _hourTimePicker.Font = Program.DefaultFont;
+            _hourTimePicker.Size = new Size(55, 20);
+            Background.Controls.Add(_hourTimePicker);
 
-            minDateTimePicker = new DateTimePicker();
-            minDateTimePicker.Format = DateTimePickerFormat.Custom;
-            minDateTimePicker.ShowUpDown = true;
-            minDateTimePicker.CustomFormat = "mm";
-            minDateTimePicker.Location = new Point(TravelTime.Location.X + TravelTime.Size.Width+60, TravelTime.Location.Y);
-            minDateTimePicker.Font = Program.DefaultFont;
-            minDateTimePicker.Size = new Size(55, 20);
-            Background.Controls.Add(minDateTimePicker);
+            _minDateTimePicker = new DateTimePicker();
+            _minDateTimePicker.Format = DateTimePickerFormat.Custom;
+            _minDateTimePicker.ShowUpDown = true;
+            _minDateTimePicker.CustomFormat = "mm";
+            _minDateTimePicker.Location = new Point(travelTime.Location.X + travelTime.Size.Width+60, travelTime.Location.Y);
+            _minDateTimePicker.Font = Program.DefaultFont;
+            _minDateTimePicker.Size = new Size(55, 20);
+            Background.Controls.Add(_minDateTimePicker);
         }
 
-        private int days;
+        private int _days;
         private void TextChanged(object sender, EventArgs e)
         {
 
             
-            if (!int.TryParse(freqTextBox.Text, out days))
+            if (!int.TryParse(_freqTextBox.Text, out _days))
             {
 
-                if (freqTextBox.Text.Length != 0)
-                    freqTextBox.Text = freqTextBox.Text.Remove(freqTextBox.Text.Length - 1);
+                if (_freqTextBox.Text.Length != 0)
+                    _freqTextBox.Text = _freqTextBox.Text.Remove(_freqTextBox.Text.Length - 1);
                 SaveButton.Enabled = false;
                 return;
             }

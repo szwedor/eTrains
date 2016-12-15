@@ -12,20 +12,20 @@ namespace AdminGUI.Forms.Station
             InitializeComponent();
         }
 
-        private List<DomainModel.Models.Station> stationsList;
+        private List<DomainModel.Models.Station> _stationsList;
         public ArchiveStation(Size s, Panel returnP) : base(s, returnP)
         {
             SaveButton.Text = "Archiwizuj";
             
             SelectStation = Program.MakeStylishButton(SaveButton.Size,
-             new Point(SaveButton.Location.X, SaveButton.Location.Y + SaveButton.Size.Height + Program.padding),
+             new Point(SaveButton.Location.X, SaveButton.Location.Y + SaveButton.Size.Height + Program.Padding),
              "Wybierz stacje");
             SelectStation.Click+=new System.EventHandler(SelectStationClick);
             Background.Controls.Add(SelectStation);
-            returnButton.Width *= 2;
+            ReturnButton.Width *= 2;
             ListOfStations = new ListBox();
-            ListOfStations.Location = new Point(returnButton.Location.X, returnButton.Location.Y + returnButton.Height + Program.padding);
-            ListOfStations.Size = new Size(returnButton.Width, Background.Height - ListOfStations.Height + 2 * Program.padding);
+            ListOfStations.Location = new Point(ReturnButton.Location.X, ReturnButton.Location.Y + ReturnButton.Height + Program.Padding);
+            ListOfStations.Size = new Size(ReturnButton.Width, Background.Height - ListOfStations.Height + 2 * Program.Padding);
             Background.Controls.Add(ListOfStations);
 
             Archival = new CheckBox();
@@ -34,12 +34,12 @@ namespace AdminGUI.Forms.Station
             Archival.Size = SaveButton.Size;
             Archival.Text = "Stacja archiwalna";
             Archival.Font = Program.DefaultFont;
-            Archival.Location = new Point(SaveButton.Location.X, SelectStation.Location.Y + SelectStation.Height + Program.padding);
+            Archival.Location = new Point(SaveButton.Location.X, SelectStation.Location.Y + SelectStation.Height + Program.Padding);
             Background.Controls.Add(Archival);
 
         //    sm = new StationManagment();
       //      stationsList = sm.AllStations();
-            ListOfStations.DataSource = stationsList;
+            ListOfStations.DataSource = _stationsList;
             ListOfStations.DisplayMember = "Name";
             this.VisibleChanged += new EventHandler(Loading);
         }
@@ -47,7 +47,7 @@ namespace AdminGUI.Forms.Station
         private void Loading(object sender, EventArgs e)
         {
             ListOfStations.Enabled = true;
-            locked = false;
+            _locked = false;
             SelectStation.Text = "Wybierz stacje";
             SaveButton.Enabled = false;
      //       ListOfStations.DataSource = sm.AllStations();
@@ -56,21 +56,21 @@ namespace AdminGUI.Forms.Station
         public ListBox ListOfStations;
      //   private StationManagment sm;
         public Button SelectStation;
-        private bool locked = false;
+        private bool _locked = false;
         private void SelectStationClick(object sender, EventArgs e)
         {
             if (ListOfStations.SelectedItem == null) return;
-            if (locked)
+            if (_locked)
             {
                 ListOfStations.Enabled = true;
-                locked = false;
+                _locked = false;
                 SelectStation.Text = "Wybierz stacje";
                 SaveButton.Enabled = false;
                 return;
             }
            
             ListOfStations.Enabled = false;
-            locked = true;
+            _locked = true;
             SelectStation.Text = (ListOfStations.SelectedItem as DomainModel.Models.Station).Name;
             Archival.Checked = (ListOfStations.SelectedItem as DomainModel.Models.Station).IsArchival;
             SaveButton.Enabled = true;
@@ -79,13 +79,13 @@ namespace AdminGUI.Forms.Station
         protected override void SaveClick(object sender, EventArgs e)
         {
             ListOfStations.Enabled = true;
-            locked = false;
+            _locked = false;
             SelectStation.Text = "Wybierz stacje";
        //     if (sm.ChangeStation(ListOfStations.SelectedItem as DomainModel.Models.Station, Archival.Checked))
             {
-                stationsList.Remove(ListOfStations.SelectedItem as DomainModel.Models.Station);
+                _stationsList.Remove(ListOfStations.SelectedItem as DomainModel.Models.Station);
                 base.SaveClick(sender, e);
-                this.returnButton.PerformClick();
+                this.ReturnButton.PerformClick();
             }
            
         }
