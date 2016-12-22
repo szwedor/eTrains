@@ -32,7 +32,9 @@
             this.Odjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Przyjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Czas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CzasPrzyjazdu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Miejsce = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -44,7 +46,9 @@
             this.Odjazd,
             this.Przyjazd,
             this.Czas,
-            this.Cena});
+            this.CzasPrzyjazdu,
+            this.Cena,
+            this.Miejsce});
             this.dataGridView.Location = new System.Drawing.Point(12, 12);
             this.dataGridView.Name = "dataGridView";
             this.dataGridView.Size = new System.Drawing.Size(639, 150);
@@ -68,10 +72,22 @@
             this.Czas.Name = "Czas";
             this.Czas.Width = 170;
             // 
+            // CzasPrzyjazdu
+            // 
+            this.CzasPrzyjazdu.HeaderText = "Czas Przyjazdu";
+            this.CzasPrzyjazdu.Name = "CzasPrzyjazdu";
+            this.CzasPrzyjazdu.Width = 150;
+            // 
             // Cena
             // 
             this.Cena.HeaderText = "Cena";
             this.Cena.Name = "Cena";
+            // 
+            // Miejsce
+            // 
+            this.Miejsce.HeaderText = "Nr miejsca";
+            this.Miejsce.Name = "Miejsce";
+            this.Miejsce.Width = 70;
             // 
             // ConnectionDefinitionWindow
             // 
@@ -94,6 +110,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Odjazd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Przyjazd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Czas;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CzasPrzyjazdu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cena;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Miejsce;
     }
 }

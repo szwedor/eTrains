@@ -8,28 +8,36 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using GUI.UserService;
+using GUI.ServiceReference1;
 using System.IdentityModel.Selectors;
+using DomainModel.Models;
+using GUI.ServiceReference2;
 
 namespace GUI
 {
     public partial class UserAccount : Form
     {
-        public bool Log;
-        private Form1 _oldform;
+        public Form1 oldform;
+        public string loginUser;
+        UserManagmentClient userManagment = new UserManagmentClient();
+        public ReservationManagmentClient reservationManagment = new ReservationManagmentClient();
+        public List<Connection> choosedtodetails;
+        public List<Ticket> listofticekets=new List<Ticket>();
         public UserAccount(Form1 f)
         {
-            if (Log)
+
+            InitializeComponent();
+            oldform = f;
+            if (oldform.log)
             {
                 LoginPanel.Visible = false;
                 MyticketsPanel.Visible = true;
                 ButtonsPanel.Visible = true;
             }
-            InitializeComponent();
-            
-            _oldform = f;
-            if (!Log)
+            if (!oldform.log)
             {
+
+                LoginPanel.Visible = true;
                 ButtonsPanel.Visible = false;
                 MyticketsPanel.Visible = false;
                 RejestrationPanel.Visible = false;
@@ -37,7 +45,7 @@ namespace GUI
             }
             boxPass.PasswordChar = '*';
             textBox3.PasswordChar = '*';
-            
+
         }
 
         private void Mytickets_Click(object sender, EventArgs e)
@@ -56,41 +64,47 @@ namespace GUI
 
         private void Search_Click(object sender, EventArgs e)
         {
-          
             this.Hide();
-            _oldform.Show();
+            oldform.Show();
         }
 
         private void LogIn_Click(object sender, EventArgs e)
         {
-            UserManagmentClient userManagment = new UserManagmentClient();
-            UserManagmentUnsecureClient userManagmentUnsecureClient = new UserManagmentUnsecureClient();
-           
+            if (boxLogin.Text.Length == 0)
+            {
+                MessageBox.Show("Brak loginu! ");
+                return;
+            }
+            if (boxPass.Text.Length == 0)
+            {
+                MessageBox.Show("Brak hasła! ");
+                return;
+            }
+
             try
             {
-
-                //userManagment.ClientCredentials.ServiceCertificate.Authentication.CustomCertificateValidator =
-                //new ();
                 userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
                 userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
 
-
                 userManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
-                    System.ServiceModel.Security.X509CertificateValidationMode.PeerOrChainTrust;
+                System.ServiceModel.Security.X509CertificateValidationMode.None;
+
                 userManagment.Login();
             }
             catch (Exception ex)
             {
                 textValidation.Visible = true;
-                Log = false;
+                oldform.log = false;
                 return;
             }
-           
-                LoginPanel.Visible = false;
-                MyticketsPanel.Location = new Point(240, 188);
-                MyticketsPanel.Visible = true;
-                ButtonsPanel.Visible = true;
-                Log = true;
+
+            LoginPanel.Visible = false;
+            MyticketsPanel.Location = new Point(240, 188);
+            MyticketsPanel.Visible = true;
+            ButtonsPanel.Visible = true;
+            oldform.log = true;
+            loginUser = boxLogin.Text.ToString();
+            TicketsView();
         }
 
         private void Rejestration_Click(object sender, EventArgs e)
@@ -99,7 +113,7 @@ namespace GUI
             RejestrationPanel.Location = new Point(240, 188);
             RejestrationPanel.Visible = true;
         }
-        public static bool EmailIsValid(string email)
+        public static bool emailIsValid(string email)
         {
             string expresion;
             expresion = "\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*";
@@ -127,7 +141,7 @@ namespace GUI
                 MessageBox.Show("Zły format tefonu! ");
                 return;
             }
-            else if (!EmailIsValid(textBox2.Text.ToString()) || textBox2.Text.Length == 0)
+            else if (!emailIsValid(textBox2.Text.ToString()) || textBox2.Text.Length == 0)
             {
                 MessageBox.Show("Zły format mail! ");
                 return;
@@ -137,38 +151,26 @@ namespace GUI
                 MessageBox.Show("Brak hasła! ");
                 return;
             }
-            //// else if(!r.FindEmail(textBox2.Text.ToString()))
-            //{
-            //    MessageBox.Show("Podany mail już istnieje ");
-            //}
-            // else
-            //{
-            //    welcome.Text = "Witaj  " + name;
-            //    welcome.ForeColor = Color.White;
-            //    welcome.Font = new Font("Century Gothic", 24);
-            //    welcome.Location = new Point(502, 12);
-            //    welcome.Size = new Size(478, 70);
-            //    welcome.Multiline = true;
-            //    welcome.TextAlign = HorizontalAlignment.Center;
-            //    welcome.ReadOnly = true;
-            //    this.Controls.AddRange(new Control[] { welcome });
+            User newUser = new User();
+
+            newUser.Email = textBox2.Text.ToString();
+            newUser.FirstName = textBox1.Text.ToString();
+            newUser.LastName = textBox4.Text.ToString();
+            newUser.PassWord = textBox3.Text.ToString();
+            newUser.PhoneNo = textBox5.Text.ToString();
 
 
-            //    newUser = new User();
-            //    newUser.FirstName = textBox1.Text.ToString();
-            //    newUser.LastName = textBox4.Text.ToString();
-            //    string hashpass;
-            //    using (var sha = new System.Security.Cryptography.SHA256Managed())
-            //    {
-            //        byte[] textData = System.Text.Encoding.UTF8.GetBytes(textBox3.Text.ToString());
-            //        byte[] hash = sha.ComputeHash(textData);
-            //        hashpass = BitConverter.ToString(hash).Replace("-", String.Empty);
-            //    }
-            //    newUser.PassWord = hashpass;
-            //    newUser.Email = textBox2.Text.ToString();
-            //    newUser.PhoneNo = textBox5.Text.ToString();
-            //    //    r.AddUser(newUser);
-            //}
+            UserManagmentUnsecureClient userManagmentUnsecureClient = new UserManagmentUnsecureClient();
+            if (userManagmentUnsecureClient.IsEmailInDB(newUser.Email))
+            {
+                userManagmentUnsecureClient.AddUser(newUser);
+            }
+            else
+            {
+                MessageBox.Show("Podany mail już istnieje ");
+                return;
+            }
+
             RejestrationPanel.Visible = false;
             LoginPanel.Visible = true;
         }
@@ -180,29 +182,170 @@ namespace GUI
                 MessageBox.Show("Najpierw wybierz połączenie");
                 return;
             }
-            //dataGridView1.SelectedRows[0].Tag as Connection
-            Form connectionDefinitionWindow = new ConnectionDefinitionWindow();
-            connectionDefinitionWindow.Show();
+            choosedtodetails= dataGridView1.SelectedRows[0].Tag as List<Connection>;
+            Form ConnectionDefinitionWindow = new ConnectionDefinitionWindow(this);
+            ConnectionDefinitionWindow.Show();
+            
         }
 
         private void DeleteReservation_Click(object sender, EventArgs e)
         {
-
+            if (dataGridView1.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Najpierw wybierz bilet");
+                return;
+            }
+            try {
+                ReservationManagmentClient rm = new ReservationManagmentClient();
+                rm.ClientCredentials.UserName.UserName = loginUser;
+                rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
+                rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+                    System.ServiceModel.Security.X509CertificateValidationMode.None;
+                //userManagment.Login();
+                var choosedCon = dataGridView1.SelectedRows[0].Tag as List<Connection>;
+                rm.DeleteReservation(loginUser, choosedCon);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("problem with security");
+            }
+            TicketsView();
         }
 
         private void LogOut_Click(object sender, EventArgs e)
         {
-
-           
-            Log = false;
+            oldform.log = false;
             this.Hide();
-            _oldform.Show();
+            oldform.Show();
 
         }
 
         private void AddNewPass_Click(object sender, EventArgs e)
         {
 
+            UserManagmentClient userManagment = new UserManagmentClient();
+            UserManagmentUnsecureClient userManagmentUnsecureClient = new UserManagmentUnsecureClient();
+            try
+            {
+                userManagment.ClientCredentials.UserName.UserName = loginUser;
+                userManagment.ClientCredentials.UserName.Password = OldPassBox.Text.ToString();
+
+                userManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+                System.ServiceModel.Security.X509CertificateValidationMode.None;
+                userManagment.Login();
+
+                userManagment.ChangePass(loginUser, NewPassBox.Text.ToString());
+
+                UserManagmentClient userManagment2 = new UserManagmentClient();
+                userManagment2.ClientCredentials.UserName.UserName = loginUser;
+                userManagment2.ClientCredentials.UserName.Password = NewPassBox.Text.ToString();
+
+                userManagment2.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+                System.ServiceModel.Security.X509CertificateValidationMode.None;
+                userManagment2.Login();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Wprowadziłeś złe hasło");
+                oldform.log = false;
+                return;
+            }
+
+            LoginPanel.Visible = false;
+            MyticketsPanel.Location = new Point(240, 188);
+            MyticketsPanel.Visible = true;
+            ButtonsPanel.Visible = true;
+            oldform.log = true;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            oldform.Show();
+        }//powrot
+
+        public void ReservationView(List<Connection> res)
+        {
+            try { 
+            ReservationManagmentClient rm = new ReservationManagmentClient();
+            rm.ClientCredentials.UserName.UserName = loginUser;
+            rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
+            rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+                System.ServiceModel.Security.X509CertificateValidationMode.None;
+            rm.MakeReservation(res, loginUser);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("Problem with security");
+                return;
+            }
+    
+
+            
+
+            int seat = -1;
+            dataGridView1.Rows.Clear();
+            var x = new DataGridViewRow();
+            x.Tag = res;
+
+            dataGridView1.Rows.Add(x);
+            dataGridView1.Rows[0].Cells[0].Value = res.First().ConnectionDefinition.Departure.Name;
+            dataGridView1.Rows[0].Cells[1].Value = res.Last().ConnectionDefinition.Arrival.Name;
+            dataGridView1.Rows[0].Cells[2].Value = res.First().DepartureTime;
+            int totalPrice = 0;
+            foreach (var elem in res)
+            {
+                totalPrice += elem.ConnectionDefinition.Price;
+            }
+            dataGridView1.Rows[0].Cells[3].Value = totalPrice;
+            if (seat == -1)
+            {
+                dataGridView1.Rows[0].Cells[4].Value = "Stojące";
+            }
+            else dataGridView1.Rows[0].Cells[4].Value = seat;
+
+        }
+        public void TicketsView()
+        {
+            try
+            {
+                ReservationManagmentClient rm = new ReservationManagmentClient();
+                rm.ClientCredentials.UserName.UserName = loginUser;
+                rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
+                rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+                    System.ServiceModel.Security.X509CertificateValidationMode.None;
+                listofticekets = rm.AllUserReservations(loginUser);
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show("NIe możemy wyświetlić twoich biletów. Klops :( ");
+                return;
+            }
+            
+            dataGridView1.Rows.Clear();
+            var x = new DataGridViewRow();
+            int i = 0;
+            foreach (var ticket in listofticekets)
+            {
+                x.Tag = ticket;
+
+                dataGridView1.Rows.Add(x);
+                dataGridView1.Rows[i].Cells[0].Value = ticket.Connection.First().ConnectionDefinition.Departure.Name;
+                dataGridView1.Rows[i].Cells[1].Value = ticket.Connection.Last().ConnectionDefinition.Arrival.Name;
+                dataGridView1.Rows[i].Cells[2].Value = ticket.Connection.First().DepartureTime;
+                dataGridView1.Rows[i].Cells[3].Value = ticket.Connection.Count()-1;
+                int totalPrice = 0;
+                foreach (var elem in ticket.Connection)
+                {
+                    totalPrice += elem.ConnectionDefinition.Price;
+                }
+                dataGridView1.Rows[i].Cells[4].Value = totalPrice;
+
+                i++;
+            }
+            
+            
+        }
+        
     }
 }

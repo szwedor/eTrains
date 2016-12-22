@@ -36,11 +36,6 @@
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.ConnectionDetails = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lprzesiadek = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gratulation = new System.Windows.Forms.Label();
             this.RezervationButton = new System.Windows.Forms.Button();
             this.Error = new System.Windows.Forms.Label();
@@ -56,6 +51,12 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.UserAccount = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cakowityczas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lprzesiadek = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -93,7 +94,7 @@
             // Find
             // 
             this.Find.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.Find.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Find.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Find.ForeColor = System.Drawing.Color.White;
             this.Find.Location = new System.Drawing.Point(133, 491);
             this.Find.Name = "Find";
@@ -164,8 +165,9 @@
             this.Column1,
             this.Column2,
             this.Column3,
-            this.Column4,
-            this.Lprzesiadek});
+            this.Cakowityczas,
+            this.Lprzesiadek,
+            this.Column4});
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dataGridView1.GridColor = System.Drawing.SystemColors.Control;
             this.dataGridView1.Location = new System.Drawing.Point(4, 4);
@@ -176,37 +178,6 @@
             this.dataGridView1.ShowEditingIcon = false;
             this.dataGridView1.Size = new System.Drawing.Size(465, 250);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Odjazd";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Przyjazd";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Czas Odjazdu";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Cena";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 50;
-            // 
-            // Lprzesiadek
-            // 
-            this.Lprzesiadek.HeaderText = "Liczba przesiadek";
-            this.Lprzesiadek.Name = "Lprzesiadek";
-            this.Lprzesiadek.ReadOnly = true;
             // 
             // Gratulation
             // 
@@ -224,7 +195,7 @@
             // RezervationButton
             // 
             this.RezervationButton.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.RezervationButton.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RezervationButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.RezervationButton.ForeColor = System.Drawing.Color.White;
             this.RezervationButton.Location = new System.Drawing.Point(187, 335);
             this.RezervationButton.Name = "RezervationButton";
@@ -377,6 +348,43 @@
             this.UserAccount.UseVisualStyleBackColor = false;
             this.UserAccount.Click += new System.EventHandler(this.UserAccount_Click);
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Odjazd";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Przyjazd";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Czas Odjazdu";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Cakowityczas
+            // 
+            this.Cakowityczas.HeaderText = "Czas podróży";
+            this.Cakowityczas.Name = "Cakowityczas";
+            this.Cakowityczas.ReadOnly = true;
+            // 
+            // Lprzesiadek
+            // 
+            this.Lprzesiadek.HeaderText = "Liczba przesiadek";
+            this.Lprzesiadek.Name = "Lprzesiadek";
+            this.Lprzesiadek.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Cena";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 50;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -441,13 +449,14 @@
         private System.Windows.Forms.Label labelTo;
         private System.Windows.Forms.Label labelDate;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Button ConnectionDetails;
+        private System.Windows.Forms.Button UserAccount;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cakowityczas;
         private System.Windows.Forms.DataGridViewTextBoxColumn Lprzesiadek;
-        private System.Windows.Forms.Button ConnectionDetails;
-        private System.Windows.Forms.Button UserAccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
     }
 }
 

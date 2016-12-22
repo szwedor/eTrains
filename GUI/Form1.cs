@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Text.RegularExpressions;
 using DomainModel.Models;
-using GUI.ReservationService;
+using GUI.ServiceReference2;
 using System.Globalization;
 using System.Diagnostics;
 
@@ -17,21 +17,24 @@ namespace GUI
     public partial class Form1 : Form
     {
         
-        public User NewUser = new User();
-        public DateTime Dt=new DateTime();
+        public User newUser = new User();
+        public DateTime dt=new DateTime();
         //  public Reservation r;
         public ImageList IlLarge = new ImageList();
         public ImageList IlSmall = new ImageList();
-        ReservationManagmentClient _reservationManagment=new ReservationManagmentClient();
-        ReservationManagmentUnsecureClient _reservationManagmentUnsecureClient=new ReservationManagmentUnsecureClient();
-        List<Connection> _myconnections = new List<Connection>();
-        UserAccount _ua;
+        ReservationManagmentClient reservationManagment=new ReservationManagmentClient();
+        ReservationManagmentUnsecureClient reservationManagmentUnsecureClient=new ReservationManagmentUnsecureClient();
+        List<List<Connection>> myconnections = new List<List<Connection>>();
+        UserAccount ua;
+        public List<Connection> choosedCon;
+
+        public bool log = false;
         public Form1()
         {
             if (Debugger.IsAttached)
                 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.GetCultureInfo("en-US");
             InitializeComponent();
-            _ua = new UserAccount(this);
+            ua = new UserAccount(this);
             try
             {
                 XmlReader reader = XmlReader.Create("http://wiadomosci.wp.pl/ver,rss,rss.xml");
@@ -64,9 +67,9 @@ namespace GUI
             //    r=new Reservation();
             //    listBoxFrom.DataSource= r.DepartureStations();
             
-            listBoxTo.DataSource = _reservationManagmentUnsecureClient.AllStations();
+            listBoxTo.DataSource = reservationManagmentUnsecureClient.AllStations();
             listBoxTo.DisplayMember = "Name";
-            listBoxFrom.DataSource = _reservationManagmentUnsecureClient.AllStations();
+            listBoxFrom.DataSource = reservationManagmentUnsecureClient.AllStations();
             listBoxFrom.DisplayMember = "Name";
             DoubleBuffered = true;
             
@@ -93,32 +96,21 @@ namespace GUI
       
         private void Find_Click(object sender, EventArgs e)
         {
-            Dt = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day,
+            dt = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day,
              hoursTimePicker.Value.Hour, MinutesTimePicer.Value.Minute, 0);
-         
-            //newli.Location = SearchListView.Location;
-            //newli.Size = SearchListView.Size;
-            //SearchListView = new ListView();
-            //SearchListView = newli;
 
             Gratulation.Visible = false;
             SearchPanel.Visible = false;
             Error.Visible = false;
-            _myconnections = null;
+            myconnections = null;
 
-             _myconnections = _reservationManagmentUnsecureClient.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, Dt);
 
-          //  myconnections = reservationManagmentUnsecureClient.F(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, -1, dt.Hour).ToList();
-            if (_myconnections.Count == 0)
+             myconnections = reservationManagmentUnsecureClient.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
+
+
+            if (myconnections.Count == 0)
             {
-                webBrowser1.Visible = false;
-                StringBuilder mystb = new StringBuilder();
-                mystb.Append("Przepraszamy,");
-                mystb.Append(Environment.NewLine);
-                mystb.Append("nie mamy dostępnych połączeń w wybranym terminie :(");
-                Error.Text = mystb.ToString();
-                Error.ForeColor = Color.Red;
-                Error.Visible = true;
+                MessageBox.Show("Nie mamy dostępnych przejazdów w wybranym terminie");
             }
             else
             {
@@ -128,70 +120,65 @@ namespace GUI
                 SearchPanel.Location = new Point(502, 106);
                 SearchPanel.Visible = true;
                 dataGridView1.Rows.Clear();
-               
-                
-                    for(int i=0;i<_myconnections.Count;i++)
-                    {
-                        var x = new DataGridViewRow();
-                        x.Tag = _myconnections[i];
-                        dataGridView1.Rows.Add(x);
-                        dataGridView1.Rows[i].Cells[0].Value = _myconnections[i].ConnectionDefinition.Departure.Name;
-                        dataGridView1.Rows[i].Cells[1].Value = _myconnections[i].ConnectionDefinition.Arrival.Name;
-                        dataGridView1.Rows[i].Cells[2].Value = _myconnections[i].DepartureTime;
-                        dataGridView1.Rows[i].Cells[3].Value = _myconnections[i].ConnectionDefinition.Price;
 
+
+                for (int i = 0; i < myconnections.Count; i++)
+                {
+                    var x = new DataGridViewRow();
+                    x.Tag = myconnections[i];
+                    dataGridView1.Rows.Add(x);
+                    dataGridView1.Rows[i].Cells[0].Value = myconnections[i].First().ConnectionDefinition.Departure.Name;
+                    dataGridView1.Rows[i].Cells[1].Value = myconnections[i].Last().ConnectionDefinition.Arrival.Name;
+
+
+                    int h = 0;
+                    int m = 0;
+                    int s = 0;
+                    int totalPrice = 0;
+                    foreach (var elem in myconnections)
+                    {
+                        for (int j = 0; j < elem.Count; j++)
+                        {
+                            h += elem[j].ConnectionDefinition.TravelTime.Hours;
+                            m += elem[j].ConnectionDefinition.TravelTime.Minutes;
+                            s += elem[j].ConnectionDefinition.TravelTime.Seconds;
+
+                            totalPrice += elem[j].ConnectionDefinition.Price;
+                        }
                     }
-                
+                    TimeSpan totalTime = new TimeSpan(h, m, s);
+                    dataGridView1.Rows[i].Cells[2].Value = myconnections[i].First().DepartureTime;
+                    dataGridView1.Rows[i].Cells[3].Value = totalTime;
+                    dataGridView1.Rows[i].Cells[5].Value = totalPrice;
+                    dataGridView1.Rows[i].Cells[4].Value = myconnections.Count() - 1;
+                }
             }
         }
         private void RezervationButton_Click(object sender, EventArgs e)
         {
-            if (dataGridView1.SelectedRows.Count==0)
+            if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Najpierw wybierz połączenie");
                 return;
             }
-            Gratulation.Visible = false;
-            if ( _ua.Log== false)
+            dt = (dataGridView1.SelectedRows[0].Tag as List<Connection>).First().DepartureTime;
+            if (dt < DateTime.Now)
             {
-                Gratulation.Text = "Aby zarezerwowac bilet musisz być zalogowany !";
-                Gratulation.BackColor = Color.MistyRose;
+                MessageBox.Show("Pociąg już odjechał");
+                return;
+            }
+            choosedCon = dataGridView1.SelectedRows[0].Tag as List<Connection>;
+            if (!log)
+            {
+                ua = new UserAccount(this);
             }
             else
             {
-                Dt = (dataGridView1.SelectedRows[0].Tag as Connection).DepartureTime;
-                if (Dt < DateTime.Now)
-                {
-                    MessageBox.Show("Pociąg już odjechał" );
-                    return;
-
-
-                }
-                
-                int seat;
-                
-              //  if (-1==(seat=r.MakeReservation(dataGridView1.SelectedRows[0].Tag as Connection)))
-                {
-                    Gratulation.Text = "Niestety wszystkie miejsca zostały już zajęte";
-                    Gratulation.BackColor = Color.MistyRose;
-                    
-                }
-               // else
-                {
-
-                 //   string place = seat.ToString();
-                    StringBuilder str = new StringBuilder();
-                    str.Append("Udało Ci się zarezerwować bilet. Twój numer miejsca to:  ");
-                    str.Append(Environment.NewLine);
-                //    str.Append(place.ToString());
-                
-                    Gratulation.Text = str.ToString();
-                
-                }
-             //   RezervationButton.Visible = false;
-                Gratulation.Visible = true;
+                ua.ReservationView(choosedCon);
             }
-            Gratulation.Visible = true;
+
+            this.Hide();
+            ua.Show();
         }
         private void ConnectionDetails_Click(object sender, EventArgs e)
         {
@@ -201,14 +188,18 @@ namespace GUI
                 return;
             }
             //dataGridView1.SelectedRows[0].Tag as Connection
-            Form connectionDefinitionWindow = new ConnectionDefinitionWindow();
+            ConnectionDefinitionWindow  connectionDefinitionWindow = new ConnectionDefinitionWindow(ua);
             connectionDefinitionWindow.Show();
         }
 
         private void UserAccount_Click(object sender, EventArgs e)
         {
+            if (!log)
+            {
+                ua = new UserAccount(this);
+            }
             this.Hide();
-            _ua.Show();
+            ua.Show();
         }
     }
 }

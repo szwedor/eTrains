@@ -51,10 +51,9 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.Odjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Przyjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Data = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Czasodjazdu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LiczbaPrzesiadek = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nrmiejsca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RejestrationPanel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -141,7 +140,7 @@
             // Rejestration
             // 
             this.Rejestration.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.Rejestration.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Rejestration.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Rejestration.ForeColor = System.Drawing.Color.White;
             this.Rejestration.Location = new System.Drawing.Point(8, 158);
             this.Rejestration.Name = "Rejestration";
@@ -193,7 +192,7 @@
             // LogIn
             // 
             this.LogIn.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.LogIn.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LogIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.LogIn.ForeColor = System.Drawing.Color.White;
             this.LogIn.Location = new System.Drawing.Point(557, 51);
             this.LogIn.Name = "LogIn";
@@ -319,10 +318,9 @@
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Odjazd,
             this.Przyjazd,
-            this.Data,
             this.Czasodjazdu,
-            this.Cena,
-            this.Nrmiejsca});
+            this.LiczbaPrzesiadek,
+            this.Cena});
             this.dataGridView1.Location = new System.Drawing.Point(0, 4);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(646, 150);
@@ -332,31 +330,30 @@
             // 
             this.Odjazd.HeaderText = "Odjazd";
             this.Odjazd.Name = "Odjazd";
+            this.Odjazd.Width = 150;
             // 
             // Przyjazd
             // 
             this.Przyjazd.HeaderText = "Przyjazd";
             this.Przyjazd.Name = "Przyjazd";
-            // 
-            // Data
-            // 
-            this.Data.HeaderText = "Data";
-            this.Data.Name = "Data";
+            this.Przyjazd.Width = 150;
             // 
             // Czasodjazdu
             // 
             this.Czasodjazdu.HeaderText = "Czas odjazdu";
             this.Czasodjazdu.Name = "Czasodjazdu";
+            this.Czasodjazdu.Width = 150;
+            // 
+            // LiczbaPrzesiadek
+            // 
+            this.LiczbaPrzesiadek.HeaderText = "Liczba Przesiadek";
+            this.LiczbaPrzesiadek.Name = "LiczbaPrzesiadek";
             // 
             // Cena
             // 
             this.Cena.HeaderText = "Cena";
             this.Cena.Name = "Cena";
-            // 
-            // Nrmiejsca
-            // 
-            this.Nrmiejsca.HeaderText = "Nr miejsca";
-            this.Nrmiejsca.Name = "Nrmiejsca";
+            this.Cena.Width = 70;
             // 
             // RejestrationPanel
             // 
@@ -520,7 +517,7 @@
             // AddNewPass
             // 
             this.AddNewPass.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.AddNewPass.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddNewPass.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.AddNewPass.ForeColor = System.Drawing.Color.White;
             this.AddNewPass.Location = new System.Drawing.Point(311, 33);
             this.AddNewPass.Name = "AddNewPass";
@@ -618,12 +615,6 @@
         private System.Windows.Forms.Panel MyticketsPanel;
         private System.Windows.Forms.Button Information;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Odjazd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Przyjazd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Data;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Czasodjazdu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cena;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Nrmiejsca;
         private System.Windows.Forms.Button DeleteReservation;
         private System.Windows.Forms.Panel RejestrationPanel;
         private System.Windows.Forms.Button AddAccount;
@@ -646,5 +637,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button AddNewPass;
         private System.Windows.Forms.BindingSource userBindingSource;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Odjazd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Przyjazd;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Czasodjazdu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LiczbaPrzesiadek;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cena;
     }
 }
