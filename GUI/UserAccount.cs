@@ -18,7 +18,6 @@ namespace GUI
     public partial class UserAccount : Form
     {
         public Form1 oldform;
-<<<<<<< HEAD
         public string loginUser;
         UserManagmentClient userManagment = new UserManagmentClient();
         public ReservationManagmentClient reservationManagment = new ReservationManagmentClient();
@@ -28,13 +27,6 @@ namespace GUI
         {
 
             InitializeComponent();
-=======
-        public UserAccount(Form1 f)
-        {
-            
-            InitializeComponent();
-            
->>>>>>> b6abe6c0a1d898fa9fa4a06de042813d4e507713
             oldform = f;
             if (oldform.log)
             {
@@ -72,14 +64,8 @@ namespace GUI
 
         private void Search_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             this.Hide();
             oldform.Show();
-=======
-            Form1 form = new Form1();
-            this.Hide();
-            form.Show();
->>>>>>> b6abe6c0a1d898fa9fa4a06de042813d4e507713
         }
 
         private void LogIn_Click(object sender, EventArgs e)
@@ -91,7 +77,6 @@ namespace GUI
             }
             if (boxPass.Text.Length == 0)
             {
-<<<<<<< HEAD
                 MessageBox.Show("Brak hasła! ");
                 return;
             }
@@ -101,12 +86,6 @@ namespace GUI
                 userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
                 userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
 
-=======
-                userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
-                userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
-                
-                
->>>>>>> b6abe6c0a1d898fa9fa4a06de042813d4e507713
                 userManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                 System.ServiceModel.Security.X509CertificateValidationMode.None;
 
@@ -116,24 +95,16 @@ namespace GUI
             {
                 textValidation.Visible = true;
                 oldform.log = false;
-<<<<<<< HEAD
                 return;
             }
 
-=======
-            }
-           
->>>>>>> b6abe6c0a1d898fa9fa4a06de042813d4e507713
             LoginPanel.Visible = false;
             MyticketsPanel.Location = new Point(240, 188);
             MyticketsPanel.Visible = true;
             ButtonsPanel.Visible = true;
             oldform.log = true;
-<<<<<<< HEAD
             loginUser = boxLogin.Text.ToString();
             TicketsView();
-=======
->>>>>>> b6abe6c0a1d898fa9fa4a06de042813d4e507713
         }
 
         private void Rejestration_Click(object sender, EventArgs e)
@@ -211,16 +182,10 @@ namespace GUI
                 MessageBox.Show("Najpierw wybierz połączenie");
                 return;
             }
-<<<<<<< HEAD
             choosedtodetails= dataGridView1.SelectedRows[0].Tag as List<Connection>;
             Form ConnectionDefinitionWindow = new ConnectionDefinitionWindow(this);
             ConnectionDefinitionWindow.Show();
             
-=======
-            //dataGridView1.SelectedRows[0].Tag as Connection
-            Form ConnectionDefinitionWindow = new ConnectionDefinitionWindow();
-            ConnectionDefinitionWindow.Show();
->>>>>>> b6abe6c0a1d898fa9fa4a06de042813d4e507713
         }
 
         private void DeleteReservation_Click(object sender, EventArgs e)
@@ -249,17 +214,9 @@ namespace GUI
 
         private void LogOut_Click(object sender, EventArgs e)
         {
-<<<<<<< HEAD
             oldform.log = false;
             this.Hide();
             oldform.Show();
-=======
-
-            Form1 form = new Form1();
-            oldform.log = false;
-            this.Hide();
-            form.Show();
->>>>>>> b6abe6c0a1d898fa9fa4a06de042813d4e507713
 
         }
 
