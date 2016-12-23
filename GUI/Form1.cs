@@ -16,7 +16,6 @@ namespace GUI
 {
     public partial class Form1 : Form
     {
-        
         public User newUser = new User();
         public DateTime dt=new DateTime();
         //  public Reservation r;
@@ -24,7 +23,7 @@ namespace GUI
         public ImageList IlSmall = new ImageList();
         ReservationManagmentClient reservationManagment=new ReservationManagmentClient();
         ReservationManagmentUnsecureClient reservationManagmentUnsecureClient=new ReservationManagmentUnsecureClient();
-        List<List<Connection>> myconnections = new List<List<Connection>>();
+        List<Connection> myconnections = new List<Connection>();
         UserAccount ua;
         public List<Connection> choosedCon;
         public List<Connection> connectiontodetails;
@@ -128,29 +127,14 @@ namespace GUI
                     var x = new DataGridViewRow();
                     x.Tag = myconnections[i];
                     dataGridView1.Rows.Add(x);
-                    dataGridView1.Rows[i].Cells[0].Value = myconnections[i].First().ConnectionDefinition.Departure.Name;
-                    dataGridView1.Rows[i].Cells[1].Value = myconnections[i].Last().ConnectionDefinition.Arrival.Name;
+                    dataGridView1.Rows[i].Cells[0].Value = myconnections[i].ConnectionDefinition.Departure.Name;
+                    dataGridView1.Rows[i].Cells[1].Value = myconnections[i].ConnectionDefinition.Arrival.Name;
 
 
-                    int h = 0;
-                    int m = 0;
-                    int s = 0;
-                    int totalPrice = 0;
-                    foreach (var elem in myconnections)
-                    {
-                        for (int j = 0; j < elem.Count; j++)
-                        {
-                            h += elem[j].ConnectionDefinition.TravelTime.Hours;
-                            m += elem[j].ConnectionDefinition.TravelTime.Minutes;
-                            s += elem[j].ConnectionDefinition.TravelTime.Seconds;
-
-                            totalPrice += elem[j].ConnectionDefinition.Price;
-                        }
-                    }
-                    TimeSpan totalTime = new TimeSpan(h, m, s);
-                    dataGridView1.Rows[i].Cells[2].Value = myconnections[i].First().DepartureTime;
-                    dataGridView1.Rows[i].Cells[3].Value = totalTime;
-                    dataGridView1.Rows[i].Cells[5].Value = totalPrice;
+                    
+                    dataGridView1.Rows[i].Cells[2].Value = myconnections[i].DepartureTime;
+                    dataGridView1.Rows[i].Cells[3].Value = myconnections[i].ConnectionDefinition.TravelTime;
+                    dataGridView1.Rows[i].Cells[5].Value = myconnections[i].ConnectionDefinition.Price;
                     dataGridView1.Rows[i].Cells[4].Value = myconnections.Count() - 1;
                 }
             }

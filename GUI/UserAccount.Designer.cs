@@ -47,13 +47,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.MyticketsPanel = new System.Windows.Forms.Panel();
             this.DeleteReservation = new System.Windows.Forms.Button();
-            this.Information = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Odjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Przyjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Czasodjazdu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.LiczbaPrzesiadek = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RejestrationPanel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -74,6 +68,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Odjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Przyjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Czasodjazdu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CzasPrzyjazdu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Miejsce = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LoginPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -281,7 +281,6 @@
             // MyticketsPanel
             // 
             this.MyticketsPanel.Controls.Add(this.DeleteReservation);
-            this.MyticketsPanel.Controls.Add(this.Information);
             this.MyticketsPanel.Controls.Add(this.dataGridView1);
             this.MyticketsPanel.Location = new System.Drawing.Point(240, 396);
             this.MyticketsPanel.Name = "MyticketsPanel";
@@ -300,18 +299,6 @@
             this.DeleteReservation.UseVisualStyleBackColor = false;
             this.DeleteReservation.Click += new System.EventHandler(this.DeleteReservation_Click);
             // 
-            // Information
-            // 
-            this.Information.BackColor = System.Drawing.Color.Maroon;
-            this.Information.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Information.Location = new System.Drawing.Point(654, 18);
-            this.Information.Name = "Information";
-            this.Information.Size = new System.Drawing.Size(26, 26);
-            this.Information.TabIndex = 4;
-            this.Information.Text = "i";
-            this.Information.UseVisualStyleBackColor = false;
-            this.Information.Click += new System.EventHandler(this.Information_Click);
-            // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -319,41 +306,13 @@
             this.Odjazd,
             this.Przyjazd,
             this.Czasodjazdu,
-            this.LiczbaPrzesiadek,
+            this.CzasPrzyjazdu,
+            this.Miejsce,
             this.Cena});
             this.dataGridView1.Location = new System.Drawing.Point(0, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(646, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(694, 150);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // Odjazd
-            // 
-            this.Odjazd.HeaderText = "Odjazd";
-            this.Odjazd.Name = "Odjazd";
-            this.Odjazd.Width = 150;
-            // 
-            // Przyjazd
-            // 
-            this.Przyjazd.HeaderText = "Przyjazd";
-            this.Przyjazd.Name = "Przyjazd";
-            this.Przyjazd.Width = 150;
-            // 
-            // Czasodjazdu
-            // 
-            this.Czasodjazdu.HeaderText = "Czas odjazdu";
-            this.Czasodjazdu.Name = "Czasodjazdu";
-            this.Czasodjazdu.Width = 150;
-            // 
-            // LiczbaPrzesiadek
-            // 
-            this.LiczbaPrzesiadek.HeaderText = "Liczba Przesiadek";
-            this.LiczbaPrzesiadek.Name = "LiczbaPrzesiadek";
-            // 
-            // Cena
-            // 
-            this.Cena.HeaderText = "Cena";
-            this.Cena.Name = "Cena";
-            this.Cena.Width = 70;
             // 
             // RejestrationPanel
             // 
@@ -565,6 +524,42 @@
             // 
             this.userBindingSource.DataSource = typeof(DomainModel.Models.User);
             // 
+            // Odjazd
+            // 
+            this.Odjazd.HeaderText = "Odjazd";
+            this.Odjazd.Name = "Odjazd";
+            this.Odjazd.Width = 150;
+            // 
+            // Przyjazd
+            // 
+            this.Przyjazd.HeaderText = "Przyjazd";
+            this.Przyjazd.Name = "Przyjazd";
+            this.Przyjazd.Width = 150;
+            // 
+            // Czasodjazdu
+            // 
+            this.Czasodjazdu.HeaderText = "Czas odjazdu";
+            this.Czasodjazdu.Name = "Czasodjazdu";
+            this.Czasodjazdu.Width = 150;
+            // 
+            // CzasPrzyjazdu
+            // 
+            this.CzasPrzyjazdu.HeaderText = "Czas przyjazdu";
+            this.CzasPrzyjazdu.Name = "CzasPrzyjazdu";
+            this.CzasPrzyjazdu.Width = 120;
+            // 
+            // Miejsce
+            // 
+            this.Miejsce.HeaderText = "Nr miejsca";
+            this.Miejsce.Name = "Miejsce";
+            this.Miejsce.Width = 50;
+            // 
+            // Cena
+            // 
+            this.Cena.HeaderText = "Cena";
+            this.Cena.Name = "Cena";
+            this.Cena.Width = 70;
+            // 
             // UserAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -613,7 +608,6 @@
         private System.Windows.Forms.Button Search;
         private System.Windows.Forms.Button LogOut;
         private System.Windows.Forms.Panel MyticketsPanel;
-        private System.Windows.Forms.Button Information;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button DeleteReservation;
         private System.Windows.Forms.Panel RejestrationPanel;
@@ -640,7 +634,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Odjazd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Przyjazd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Czasodjazdu;
-        private System.Windows.Forms.DataGridViewTextBoxColumn LiczbaPrzesiadek;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CzasPrzyjazdu;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Miejsce;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cena;
     }
 }
