@@ -255,10 +255,10 @@ namespace GUI
             oldform.log = true;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e) //?
         {
-            this.Hide();
-            oldform.Show();
+            PassPanel.Visible = false;
+            MyticketsPanel.Visible = true;
         }//powrot
 
         public void ReservationView(List<Connection> res)
@@ -338,6 +338,11 @@ namespace GUI
             
             
         }
-        
+
+        private void Return_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            oldform.Show();
+        }
     }
 }

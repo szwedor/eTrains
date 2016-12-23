@@ -23,7 +23,7 @@ namespace GUI
         public ImageList IlSmall = new ImageList();
         ReservationManagmentClient reservationManagment=new ReservationManagmentClient();
         ReservationManagmentUnsecureClient reservationManagmentUnsecureClient=new ReservationManagmentUnsecureClient();
-        List<Connection> myconnections = new List<Connection>();
+        List<List<Connection>> myconnections = new List<List<Connection>>();
         UserAccount ua;
         public List<Connection> choosedCon;
         public List<Connection> connectiontodetails;
@@ -120,23 +120,36 @@ namespace GUI
                 SearchPanel.Location = new Point(502, 106);
                 SearchPanel.Visible = true;
                 dataGridView1.Rows.Clear();
-
-
-                for (int i = 0; i < myconnections.Count; i++)
-                {
-                    var x = new DataGridViewRow();
-                    x.Tag = myconnections[i];
-                    dataGridView1.Rows.Add(x);
-                    dataGridView1.Rows[i].Cells[0].Value = myconnections[i].ConnectionDefinition.Departure.Name;
-                    dataGridView1.Rows[i].Cells[1].Value = myconnections[i].ConnectionDefinition.Arrival.Name;
-
-
+                int i = 0;
+                foreach(var elem in myconnections)
+                { 
                     
-                    dataGridView1.Rows[i].Cells[2].Value = myconnections[i].DepartureTime;
-                    dataGridView1.Rows[i].Cells[3].Value = myconnections[i].ConnectionDefinition.TravelTime;
-                    dataGridView1.Rows[i].Cells[5].Value = myconnections[i].ConnectionDefinition.Price;
-                    dataGridView1.Rows[i].Cells[4].Value = myconnections.Count() - 1;
+                    var x = new DataGridViewRow();
+                    x.Tag = elem;
+                    dataGridView1.Rows.Add(x);
+                    dataGridView1.Rows[i].Cells[0].Value = elem.First().ConnectionDefinition.Departure.Name;
+                    dataGridView1.Rows[i].Cells[1].Value = elem.Last().ConnectionDefinition.Arrival.Name;
+                    dataGridView1.Rows[i].Cells[2].Value = elem.First().DepartureTime;
+                    int h = 0;
+                    int m = 0;
+                    int s = 0;
+                    int totalPrice = 0;
+                    foreach (var con in elem)
+                    {
+                        h += con.ConnectionDefinition.TravelTime.Hours;
+                        m += con.ConnectionDefinition.TravelTime.Minutes;
+                        s += con.ConnectionDefinition.TravelTime.Seconds;
+
+                        totalPrice += con.ConnectionDefinition.Price;
+                    }
+                
+                    TimeSpan totalTime = new TimeSpan(h, m, s);
+                    dataGridView1.Rows[i].Cells[3].Value = totalTime;
+                    dataGridView1.Rows[i].Cells[5].Value = totalPrice;
+                    dataGridView1.Rows[i].Cells[4].Value = elem.Count() - 1;
+                    i++;
                 }
+                
             }
         }
         private void RezervationButton_Click(object sender, EventArgs e)

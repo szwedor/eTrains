@@ -48,6 +48,12 @@
             this.MyticketsPanel = new System.Windows.Forms.Panel();
             this.DeleteReservation = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Odjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Przyjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Czasodjazdu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CzasPrzyjazdu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Miejsce = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RejestrationPanel = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -68,12 +74,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Odjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Przyjazd = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Czasodjazdu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CzasPrzyjazdu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Miejsce = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Return = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.LoginPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -86,6 +88,7 @@
             // 
             // LoginPanel
             // 
+            this.LoginPanel.Controls.Add(this.Return);
             this.LoginPanel.Controls.Add(this.label2);
             this.LoginPanel.Controls.Add(this.label1);
             this.LoginPanel.Controls.Add(this.textValidation);
@@ -104,7 +107,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label2.Location = new System.Drawing.Point(314, 60);
+            this.label2.Location = new System.Drawing.Point(311, 70);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 16);
             this.label2.TabIndex = 59;
@@ -126,7 +129,7 @@
             this.textValidation.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textValidation.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textValidation.ForeColor = System.Drawing.Color.OrangeRed;
-            this.textValidation.Location = new System.Drawing.Point(177, 92);
+            this.textValidation.Location = new System.Drawing.Point(174, 102);
             this.textValidation.Multiline = true;
             this.textValidation.Name = "textValidation";
             this.textValidation.ReadOnly = true;
@@ -156,7 +159,7 @@
             this.textLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textLogin.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textLogin.ForeColor = System.Drawing.SystemColors.InfoText;
-            this.textLogin.Location = new System.Drawing.Point(31, 60);
+            this.textLogin.Location = new System.Drawing.Point(28, 70);
             this.textLogin.Multiline = true;
             this.textLogin.Name = "textLogin";
             this.textLogin.ReadOnly = true;
@@ -184,7 +187,7 @@
             // 
             // boxPass
             // 
-            this.boxPass.Location = new System.Drawing.Point(374, 60);
+            this.boxPass.Location = new System.Drawing.Point(371, 70);
             this.boxPass.Name = "boxPass";
             this.boxPass.Size = new System.Drawing.Size(107, 20);
             this.boxPass.TabIndex = 53;
@@ -194,7 +197,7 @@
             this.LogIn.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.LogIn.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.LogIn.ForeColor = System.Drawing.Color.White;
-            this.LogIn.Location = new System.Drawing.Point(557, 51);
+            this.LogIn.Location = new System.Drawing.Point(557, 58);
             this.LogIn.Name = "LogIn";
             this.LogIn.Size = new System.Drawing.Size(123, 39);
             this.LogIn.TabIndex = 54;
@@ -204,7 +207,7 @@
             // 
             // boxLogin
             // 
-            this.boxLogin.Location = new System.Drawing.Point(75, 60);
+            this.boxLogin.Location = new System.Drawing.Point(72, 70);
             this.boxLogin.Name = "boxLogin";
             this.boxLogin.Size = new System.Drawing.Size(107, 20);
             this.boxLogin.TabIndex = 52;
@@ -314,8 +317,45 @@
             this.dataGridView1.Size = new System.Drawing.Size(694, 150);
             this.dataGridView1.TabIndex = 0;
             // 
+            // Odjazd
+            // 
+            this.Odjazd.HeaderText = "Odjazd";
+            this.Odjazd.Name = "Odjazd";
+            this.Odjazd.Width = 150;
+            // 
+            // Przyjazd
+            // 
+            this.Przyjazd.HeaderText = "Przyjazd";
+            this.Przyjazd.Name = "Przyjazd";
+            this.Przyjazd.Width = 150;
+            // 
+            // Czasodjazdu
+            // 
+            this.Czasodjazdu.HeaderText = "Czas odjazdu";
+            this.Czasodjazdu.Name = "Czasodjazdu";
+            this.Czasodjazdu.Width = 150;
+            // 
+            // CzasPrzyjazdu
+            // 
+            this.CzasPrzyjazdu.HeaderText = "Czas przyjazdu";
+            this.CzasPrzyjazdu.Name = "CzasPrzyjazdu";
+            this.CzasPrzyjazdu.Width = 120;
+            // 
+            // Miejsce
+            // 
+            this.Miejsce.HeaderText = "Nr miejsca";
+            this.Miejsce.Name = "Miejsce";
+            this.Miejsce.Width = 50;
+            // 
+            // Cena
+            // 
+            this.Cena.HeaderText = "Cena";
+            this.Cena.Name = "Cena";
+            this.Cena.Width = 70;
+            // 
             // RejestrationPanel
             // 
+            this.RejestrationPanel.Controls.Add(this.button1);
             this.RejestrationPanel.Controls.Add(this.label3);
             this.RejestrationPanel.Controls.Add(this.textBox1);
             this.RejestrationPanel.Controls.Add(this.textBox10);
@@ -478,7 +518,7 @@
             this.AddNewPass.BackColor = System.Drawing.Color.MediumSpringGreen;
             this.AddNewPass.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.AddNewPass.ForeColor = System.Drawing.Color.White;
-            this.AddNewPass.Location = new System.Drawing.Point(311, 33);
+            this.AddNewPass.Location = new System.Drawing.Point(329, 32);
             this.AddNewPass.Name = "AddNewPass";
             this.AddNewPass.Size = new System.Drawing.Size(123, 29);
             this.AddNewPass.TabIndex = 60;
@@ -524,48 +564,36 @@
             // 
             this.userBindingSource.DataSource = typeof(DomainModel.Models.User);
             // 
-            // Odjazd
+            // Return
             // 
-            this.Odjazd.HeaderText = "Odjazd";
-            this.Odjazd.Name = "Odjazd";
-            this.Odjazd.Width = 150;
+            this.Return.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Return.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Return.Location = new System.Drawing.Point(557, -1);
+            this.Return.Name = "Return";
+            this.Return.Size = new System.Drawing.Size(123, 31);
+            this.Return.TabIndex = 4;
+            this.Return.Text = "Strona główna";
+            this.Return.UseVisualStyleBackColor = false;
+            this.Return.Click += new System.EventHandler(this.Return_Click);
             // 
-            // Przyjazd
+            // button1
             // 
-            this.Przyjazd.HeaderText = "Przyjazd";
-            this.Przyjazd.Name = "Przyjazd";
-            this.Przyjazd.Width = 150;
-            // 
-            // Czasodjazdu
-            // 
-            this.Czasodjazdu.HeaderText = "Czas odjazdu";
-            this.Czasodjazdu.Name = "Czasodjazdu";
-            this.Czasodjazdu.Width = 150;
-            // 
-            // CzasPrzyjazdu
-            // 
-            this.CzasPrzyjazdu.HeaderText = "Czas przyjazdu";
-            this.CzasPrzyjazdu.Name = "CzasPrzyjazdu";
-            this.CzasPrzyjazdu.Width = 120;
-            // 
-            // Miejsce
-            // 
-            this.Miejsce.HeaderText = "Nr miejsca";
-            this.Miejsce.Name = "Miejsce";
-            this.Miejsce.Width = 50;
-            // 
-            // Cena
-            // 
-            this.Cena.HeaderText = "Cena";
-            this.Cena.Name = "Cena";
-            this.Cena.Width = 70;
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.Location = new System.Drawing.Point(554, -3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 31);
+            this.button1.TabIndex = 60;
+            this.button1.Text = "Strona główna";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Return_Click);
             // 
             // UserAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(985, 620);
+            this.ClientSize = new System.Drawing.Size(985, 783);
             this.Controls.Add(this.PassPanel);
             this.Controls.Add(this.RejestrationPanel);
             this.Controls.Add(this.MyticketsPanel);
@@ -637,5 +665,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CzasPrzyjazdu;
         private System.Windows.Forms.DataGridViewTextBoxColumn Miejsce;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cena;
+        private System.Windows.Forms.Button Return;
+        private System.Windows.Forms.Button button1;
     }
 }
