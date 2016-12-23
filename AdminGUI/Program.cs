@@ -28,7 +28,8 @@ namespace AdminGUI
                      System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 
         public static int Padding = 10;
-        public static Color BackColor = Color.MediumSpringGreen;
+        public static Color BackColor = Color.FromArgb(200, 200, 66);
+        public static Color BackGroundColor = Color.FromArgb(90, 80, 200);
         public static Color ForeColor = Color.White;
         public static Button MakeStylishButton(Size s, Point l,string t)
         {

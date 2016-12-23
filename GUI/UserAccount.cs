@@ -70,6 +70,8 @@ namespace GUI
 
         private void LogIn_Click(object sender, EventArgs e)
         {
+            boxLogin.Text = "admin@admin.pl";
+            boxPass.Text = "Admin1";
             textValidation.Visible = false;
             if (boxLogin.Text.Length == 0)
             {
@@ -84,9 +86,10 @@ namespace GUI
 
             try
             {
-                userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
-                userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
-
+                reservationManagment.ClientCredentials.UserName.UserName = userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
+                reservationManagment.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
+                
+                reservationManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode=
                 userManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                 System.ServiceModel.Security.X509CertificateValidationMode.None;
 
@@ -305,14 +308,17 @@ namespace GUI
         {
             try
             {
-                ReservationManagmentClient rm = new ReservationManagmentClient();
-                rm.ClientCredentials.UserName.UserName = loginUser;
-                rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
-                rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
-                    System.ServiceModel.Security.X509CertificateValidationMode.None;
-                listofticekets = rm.AllUserReservations(loginUser);
+                //ReservationManagmentClient rm = new ReservationManagmentClient();
+                //rm.ClientCredentials.UserName.UserName = loginUser;
+                //rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
+                //rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+                //    System.ServiceModel.Security.X509CertificateValidationMode.None;
+                listofticekets =
+            reservationManagment.AllUserReservations(loginUser);
+
+             
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show("Nie możemy wyświetlić twoich biletów. Klops :( ");
                 return;

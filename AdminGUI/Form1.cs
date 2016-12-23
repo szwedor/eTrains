@@ -44,7 +44,7 @@ namespace AdminGUI
             InitializeComponent();
             Rectangle screenRectangle = RectangleToScreen(this.ClientRectangle);
             int titleHeight = screenRectangle.Top - this.Top;
-            this.Height = 450 + titleHeight;
+            this.Height = 815 + titleHeight;
             this.Width = 800;
             this.MaximumSize = this.MinimumSize = this.Size;
             Buttons = new List<Button>()
@@ -69,13 +69,13 @@ namespace AdminGUI
 
             };
             this.Controls.Add(Background = new Panel());
-            Background.BackColor = Color.Teal;
+            Background.BackColor = Program.BackGroundColor;
             int Margin = 60;
             Background.Size = new Size(ClientSize.Width - Margin, ClientSize.Height - Margin);
             Background.Top = (this.ClientSize.Height - Background.Height) / 2;
             Background.Left = (this.ClientSize.Width - Background.Width) / 2;
             int padding = 10;
-            int heightbutton = 100;
+            int heightbutton = 200;
             for (int i = 0; i < Buttons.Count; i++)
             {
 
@@ -145,7 +145,7 @@ namespace AdminGUI
             EditStationButton.Click += new System.EventHandler(EditStationButtonClick);
             ArchiveStationButton.Click += new System.EventHandler(ArchiveStationButtonClick);
 
-            Size s= new Size(ClientSize.Width, ClientSize.Height - 100);
+            Size s= new Size(ClientSize.Width, ClientSize.Height - 200);
             this.Controls.Add(addConectionDefinition =new AddConectionDefinition(s,Background));
             this.Controls.Add(editConnectionDefinition = new EditConnectionDefinition(s, Background));
             this.Controls.Add(archiveConnectionDefiniton =new ArchiveConnectionDefiniton(s, Background));
@@ -169,16 +169,16 @@ namespace AdminGUI
             {
            //     StationLocal ul=new StationLocal();
             //    if (!ul.logAdmin(Email.Text, Password.Text))
-                {
-                    Password.BackColor = Color.Red;
-                    Email.BackColor=Color.Red;
-                    MessageBox.Show("Zły login/hasło");
-                    return;
-                }
+                //{
+                //    Password.BackColor = Color.Red;
+                //    Email.BackColor=Color.Red;
+                //    MessageBox.Show("Zły login/hasło");
+                //    return;
+                //}
                 foreach (var b in Buttons)
                 {
                     b.Enabled = true;
-                    b.BackColor = System.Drawing.Color.MediumSpringGreen;
+                    b.BackColor = Program.BackColor;
 
                 }
                 LoginButton.Visible =
@@ -187,8 +187,8 @@ namespace AdminGUI
                             EmailLabel.Visible =
                                 PasswordLabel.Visible =
                                     false;
-                Background.Height -= 100;
-                this.MaximumSize = this.MinimumSize = this.Size = new Size(Width, Height - 100);
+                Background.Height -= 200;
+                this.MaximumSize = this.MinimumSize = this.Size = new Size(Width, Height - 200);
 
             }
         }

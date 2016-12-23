@@ -21,7 +21,7 @@ namespace AdminGUI.Forms
             this.Size = s;
             this._returnPanel = returnP;
             this.Controls.Add(Background = new Panel());
-            Background.BackColor = Color.Teal;
+            Background.BackColor = Program.BackGroundColor;
             int margin = 60;
             Background.Size = new Size(s.Width - margin, s.Height - margin);
             Background.Top = (s.Height - Background.Height)/2;

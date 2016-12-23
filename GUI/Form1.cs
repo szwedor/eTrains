@@ -11,6 +11,7 @@ using DomainModel.Models;
 using GUI.ServiceReference2;
 using System.Globalization;
 using System.Diagnostics;
+using GUI.ServiceReference1;
 
 namespace GUI
 {
