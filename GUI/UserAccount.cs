@@ -70,6 +70,7 @@ namespace GUI
 
         private void LogIn_Click(object sender, EventArgs e)
         {
+            textValidation.Visible = false;
             if (boxLogin.Text.Length == 0)
             {
                 MessageBox.Show("Brak loginu! ");
@@ -161,15 +162,23 @@ namespace GUI
 
 
             UserManagmentUnsecureClient userManagmentUnsecureClient = new UserManagmentUnsecureClient();
-            //if (userManagmentUnsecureClient.IsEmailInDB(newUser.Email))
-            //{
-            //    userManagmentUnsecureClient.AddUser(newUser);
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Podany mail już istnieje ");
-            //    return;
-            //}
+            try {
+                if (!userManagmentUnsecureClient.IsEmailInDB(newUser.Email))
+                {
+                    userManagmentUnsecureClient.AddUser(newUser);
+                }
+                else
+                {
+                    MessageBox.Show("Podany mail już istnieje ");
+                    return;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Boom ");
+                return;
+            }
+            
 
             RejestrationPanel.Visible = false;
             LoginPanel.Visible = true;
