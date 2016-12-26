@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminGUI.Forms
@@ -21,7 +22,7 @@ namespace AdminGUI.Forms
         private DateTimePicker _hourTimePicker;
         private DateTimePicker _minutesTimePicker;
         private TextBox _priceBox;
-        public AddConectionDefinition(Size s, Panel returnP) : base(s,returnP)
+        public AddConectionDefinition(Size s, Panel returnP, Admin.AdminClient ac,Task<List<DomainModel.Models.Station>> l) : base(s,returnP,ac,l)
         {
             
            
@@ -110,7 +111,9 @@ namespace AdminGUI.Forms
                 _selectStationDeparture.Text= "Wybierz stacje początkową";
             _departureStation = _arrivalStation = null;
             SaveButton.Enabled = false;
-         //   ListOfStations.DataSource = sm.AllStations();
+            _listOfStations.DataSource = _stationList.Result;
+         _listOfStations.DisplayMember = "";
+            _listOfStations.DisplayMember = "Name";
         }
         private bool _departure = false;
         private bool _arrival = false;
@@ -173,9 +176,8 @@ namespace AdminGUI.Forms
 
         protected override void SaveClick(object sender, EventArgs e)
         {
-         //   ConnectionManagment m=new ConnectionManagment();
-         //   if (m.AddNewConnection(departureStation, arrivalStation, hourTimePicker.Value.Hour,
-          //      minutesTimePicker.Value.Minute, price,departureStation.Name+" "+arrivalStation.Name))
+            AC.AddNewConnection(_departureStation, _arrivalStation, _hourTimePicker.Value.Hour,
+                  _minutesTimePicker.Value.Minute, _price, _departureStation.Name + " " + _arrivalStation.Name);
             {
                  base.SaveClick(sender, e);
                 base.ReturnButton.PerformClick();

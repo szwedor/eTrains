@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminGUI.Forms.Station
@@ -12,8 +13,8 @@ namespace AdminGUI.Forms.Station
             InitializeComponent();
         }
 
-        private List<DomainModel.Models.Station> _stationsList;
-        public ArchiveStation(Size s, Panel returnP) : base(s, returnP)
+        private List<DomainModel.Models.Station> _listOfStations;
+        public ArchiveStation(Size s, Panel returnP, Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l) : base(s, returnP,ac,l)
         {
             SaveButton.Text = "Archiwizuj";
             
@@ -25,7 +26,7 @@ namespace AdminGUI.Forms.Station
             ReturnButton.Width *= 2;
             ListOfStations = new ListBox();
             ListOfStations.Location = new Point(ReturnButton.Location.X, ReturnButton.Location.Y + ReturnButton.Height + Program.Padding);
-            ListOfStations.Size = new Size(ReturnButton.Width, Background.Height - ListOfStations.Height + 2 * Program.Padding);
+            ListOfStations.Size = new Size(ReturnButton.Width, Background.Height - 4 * Program.Padding - ReturnButton.Height);
             Background.Controls.Add(ListOfStations);
 
             Archival = new CheckBox();
@@ -38,9 +39,7 @@ namespace AdminGUI.Forms.Station
             Background.Controls.Add(Archival);
 
         //    sm = new StationManagment();
-      //      stationsList = sm.AllStations();
-            ListOfStations.DataSource = _stationsList;
-            ListOfStations.DisplayMember = "Name";
+      //      stationsList = sm.AllStations();=
             this.VisibleChanged += new EventHandler(Loading);
         }
 
@@ -50,7 +49,12 @@ namespace AdminGUI.Forms.Station
             _locked = false;
             SelectStation.Text = "Wybierz stacje";
             SaveButton.Enabled = false;
-     //       ListOfStations.DataSource = sm.AllStations();
+            //       ListOfStations.DataSource = sm.AllStations();
+
+            ListOfStations.DataSource = _stationList.Result;
+
+            ListOfStations.DisplayMember = "";
+            ListOfStations.DisplayMember = "Name";
         }
         public CheckBox Archival;
         public ListBox ListOfStations;
@@ -81,9 +85,9 @@ namespace AdminGUI.Forms.Station
             ListOfStations.Enabled = true;
             _locked = false;
             SelectStation.Text = "Wybierz stacje";
-       //     if (sm.ChangeStation(ListOfStations.SelectedItem as DomainModel.Models.Station, Archival.Checked))
+            if (AC.ChangeStation2(ListOfStations.SelectedItem as DomainModel.Models.Station, Archival.Checked))
             {
-                _stationsList.Remove(ListOfStations.SelectedItem as DomainModel.Models.Station);
+                _stationList.Result.Remove(ListOfStations.SelectedItem as DomainModel.Models.Station);
                 base.SaveClick(sender, e);
                 this.ReturnButton.PerformClick();
             }

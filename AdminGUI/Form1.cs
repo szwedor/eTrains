@@ -5,6 +5,8 @@ using System.Windows.Forms;
 using AdminGUI.Forms;
 using AdminGUI.Forms.ConnectionDefinition;
 using AdminGUI.Forms.Station;
+using DomainModel.Models;
+using System.Threading.Tasks;
 
 namespace AdminGUI
 {
@@ -39,6 +41,8 @@ namespace AdminGUI
         private AddConectionDefinition addConectionDefinition;
         private EditConnectionDefinition editConnectionDefinition;
         private ArchiveConnectionDefiniton archiveConnectionDefiniton;
+        private Task<List<Station>> _stationsList;
+        private Admin.AdminClient AC;
         public Form1()
         {
             InitializeComponent();
@@ -146,35 +150,73 @@ namespace AdminGUI
             ArchiveStationButton.Click += new System.EventHandler(ArchiveStationButtonClick);
 
             Size s= new Size(ClientSize.Width, ClientSize.Height - 200);
-            this.Controls.Add(addConectionDefinition =new AddConectionDefinition(s,Background));
-            this.Controls.Add(editConnectionDefinition = new EditConnectionDefinition(s, Background));
-            this.Controls.Add(archiveConnectionDefiniton =new ArchiveConnectionDefiniton(s, Background));
-            this.Controls.Add(addNewConnection =new EditConnectionDefinition(s, Background,SearchResult.Mode.NewConnection));
-            this.Controls.Add(addStation =new AddStation(s, Background));
-            this.Controls.Add(editStation =new EditStation(s, Background));
-            this.Controls.Add(archiveStation =new ArchiveStation(s, Background));
-            addConectionDefinition.Visible =
-                editConnectionDefinition.Visible =
-                    archiveConnectionDefiniton.Visible =
-                        addNewConnection.Visible =
-                            addStation.Visible =
-                                editStation.Visible =
-                                    archiveStation.Visible = false;
-
+            //this.Controls.Add(addConectionDefinition = new AddConectionDefinition(s, Background));
+            //this.Controls.Add(editConnectionDefinition = new EditConnectionDefinition(s, Background));
+            //this.Controls.Add(archiveConnectionDefiniton = new ArchiveConnectionDefiniton(s, Background));
+            //this.Controls.Add(addNewConnection = new EditConnectionDefinition(s, Background, SearchResult.Mode.NewConnection));
+            //this.Controls.Add(addStation = new AddStation(s, Background));
+            //this.Controls.Add(editStation = new EditStation(s, Background));
+            //this.Controls.Add(archiveStation = new ArchiveStation(s, Background));
+            //addConectionDefinition.Visible =
+            //    editConnectionDefinition.Visible =
+            //        archiveConnectionDefiniton.Visible =
+            //            addNewConnection.Visible =
+            //                addStation.Visible =
+            //                    editStation.Visible =
+            //                        archiveStation.Visible = false;
+            AC = new Admin.AdminClient();
             Password.PasswordChar = '*';
         }
 
         private void LoginClick(object sender, EventArgs e)
         {
             {
-           //     StationLocal ul=new StationLocal();
-            //    if (!ul.logAdmin(Email.Text, Password.Text))
-                //{
-                //    Password.BackColor = Color.Red;
-                //    Email.BackColor=Color.Red;
-                //    MessageBox.Show("Zły login/hasło");
-                //    return;
-                //}
+                Email.Text = "admin@admin.pl";
+                if (Email.Text.Length == 0)
+                {
+                    MessageBox.Show("Brak loginu! ");
+                    return;
+                }
+                Password.Text = "Admin1";
+                if (Password.Text.Length == 0)
+                {
+                    MessageBox.Show("Brak hasła! ");
+                    return;
+                }
+
+                try
+                {
+                    AC.ClientCredentials.UserName.UserName = Email.Text.ToString();
+                    AC.ClientCredentials.UserName.Password = Password.Text.ToString();
+
+                    AC.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+                    System.ServiceModel.Security.X509CertificateValidationMode.None;
+
+                    AC.Login();
+                    _stationsList = AC.AllStationsAsync();
+                }
+                catch (Exception ex)
+                {
+
+                    Password.BackColor = Color.Red;
+                    Email.BackColor = Color.Red;
+                    MessageBox.Show("Zły login/hasło");
+                    return;
+                }
+
+
+
+
+
+
+
+
+
+
+
+
+                
+                
                 foreach (var b in Buttons)
                 {
                     b.Enabled = true;
@@ -190,12 +232,31 @@ namespace AdminGUI
                 Background.Height -= 200;
                 this.MaximumSize = this.MinimumSize = this.Size = new Size(Width, Height - 200);
 
+
+                
+                
+                
+              
+                
+                
+                
+           
             }
         }
 
+   
+        
 
         private void AddConectionDefinitionButtonClick(object sender, EventArgs e)
         {
+            if (addConectionDefinition == null)
+            {
+                this.Controls.Add(addConectionDefinition = new AddConectionDefinition(ClientSize, Background, AC, _stationsList));
+                addConectionDefinition.Visible = false;
+            }
+
+            if (addStation != null)
+                addStation.sync();
             Background.Visible = false;
             addConectionDefinition.Visible = true;
 
@@ -203,32 +264,77 @@ namespace AdminGUI
         }
         private void EditConnectionDefinitionButtonClick(object sender, EventArgs e)
         {
+            if (editConnectionDefinition == null)
+            {
+                this.Controls.Add(editConnectionDefinition = new EditConnectionDefinition(ClientSize, Background, AC, _stationsList));
+                editConnectionDefinition.Visible = false;
+            }
+
+            if (addStation != null)
+                addStation.sync();
             Background.Visible = false;
             editConnectionDefinition.Visible = true;
         }
         private void ArchiveConnectionDefinitonClick(object sender, EventArgs e)
         {
+            if (archiveConnectionDefiniton == null)
+            {
+                this.Controls.Add(archiveConnectionDefiniton = new ArchiveConnectionDefiniton(ClientSize, Background, AC, _stationsList));
+                archiveConnectionDefiniton.Visible = false;
+            }
+
+            if (addStation != null)
+                addStation.sync();
             Background.Visible = false;
             archiveConnectionDefiniton.Visible = true;
         }
         private void AddStationButtonClick(object sender, EventArgs e)
         {
+            if (addStation == null)
+            {
+                this.Controls.Add(addStation = new AddStation(ClientSize, Background, AC, _stationsList, this));
+                addStation.Visible = false;
+            }
             Background.Visible = false;
             addStation.Visible = true;
         }
         private void EditStationButtonClick(object sender, EventArgs e)
         {
+            if (editStation == null)
+            {
+                this.Controls.Add(editStation = new EditStation(ClientSize, Background, AC, _stationsList));
+                editStation.Visible = false;
+            }
+            if(addStation!=null)
+            addStation.sync();
 
             Background.Visible = false;
             editStation.Visible = true;
         }
         private void ArchiveStationButtonClick(object sender, EventArgs e)
         {
+            if (archiveStation == null)
+            {
+                this.Controls.Add(archiveStation = new ArchiveStation(ClientSize, Background, AC, _stationsList));
+                archiveStation.Visible = false;
+            }
+
+            if (addStation != null)
+                addStation.sync();
             Background.Visible = false;
             archiveStation.Visible = true;
         }
         private void AddNewConnectionClick(object sender, EventArgs e)
         {
+            if (addNewConnection == null)
+            {
+                this.Controls.Add(addNewConnection = new EditConnectionDefinition(ClientSize, Background, AC, _stationsList, SearchResult.Mode.NewConnection));
+                addNewConnection.Visible = false;
+
+            }
+
+            if (addStation != null)
+                addStation.sync();
             Background.Visible = false;
             addNewConnection.Visible = true;
         }

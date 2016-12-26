@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminGUI.Forms.ConnectionDefinition
@@ -16,7 +17,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
 
         private DataGridView _result;
        
-        public SearchResult(Size s, Panel returnP,Mode mode=Mode.Edit) : base(s, returnP)
+        public SearchResult(Size s, Panel returnP, Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l,Mode mode=Mode.Edit) : base(s, returnP,ac,l)
         {
             InitializeComponent();
 
@@ -84,8 +85,8 @@ namespace AdminGUI.Forms.ConnectionDefinition
 
         private void Loading(object sender, EventArgs e)
         {
-            
-        //    l = m.Find(departureStation, arivalStation, price, hour);
+
+            _l=AC.Find(_departureStation, _arivalStation, _price, _hour);
             _result.Rows.Clear();
             for (int i = 0; i < _l.Count; i++)
             {
@@ -98,12 +99,12 @@ namespace AdminGUI.Forms.ConnectionDefinition
             switch (_mode)
             {
                    case Mode.Edit:
-                    ModifyResult mr = new ModifyResult(Size, Background, _l[(int)_result.SelectedRows[0].Index]);
+                    ModifyResult mr = new ModifyResult(Size, Background, _l[(int)_result.SelectedRows[0].Index],AC,_stationList);
                     this.Controls.Add(mr);
                     break;
                    
                 case Mode.NewConnection:
-                    AddNewConnection add=new AddNewConnection(Size, Background, _l[(int)_result.SelectedRows[0].Index]);
+                    AddNewConnection add=new AddNewConnection(Size, Background, _l[(int)_result.SelectedRows[0].Index],AC,_stationList);
                     this.Controls.Add(add);
                     break;
             }
@@ -126,7 +127,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             _arivalStation = arrival;
             this._price = price;
             this._hour = hour;
-        //    l = m.Find(departureStation, arivalStation, price, hour);
+                  AC.Find(_departureStation, _arivalStation, price, hour);
             Background.Visible = true;
         }
     }

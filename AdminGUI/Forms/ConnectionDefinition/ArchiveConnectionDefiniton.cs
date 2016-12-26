@@ -1,4 +1,6 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminGUI.Forms
@@ -10,7 +12,7 @@ namespace AdminGUI.Forms
             InitializeComponent();
         }
 
-        public ArchiveConnectionDefiniton(Size s, Panel returnP) : base(s, returnP)
+        public ArchiveConnectionDefiniton(Size s, Panel returnP ,Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l) : base(s, returnP,ac,l)
         {
         }
     }

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminGUI.Forms.Station
@@ -15,7 +17,7 @@ namespace AdminGUI.Forms.Station
         private ListBox _listOfStations;
         private TextBox _newNameStation;
       //  private StationManagment sm;
-        public EditStation(Size s, Panel returnP) : base(s, returnP)
+        public EditStation(Size s, Panel returnP ,Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l) : base(s, returnP,ac,l)
         {
             _selectStation = Program.MakeStylishButton(SaveButton.Size,
                 new Point(SaveButton.Location.X , SaveButton.Location.Y+SaveButton.Size.Height+Program.Padding),
@@ -25,7 +27,7 @@ namespace AdminGUI.Forms.Station
             ReturnButton.Width *= 2;
             _listOfStations=new ListBox();
             _listOfStations.Location=new Point(ReturnButton.Location.X,ReturnButton.Location.Y+ReturnButton.Height+Program.Padding);
-            _listOfStations.Size=new Size(ReturnButton.Width, Background.Height-_listOfStations.Height+2*Program.Padding);
+            _listOfStations.Size=new Size(ReturnButton.Width, Background.Height-4*Program.Padding-ReturnButton.Height);
             Background.Controls.Add(_listOfStations);
 
             _newNameStation = new TextBox();
@@ -42,12 +44,16 @@ namespace AdminGUI.Forms.Station
 
         private void Loading(object sender, EventArgs e)
         {
+            
             _listOfStations.Enabled = true;
             _locked = false;
             _selectStation.Text = "Wybierz stacje";
             SaveButton.Enabled = false;
             _newNameStation.Text = "";
-        //    ListOfStations.DataSource = sm.AllStations();
+            _listOfStations.DataSource = _stationList.Result;
+
+            _listOfStations.DisplayMember = "";
+            _listOfStations.DisplayMember = "Name";
         }
 
         private bool _locked = false;
@@ -75,8 +81,10 @@ namespace AdminGUI.Forms.Station
             _listOfStations.Enabled = true;
             _locked = false;
             _selectStation.Text = "Wybierz stacje";
-        //    if (sm.ChangeStation(ListOfStations.SelectedItem as DomainModel.Models.Station, NewNameStation.Text))
+            if(AC.ChangeStation(_listOfStations.SelectedItem as DomainModel.Models.Station, _newNameStation.Text))
+            //    if (sm.ChangeStation(ListOfStations.SelectedItem as DomainModel.Models.Station, NewNameStation.Text))
             {
+                (_listOfStations.SelectedItem as DomainModel.Models.Station).Name = _newNameStation.Text;
                 _listOfStations.DisplayMember = "";
                 _listOfStations.DisplayMember = "Name";
                 base.SaveClick(sender, e);

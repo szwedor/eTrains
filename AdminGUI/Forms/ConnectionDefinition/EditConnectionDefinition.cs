@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using AdminGUI.Forms.ConnectionDefinition;
+using System.Threading.Tasks;
 
 namespace AdminGUI.Forms
 {
@@ -28,7 +29,7 @@ namespace AdminGUI.Forms
         private CheckBox _priceCheckBox;
         private CheckBox _time;
 
-        public EditConnectionDefinition(Size s, Panel returnP,SearchResult.Mode mode=SearchResult.Mode.Edit) : base(s,returnP)
+        public EditConnectionDefinition(Size s, Panel returnP, Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l,SearchResult.Mode mode=SearchResult.Mode.Edit) : base(s, returnP,ac,l)
         {
             _departureCheckbox = new CheckBox()
             {
@@ -62,8 +63,7 @@ namespace AdminGUI.Forms
             SaveButton.Enabled = true;
 
 
-           // sm = new StationManagment();
-         //   Stations = sm.AllStations();
+          
             SaveButton.Text = "Szukaj";
             _selectStationDeparture = Program.MakeStylishButton(new Size(Background.Width - 2*Program.Padding * 2-SaveButton.Width, SaveButton.Height),
                     new Point(Program.Padding, SaveButton.Location.Y + SaveButton.Size.Height + Program.Padding),
@@ -130,7 +130,7 @@ namespace AdminGUI.Forms
             _listOfStations.DisplayMember = "Name";
 
             DoubleBuffered = true;
-            _searchResult=new SearchResult(Size,Background,mode);
+            _searchResult=new SearchResult(Size,Background,AC,_stationList,mode);
             this.Controls.Add(_searchResult);
             this.Visible = false;
            this.VisibleChanged += new EventHandler(Loading);
@@ -142,8 +142,12 @@ namespace AdminGUI.Forms
             _selectStationDeparture.Text = "Wybierz stacje początkową";
             _departureStation = _arrivalStation = null;
             SaveButton.Enabled = false;
-     //       ListOfStations.DataSource = sm.AllStations();
-    }
+            //       ListOfStations.DataSource = sm.AllStations();
+
+            _listOfStations.DataSource = _stationList.Result;
+            _listOfStations.DisplayMember = "";
+            _listOfStations.DisplayMember = "Name";
+        }
     private bool _departure = false;
         private bool _arrival = false;
         private DomainModel.Models.Station _departureStation;

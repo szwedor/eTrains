@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminGUI.Forms.ConnectionDefinition
@@ -21,7 +23,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
         private TextBox _priceBox;
         private DomainModel.Models.ConnectionDefinition _cd;
         private Button _removeButton;
-        public ModifyResult(Size s, Panel returnP,DomainModel.Models.ConnectionDefinition cd) : base(s,returnP)
+        public ModifyResult(Size s, Panel returnP,DomainModel.Models.ConnectionDefinition cd, Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l) : base(s,returnP,ac,l)
         {
             InitializeComponent();
             this._cd = cd;
@@ -104,9 +106,9 @@ namespace AdminGUI.Forms.ConnectionDefinition
             _listOfStations.Location = Background.Location;
             _listOfStations.Size = Background.Size;
         this.Controls.Add(_listOfStations);
-         
-      //      sm=new StationManagment();
-      //  ListOfStations.DataSource = sm.AllStations();
+
+            //      sm=new StationManagment();
+            _listOfStations.DataSource = l.Result;
             _listOfStations.DisplayMember = "Name";
 
             DoubleBuffered = true;
@@ -117,8 +119,11 @@ namespace AdminGUI.Forms.ConnectionDefinition
             DialogResult dialogResult = MessageBox.Show("Czy chcesz usunąć to połączenie?", "Usunięcie", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-             //   m.MakeArchival(cd);
-                this.ReturnButton.PerformClick();
+             
+                AC.MakeArchival(_cd);
+                base.ReturnPanelClick(sender, e);
+                base.SaveClick(sender, e);
+                this.Dispose();
             }
             else if (dialogResult == DialogResult.No)
             {
@@ -188,6 +193,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
         protected override void SaveClick(object sender, EventArgs e)
         {
           
+      
             //m.ModifyConnection(cd.Id,departureStation, arrivalStation, hourTimePicker.Value.Hour,
             //    minutesTimePicker.Value.Minute, price);
             _cd.Departure = _departureStation;
@@ -195,7 +201,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             _cd.TravelTime=new TimeSpan(_hourTimePicker.Value.Hour,_minutesTimePicker.Value.Minute,0);
             _cd.Price = _price;
             
-         //   m.UpdateConnection(cd);
+            AC.UpdateConnectionAsync(_cd);
             base.ReturnPanelClick(sender,e);
             base.SaveClick(sender, e);
             this.Dispose();

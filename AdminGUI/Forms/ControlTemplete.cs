@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminGUI.Forms
@@ -14,10 +16,13 @@ namespace AdminGUI.Forms
         private Panel _returnPanel;
         protected Button ReturnButton;
         protected Button SaveButton;
-        public ControlTemplete(Size s, Panel returnP)
+        protected Task<List<DomainModel.Models.Station>> _stationList;
+        protected Admin.AdminClient AC;
+        public ControlTemplete(Size s, Panel returnP,Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l) 
         {
-            
             InitializeComponent();
+            AC = ac;
+            _stationList = l;
             this.Size = s;
             this._returnPanel = returnP;
             this.Controls.Add(Background = new Panel());
@@ -27,7 +32,7 @@ namespace AdminGUI.Forms
             Background.Top = (s.Height - Background.Height)/2;
             Background.Left = (s.Width - Background.Width)/2;
             int padding = 10;
-            ReturnButton = Program.MakeStylishButton(new System.Drawing.Size(Background.Width / 3 - padding, 50),
+            ReturnButton = Program.MakeStylishButton(new System.Drawing.Size(Background.Width / 3 - padding, 100),
                 new System.Drawing.Point(padding, padding), "Powrót");
             SaveButton = Program.MakeStylishButton(ReturnButton.Size,
               new System.Drawing.Point(Background.Width-padding-ReturnButton.Size.Width, padding), "Zapisz");

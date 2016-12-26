@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AdminGUI.Forms
@@ -14,7 +16,7 @@ namespace AdminGUI.Forms
             InitializeComponent();
         }
 
-        public AddNewConnection(Size s, Panel returnP) : base(s, returnP)
+        public AddNewConnection(Size s, Panel returnP, Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l) : base(s, returnP,ac,l)
         {
             InitializeComponent();
         }
@@ -27,21 +29,28 @@ namespace AdminGUI.Forms
         private TextBox _freqTextBox;
         private DateTimePicker _hourTimePicker;
         private DateTimePicker _minDateTimePicker;
-        public AddNewConnection(Size s, Panel returnP, DomainModel.Models.ConnectionDefinition connectionDefinition) : this(s, returnP)
+        public AddNewConnection(Size s, Panel returnP, DomainModel.Models.ConnectionDefinition connectionDefinition, Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l) : this(s, returnP,ac,l)
         {
             this._connectionDefinition = connectionDefinition;
             StringBuilder sb=new StringBuilder();
             sb.Append(connectionDefinition.Name)
-                .Append(" Z:")
+                .Append(Environment.NewLine)
+                .Append("Z:")
+                .Append(Environment.NewLine)
                 .Append(connectionDefinition.Departure.Name)
-                .Append("  Do:")
+                .Append(Environment.NewLine)
+                .Append("Do:")
+                .Append(Environment.NewLine)
                 .Append(connectionDefinition.Arrival.Name)
-                .Append(" Cena:")
+                .Append(Environment.NewLine)
+                .Append("Cena:")
+                .Append(Environment.NewLine)
                 .Append(connectionDefinition.Price)
                 .Append(Environment.NewLine)
                 .Append("Czas Przejazdu:")
+                .Append(Environment.NewLine)
                 .Append(connectionDefinition.TravelTime);
-             _connection = new Label()
+            _connection = new Label()
             {
                 Location =
                     new Point(ReturnButton.Location.X, ReturnButton.Height + Program.Padding + ReturnButton.Location.Y),
@@ -51,55 +60,56 @@ namespace AdminGUI.Forms
             };
             Background.Controls.Add(_connection);
 
-            
 
+
+           
              _starTimePicker = new DateTimePicker()
-            {
-                Location = new Point(SaveButton.Location.X , SaveButton.Location.Y+SaveButton.Height*2+Program.Padding),
-                MinDate = DateTime.Today,
-                MaxDate = DateTime.Today.AddMonths(3),
-                
-            };
+             {
+                 Location = new Point(SaveButton.Location.X, SaveButton.Location.Y + SaveButton.Height + Program.Padding),
+                 MinDate = DateTime.Today,
+                 MaxDate = DateTime.Today.AddMonths(3),
+
+             };
             Background.Controls.Add(_starTimePicker);
 
-             _from = new Label()
-            {
-                Location =
-                    new Point(_starTimePicker.Location.X, -_starTimePicker.Height +_starTimePicker.Location.Y-Program.Padding),
-                Size = new Size(ReturnButton.Width, ReturnButton.Height),
-                Font = Program.DefaultFont,
-                Text = "Zakres dat przejazdów"
-            };
-           Background.Controls.Add(_from);
 
 
-             _toTimePicker = new DateTimePicker()
+            _toTimePicker = new DateTimePicker()
             {
-                Location =new Point(_starTimePicker.Location.X,_starTimePicker.Location.Y + _starTimePicker.Height * 2),
+                Location = new Point(_starTimePicker.Location.X, _starTimePicker.Location.Y + _starTimePicker.Height + Program.Padding),
                 MinDate = DateTime.Today,
                 MaxDate = DateTime.Today.AddMonths(12),
             };
             Background.Controls.Add(_toTimePicker);
+            _from = new Label()
+            {
+                Location = new Point(_starTimePicker.Location.X, _toTimePicker.Location.Y + _toTimePicker.Height + Program.Padding),
+                Size = new Size(_starTimePicker.Width - Program.Padding, 60),
+                Font = Program.DefaultFont,
+                Text = "Zakres dat przejazdów"
 
-             _frequency = new Label()
+            };
+            Background.Controls.Add(_from);
+
+             _freqTextBox = new TextBox()
             {
                 Location =
-                    new Point(_from.Location.X-_from.Width, _from.Location.Y),
+                    new Point(_from.Location.X , _from.Location.Y+_from.Height+Program.Padding),
+                Size = new Size(_from.Width-Program.Padding, 40),
+                Font = Program.DefaultFont
+
+
+        };
+            _frequency = new Label()
+            {
+                Location =
+                    new Point(_freqTextBox.Location.X, _freqTextBox.Location.Y+_freqTextBox.Height+Program.Padding),
                 Size = new Size(ReturnButton.Width, ReturnButton.Height),
                 Font = Program.DefaultFont,
                 Text = "Częstotliwość w dniach"
             };
             
-             _freqTextBox = new TextBox()
-            {
-                Location =
-                    new Point(_from.Location.X - _from.Width, _starTimePicker.Location.Y),
-                Size = new Size(_frequency.Width-Program.Padding, 40),
-                Font = _frequency.Font
-
-
-        };
-            Background.Controls.Add(_freqTextBox);Background.Controls.Add(_frequency);
+            Background.Controls.Add(_freqTextBox); Background.Controls.Add(_frequency);
             _freqTextBox.TextChanged+=new EventHandler(TextChanged);
 
             Label travelTime;
@@ -123,7 +133,7 @@ namespace AdminGUI.Forms
             _minDateTimePicker.Format = DateTimePickerFormat.Custom;
             _minDateTimePicker.ShowUpDown = true;
             _minDateTimePicker.CustomFormat = "mm";
-            _minDateTimePicker.Location = new Point(travelTime.Location.X + travelTime.Size.Width+60, travelTime.Location.Y);
+            _minDateTimePicker.Location = new Point(travelTime.Location.X + travelTime.Size.Width + 60, travelTime.Location.Y);
             _minDateTimePicker.Font = Program.DefaultFont;
             _minDateTimePicker.Size = new Size(55, 20);
             Background.Controls.Add(_minDateTimePicker);
@@ -151,9 +161,9 @@ namespace AdminGUI.Forms
 
             base.SaveClick(sender, e);
             base.ReturnPanelClick(sender, e);
-            Dispose(); 
-            //ConnectionManagment cm=new ConnectionManagment();
-            //cm.AddNewConnections(connectionDefinition, starTimePicker.Value, toTimePicker.Value, days,hourTimePicker.Value.Hour,minDateTimePicker.Value.Minute);
+            Dispose();
+            
+            AC.AddNewConnectionsAsync(_connectionDefinition, _starTimePicker.Value, _toTimePicker.Value, _days, _hourTimePicker.Value.Hour, _minDateTimePicker.Value.Minute);
         }
 
         protected override void ReturnPanelClick(object sender, EventArgs e)
