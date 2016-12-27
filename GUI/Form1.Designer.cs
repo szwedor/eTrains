@@ -36,7 +36,12 @@
             this.SearchPanel = new System.Windows.Forms.Panel();
             this.ConnectionDetails = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Gratulation = new System.Windows.Forms.Label();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cakowityczas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lprzesiadek = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RezervationButton = new System.Windows.Forms.Button();
             this.Error = new System.Windows.Forms.Label();
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
@@ -51,12 +56,6 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.UserAccount = new System.Windows.Forms.Button();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cakowityczas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lprzesiadek = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SearchPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -67,7 +66,7 @@
             // FROM
             // 
             this.FROM.BackColor = System.Drawing.Color.White;
-            this.FROM.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FROM.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FROM.Location = new System.Drawing.Point(44, 145);
             this.FROM.Name = "FROM";
             this.FROM.Size = new System.Drawing.Size(416, 57);
@@ -80,7 +79,7 @@
             // TO
             // 
             this.TO.BackColor = System.Drawing.Color.White;
-            this.TO.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TO.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.TO.Location = new System.Drawing.Point(44, 240);
             this.TO.Name = "TO";
             this.TO.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -94,7 +93,7 @@
             // Find
             // 
             this.Find.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.Find.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Find.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.Find.ForeColor = System.Drawing.Color.White;
             this.Find.Location = new System.Drawing.Point(133, 491);
             this.Find.Name = "Find";
@@ -106,24 +105,22 @@
             // 
             // listBoxFrom
             // 
-            this.listBoxFrom.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxFrom.FormattingEnabled = true;
-            this.listBoxFrom.ItemHeight = 16;
             this.listBoxFrom.Location = new System.Drawing.Point(44, 202);
             this.listBoxFrom.Name = "listBoxFrom";
-            this.listBoxFrom.Size = new System.Drawing.Size(416, 68);
+            this.listBoxFrom.Size = new System.Drawing.Size(416, 56);
             this.listBoxFrom.TabIndex = 30;
             this.listBoxFrom.Visible = false;
             this.listBoxFrom.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBoxFrom_MouseDown);
             // 
             // listBoxTo
             // 
-            this.listBoxTo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTo.FormattingEnabled = true;
-            this.listBoxTo.ItemHeight = 16;
             this.listBoxTo.Location = new System.Drawing.Point(44, 300);
             this.listBoxTo.Name = "listBoxTo";
-            this.listBoxTo.Size = new System.Drawing.Size(416, 52);
+            this.listBoxTo.Size = new System.Drawing.Size(416, 56);
             this.listBoxTo.TabIndex = 31;
             this.listBoxTo.Visible = false;
             this.listBoxTo.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBoxTo_MouseDown);
@@ -132,7 +129,6 @@
             // 
             this.SearchPanel.Controls.Add(this.ConnectionDetails);
             this.SearchPanel.Controls.Add(this.dataGridView1);
-            this.SearchPanel.Controls.Add(this.Gratulation);
             this.SearchPanel.Controls.Add(this.RezervationButton);
             this.SearchPanel.Location = new System.Drawing.Point(989, 106);
             this.SearchPanel.Name = "SearchPanel";
@@ -143,7 +139,7 @@
             // ConnectionDetails
             // 
             this.ConnectionDetails.BackColor = System.Drawing.Color.Brown;
-            this.ConnectionDetails.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ConnectionDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ConnectionDetails.ForeColor = System.Drawing.Color.White;
             this.ConnectionDetails.Location = new System.Drawing.Point(6, 258);
             this.ConnectionDetails.Name = "ConnectionDetails";
@@ -179,27 +175,52 @@
             this.dataGridView1.Size = new System.Drawing.Size(465, 250);
             this.dataGridView1.TabIndex = 3;
             // 
-            // Gratulation
+            // Column1
             // 
-            this.Gratulation.AutoSize = true;
-            this.Gratulation.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Gratulation.ForeColor = System.Drawing.Color.Maroon;
-            this.Gratulation.Location = new System.Drawing.Point(3, 375);
-            this.Gratulation.Name = "Gratulation";
-            this.Gratulation.Size = new System.Drawing.Size(205, 16);
-            this.Gratulation.TabIndex = 2;
-            this.Gratulation.Text = "Gratulacje! Zarezerowałeś bilet :)";
-            this.Gratulation.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.Gratulation.Visible = false;
+            this.Column1.HeaderText = "Odjazd";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Przyjazd";
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Czas Odjazdu";
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            this.Column3.Width = 150;
+            // 
+            // Cakowityczas
+            // 
+            this.Cakowityczas.HeaderText = "Czas podróży";
+            this.Cakowityczas.Name = "Cakowityczas";
+            this.Cakowityczas.ReadOnly = true;
+            // 
+            // Lprzesiadek
+            // 
+            this.Lprzesiadek.HeaderText = "Liczba przesiadek";
+            this.Lprzesiadek.Name = "Lprzesiadek";
+            this.Lprzesiadek.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Cena";
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            this.Column4.Width = 50;
             // 
             // RezervationButton
             // 
             this.RezervationButton.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.RezervationButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.RezervationButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.RezervationButton.ForeColor = System.Drawing.Color.White;
             this.RezervationButton.Location = new System.Drawing.Point(187, 335);
             this.RezervationButton.Name = "RezervationButton";
-            this.RezervationButton.Size = new System.Drawing.Size(117, 23);
+            this.RezervationButton.Size = new System.Drawing.Size(117, 49);
             this.RezervationButton.TabIndex = 1;
             this.RezervationButton.Text = "Zarezerwuj";
             this.RezervationButton.UseVisualStyleBackColor = false;
@@ -208,54 +229,54 @@
             // Error
             // 
             this.Error.AutoSize = true;
-            this.Error.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Error.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Error.Location = new System.Drawing.Point(509, 172);
             this.Error.Name = "Error";
-            this.Error.Size = new System.Drawing.Size(0, 21);
+            this.Error.Size = new System.Drawing.Size(0, 20);
             this.Error.TabIndex = 51;
             this.Error.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Error.Visible = false;
             // 
             // dateTimePicker
             // 
-            this.dateTimePicker.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold);
+            this.dateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold);
             this.dateTimePicker.Location = new System.Drawing.Point(44, 358);
             this.dateTimePicker.MinDate = new System.DateTime(2016, 11, 10, 0, 0, 0, 0);
             this.dateTimePicker.Name = "dateTimePicker";
-            this.dateTimePicker.Size = new System.Drawing.Size(416, 27);
+            this.dateTimePicker.Size = new System.Drawing.Size(416, 26);
             this.dateTimePicker.TabIndex = 2;
             // 
             // hoursTimePicker
             // 
             this.hoursTimePicker.CustomFormat = "HH";
-            this.hoursTimePicker.Font = new System.Drawing.Font("Century Gothic", 19F, System.Drawing.FontStyle.Bold);
+            this.hoursTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F, System.Drawing.FontStyle.Bold);
             this.hoursTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.hoursTimePicker.Location = new System.Drawing.Point(133, 441);
             this.hoursTimePicker.Name = "hoursTimePicker";
             this.hoursTimePicker.ShowUpDown = true;
-            this.hoursTimePicker.Size = new System.Drawing.Size(110, 39);
+            this.hoursTimePicker.Size = new System.Drawing.Size(110, 36);
             this.hoursTimePicker.TabIndex = 3;
             // 
             // MinutesTimePicer
             // 
             this.MinutesTimePicer.CustomFormat = " mm";
-            this.MinutesTimePicer.Font = new System.Drawing.Font("Century Gothic", 19F, System.Drawing.FontStyle.Bold);
+            this.MinutesTimePicer.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F, System.Drawing.FontStyle.Bold);
             this.MinutesTimePicer.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.MinutesTimePicer.Location = new System.Drawing.Point(249, 441);
             this.MinutesTimePicer.Name = "MinutesTimePicer";
             this.MinutesTimePicer.ShowUpDown = true;
-            this.MinutesTimePicer.Size = new System.Drawing.Size(114, 39);
+            this.MinutesTimePicer.Size = new System.Drawing.Size(114, 36);
             this.MinutesTimePicer.TabIndex = 4;
             // 
             // TimeLabel
             // 
             this.TimeLabel.AutoSize = true;
             this.TimeLabel.BackColor = System.Drawing.Color.Teal;
-            this.TimeLabel.Font = new System.Drawing.Font("Century Gothic", 19F, System.Drawing.FontStyle.Bold);
+            this.TimeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F, System.Drawing.FontStyle.Bold);
             this.TimeLabel.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.TimeLabel.Location = new System.Drawing.Point(128, 397);
             this.TimeLabel.Name = "TimeLabel";
-            this.TimeLabel.Size = new System.Drawing.Size(235, 30);
+            this.TimeLabel.Size = new System.Drawing.Size(225, 30);
             this.TimeLabel.TabIndex = 55;
             this.TimeLabel.Text = "Godzina Odjazdu";
             // 
@@ -263,11 +284,11 @@
             // 
             this.labelFrom.AutoSize = true;
             this.labelFrom.BackColor = System.Drawing.Color.Teal;
-            this.labelFrom.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
+            this.labelFrom.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
             this.labelFrom.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelFrom.Location = new System.Drawing.Point(40, 119);
             this.labelFrom.Name = "labelFrom";
-            this.labelFrom.Size = new System.Drawing.Size(197, 23);
+            this.labelFrom.Size = new System.Drawing.Size(193, 25);
             this.labelFrom.TabIndex = 56;
             this.labelFrom.Text = "Stacja początkowa";
             // 
@@ -275,11 +296,11 @@
             // 
             this.labelTo.AutoSize = true;
             this.labelTo.BackColor = System.Drawing.Color.Teal;
-            this.labelTo.Font = new System.Drawing.Font("Century Gothic", 15F, System.Drawing.FontStyle.Bold);
+            this.labelTo.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold);
             this.labelTo.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelTo.Location = new System.Drawing.Point(40, 214);
             this.labelTo.Name = "labelTo";
-            this.labelTo.Size = new System.Drawing.Size(168, 23);
+            this.labelTo.Size = new System.Drawing.Size(164, 25);
             this.labelTo.TabIndex = 57;
             this.labelTo.Text = "Stacja końcowa";
             // 
@@ -287,11 +308,11 @@
             // 
             this.labelDate.AutoSize = true;
             this.labelDate.BackColor = System.Drawing.Color.Teal;
-            this.labelDate.Font = new System.Drawing.Font("Century Gothic", 19F, System.Drawing.FontStyle.Bold);
+            this.labelDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 19F, System.Drawing.FontStyle.Bold);
             this.labelDate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
             this.labelDate.Location = new System.Drawing.Point(157, 307);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(188, 30);
+            this.labelDate.Size = new System.Drawing.Size(181, 30);
             this.labelDate.TabIndex = 58;
             this.labelDate.Text = "Data Odjazdu";
             // 
@@ -337,7 +358,7 @@
             this.UserAccount.BackColor = System.Drawing.Color.Teal;
             this.UserAccount.FlatAppearance.BorderSize = 0;
             this.UserAccount.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.UserAccount.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.UserAccount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.UserAccount.ForeColor = System.Drawing.Color.White;
             this.UserAccount.Location = new System.Drawing.Point(44, 559);
             this.UserAccount.Name = "UserAccount";
@@ -347,43 +368,6 @@
             this.UserAccount.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.UserAccount.UseVisualStyleBackColor = false;
             this.UserAccount.Click += new System.EventHandler(this.UserAccount_Click);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Odjazd";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Przyjazd";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Czas Odjazdu";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Cakowityczas
-            // 
-            this.Cakowityczas.HeaderText = "Czas podróży";
-            this.Cakowityczas.Name = "Cakowityczas";
-            this.Cakowityczas.ReadOnly = true;
-            // 
-            // Lprzesiadek
-            // 
-            this.Lprzesiadek.HeaderText = "Liczba przesiadek";
-            this.Lprzesiadek.Name = "Lprzesiadek";
-            this.Lprzesiadek.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Cena";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            this.Column4.Width = 50;
             // 
             // Form1
             // 
@@ -417,7 +401,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "e-TRAIN";
             this.SearchPanel.ResumeLayout(false);
-            this.SearchPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -439,7 +422,6 @@
         private System.Windows.Forms.Panel SearchPanel;
         private System.Windows.Forms.Label Error;
         private System.Windows.Forms.Button RezervationButton;
-        private System.Windows.Forms.Label Gratulation;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
         private System.Windows.Forms.DateTimePicker hoursTimePicker;

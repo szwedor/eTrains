@@ -430,7 +430,7 @@
       <wsa10:EndpointReference>
         <wsa10:Address>http://localhost:2106/ReservationManagment.svc/unsec</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>DESKTOP-6F0J823\Szwed</Upn>
+          <Upn>DESKTOP-3RMCAJ2\magda</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

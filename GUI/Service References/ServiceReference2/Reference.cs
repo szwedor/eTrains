@@ -34,10 +34,10 @@ namespace GUI.ServiceReference2 {
         System.Threading.Tasks.Task<int> MakeReservationAsync(DomainModel.Models.Connection con, string userName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReservationManagment/DeleteReservation", ReplyAction="http://tempuri.org/IReservationManagment/DeleteReservationResponse")]
-        void DeleteReservation(string userName, DomainModel.Models.Connection con);
+        void DeleteReservation(string userName, DomainModel.Models.Ticket t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReservationManagment/DeleteReservation", ReplyAction="http://tempuri.org/IReservationManagment/DeleteReservationResponse")]
-        System.Threading.Tasks.Task DeleteReservationAsync(string userName, DomainModel.Models.Connection con);
+        System.Threading.Tasks.Task DeleteReservationAsync(string userName, DomainModel.Models.Ticket t);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReservationManagment/AllUserReservations", ReplyAction="http://tempuri.org/IReservationManagment/AllUserReservationsResponse")]
         System.Collections.Generic.List<DomainModel.Models.Ticket> AllUserReservations(string userName);
@@ -97,12 +97,12 @@ namespace GUI.ServiceReference2 {
             return base.Channel.MakeReservationAsync(con, userName);
         }
         
-        public void DeleteReservation(string userName, DomainModel.Models.Connection con) {
-            base.Channel.DeleteReservation(userName, con);
+        public void DeleteReservation(string userName, DomainModel.Models.Ticket t) {
+            base.Channel.DeleteReservation(userName, t);
         }
         
-        public System.Threading.Tasks.Task DeleteReservationAsync(string userName, DomainModel.Models.Connection con) {
-            return base.Channel.DeleteReservationAsync(userName, con);
+        public System.Threading.Tasks.Task DeleteReservationAsync(string userName, DomainModel.Models.Ticket t) {
+            return base.Channel.DeleteReservationAsync(userName, t);
         }
         
         public System.Collections.Generic.List<DomainModel.Models.Ticket> AllUserReservations(string userName) {

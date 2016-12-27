@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="258a2ac1-b66b-4de2-ad9f-4740eb1ca16e" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="29444d5b-8bd6-45fb-9b0e-49a31e8d7c44" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -9,9 +9,7 @@
     <GenerateInternalTypes>false</GenerateInternalTypes>
     <GenerateMessageContracts>false</GenerateMessageContracts>
     <NamespaceMappings />
-    <CollectionMappings>
-      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
-    </CollectionMappings>
+    <CollectionMappings />
     <GenerateSerializableTypes>true</GenerateSerializableTypes>
     <Serializer>Auto</Serializer>
     <UseSerializerForFaults>true</UseSerializerForFaults>
@@ -24,12 +22,12 @@
     <MetadataSource Address="http://localhost:2106/UserManagment.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="UserManagment.xsd" MetadataType="Schema" ID="43985d33-d032-4332-b1d7-22881d8eb914" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd0" />
-    <MetadataFile FileName="UserManagment1.xsd" MetadataType="Schema" ID="6e9f40ec-6c87-4827-a39b-c8490d9adc79" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd3" />
-    <MetadataFile FileName="UserManagment2.xsd" MetadataType="Schema" ID="b2c3631f-19d8-4007-843c-6a45fbf77e9c" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd1" />
-    <MetadataFile FileName="UserManagment.wsdl" MetadataType="Wsdl" ID="a554e1a6-6afc-4f12-b36b-d5102f914ad5" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?wsdl" />
-    <MetadataFile FileName="UserManagment.disco" MetadataType="Disco" ID="7fd7e772-7382-474c-a75d-3d9111993583" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?disco" />
-    <MetadataFile FileName="UserManagment3.xsd" MetadataType="Schema" ID="9b2bb210-449a-49df-a02b-08c9732ad9f7" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd2" />
+    <MetadataFile FileName="UserManagment.xsd" MetadataType="Schema" ID="a07f7cda-3232-48c8-a8d4-7cd01d0189c7" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd0" />
+    <MetadataFile FileName="UserManagment1.xsd" MetadataType="Schema" ID="19fdbd4d-949c-4acc-abb6-a4d73e91f872" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd3" />
+    <MetadataFile FileName="UserManagment2.xsd" MetadataType="Schema" ID="2689f6a6-ca29-420d-8310-1a03e3353bee" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd1" />
+    <MetadataFile FileName="UserManagment.wsdl" MetadataType="Wsdl" ID="8739c63a-63fd-4989-865f-ea7f4e1607fa" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?wsdl" />
+    <MetadataFile FileName="UserManagment.disco" MetadataType="Disco" ID="7c40d685-d497-4d9b-977a-a5f6dd7a5b2a" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?disco" />
+    <MetadataFile FileName="UserManagment3.xsd" MetadataType="Schema" ID="34d5e868-f562-46c6-aa41-8ee39e50b81d" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

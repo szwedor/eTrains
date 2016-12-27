@@ -48,7 +48,7 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DomainModel.Models" minOccurs="0" name="con" nillable="true" type="q6:Connection" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DomainModel.Models" minOccurs="0" name="t" nillable="true" type="q6:Ticket" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.LoginPanel = new System.Windows.Forms.Panel();
+            this.Return = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.textValidation = new System.Windows.Forms.TextBox();
@@ -55,6 +56,7 @@
             this.Miejsce = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cena = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RejestrationPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox10 = new System.Windows.Forms.TextBox();
@@ -74,8 +76,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.Return = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.LoginPanel.SuspendLayout();
             this.ButtonsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -102,6 +102,18 @@
             this.LoginPanel.Name = "LoginPanel";
             this.LoginPanel.Size = new System.Drawing.Size(697, 202);
             this.LoginPanel.TabIndex = 48;
+            // 
+            // Return
+            // 
+            this.Return.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Return.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.Return.Location = new System.Drawing.Point(557, -1);
+            this.Return.Name = "Return";
+            this.Return.Size = new System.Drawing.Size(123, 31);
+            this.Return.TabIndex = 4;
+            this.Return.Text = "Strona główna";
+            this.Return.UseVisualStyleBackColor = false;
+            this.Return.Click += new System.EventHandler(this.Return_Click);
             // 
             // label2
             // 
@@ -373,6 +385,18 @@
             this.RejestrationPanel.Size = new System.Drawing.Size(697, 238);
             this.RejestrationPanel.TabIndex = 51;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.Location = new System.Drawing.Point(554, -3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(126, 31);
+            this.button1.TabIndex = 60;
+            this.button1.Text = "Strona główna";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.Return_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -442,11 +466,11 @@
             // AddAccount
             // 
             this.AddAccount.BackColor = System.Drawing.Color.MediumSpringGreen;
-            this.AddAccount.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.AddAccount.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.AddAccount.ForeColor = System.Drawing.Color.White;
-            this.AddAccount.Location = new System.Drawing.Point(224, 207);
+            this.AddAccount.Location = new System.Drawing.Point(222, 198);
             this.AddAccount.Name = "AddAccount";
-            this.AddAccount.Size = new System.Drawing.Size(116, 23);
+            this.AddAccount.Size = new System.Drawing.Size(116, 40);
             this.AddAccount.TabIndex = 14;
             this.AddAccount.Text = "Dołącz";
             this.AddAccount.UseVisualStyleBackColor = false;
@@ -564,36 +588,12 @@
             // 
             this.userBindingSource.DataSource = typeof(DomainModel.Models.User);
             // 
-            // Return
-            // 
-            this.Return.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.Return.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.Return.Location = new System.Drawing.Point(557, -1);
-            this.Return.Name = "Return";
-            this.Return.Size = new System.Drawing.Size(123, 31);
-            this.Return.TabIndex = 4;
-            this.Return.Text = "Strona główna";
-            this.Return.UseVisualStyleBackColor = false;
-            this.Return.Click += new System.EventHandler(this.Return_Click);
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(554, -3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(126, 31);
-            this.button1.TabIndex = 60;
-            this.button1.Text = "Strona główna";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.Return_Click);
-            // 
             // UserAccount
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(985, 783);
+            this.ClientSize = new System.Drawing.Size(985, 620);
             this.Controls.Add(this.PassPanel);
             this.Controls.Add(this.RejestrationPanel);
             this.Controls.Add(this.MyticketsPanel);

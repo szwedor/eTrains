@@ -11,7 +11,6 @@ using DomainModel.Models;
 using GUI.ServiceReference2;
 using System.Globalization;
 using System.Diagnostics;
-using GUI.ServiceReference1;
 
 namespace GUI
 {
@@ -97,10 +96,11 @@ namespace GUI
       
         private void Find_Click(object sender, EventArgs e)
         {
+            pictureBox3.Visible = true;
+            webBrowser1.Visible = true;
             dt = new DateTime(dateTimePicker.Value.Year, dateTimePicker.Value.Month, dateTimePicker.Value.Day,
              hoursTimePicker.Value.Hour, MinutesTimePicer.Value.Minute, 0);
-
-            Gratulation.Visible = false;
+            
             SearchPanel.Visible = false;
             Error.Visible = false;
             myconnections = null;

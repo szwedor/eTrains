@@ -23,6 +23,7 @@ namespace GUI
         public ReservationManagmentClient reservationManagment = new ReservationManagmentClient();
         public List<Connection> choosedtodetails;
         public List<Ticket> listofticekets=new List<Ticket>();
+        public bool todelete = false;
         public UserAccount(Form1 f)
         {
 
@@ -70,8 +71,6 @@ namespace GUI
 
         private void LogIn_Click(object sender, EventArgs e)
         {
-            boxLogin.Text = "admin@admin.pl";
-            boxPass.Text = "Admin1";
             textValidation.Visible = false;
             if (boxLogin.Text.Length == 0)
             {
@@ -86,10 +85,10 @@ namespace GUI
 
             try
             {
-                reservationManagment.ClientCredentials.UserName.UserName = userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
-                reservationManagment.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
-                
-                reservationManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode=
+                userManagment = new UserManagmentClient();
+                userManagment.ClientCredentials.UserName.UserName = boxLogin.Text.ToString();
+                userManagment.ClientCredentials.UserName.Password = boxPass.Text.ToString();
+
                 userManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                 System.ServiceModel.Security.X509CertificateValidationMode.None;
 
@@ -195,27 +194,41 @@ namespace GUI
                 MessageBox.Show("Najpierw wybierz bilet");
                 return;
             }
-            try {
-                ReservationManagmentClient rm = new ReservationManagmentClient();
-                rm.ClientCredentials.UserName.UserName = loginUser;
-                rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
-                rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
-                    System.ServiceModel.Security.X509CertificateValidationMode.None;
-                
-                var choosedCon = dataGridView1.SelectedRows[0].Tag as Connection;
-                rm.DeleteReservation(loginUser, choosedCon);
-            }
-            catch(Exception ex)
+            DateTime dt = (dataGridView1.SelectedRows[0].Tag as Ticket).Connection.DepartureTime;
+            if (dt < DateTime.Now)
             {
-                MessageBox.Show("Nie można odwołać biletu");
+                MessageBox.Show("Przejazd już się odbył. Nie możesz zwrocić tego biletu.");
+                return;
             }
-            TicketsView();
+            
+
+            if (MessageBox.Show("Czy na pewno chcesz odwołać rezerwację?", "?", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                
+                try
+                {
+                    reservationManagment.ClientCredentials.UserName.UserName = userManagment.ClientCredentials.UserName.UserName;
+                    reservationManagment.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
+                    reservationManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+                        System.ServiceModel.Security.X509CertificateValidationMode.None;
+
+                    var choosedtic = dataGridView1.SelectedRows[0].Tag as Ticket;
+                    reservationManagment.DeleteReservation(loginUser, choosedtic);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Nie można odwołać biletu");
+                }
+                TicketsView();
+                todelete = false;
+            }
+            else return;
         }
 
         private void LogOut_Click(object sender, EventArgs e)
         {
             oldform.log = false;
-            this.Hide();
+            this.Close();
             oldform.Show();
 
         }
@@ -271,13 +284,12 @@ namespace GUI
                 int seat = -1;
                 try
                 {
-                    
                     ReservationManagmentClient rm = new ReservationManagmentClient();
                     rm.ClientCredentials.UserName.UserName = loginUser;
                     rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
                     rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                         System.ServiceModel.Security.X509CertificateValidationMode.None;
-                    rm.MakeReservation(elem, loginUser);
+                    seat= rm.MakeReservation(elem, loginUser);
                 }
                 catch (Exception ex)
                 {
@@ -285,59 +297,57 @@ namespace GUI
                     return;
                 }
 
+                TicketsView();
+                //dataGridView1.Rows.Clear();
+                //var x = new DataGridViewRow();
+                //x.Tag = res;
 
-                dataGridView1.Rows.Clear();
-                var x = new DataGridViewRow();
-                x.Tag = res;
+                //dataGridView1.Rows.Add(x);
+                //dataGridView1.Rows[0].Cells[0].Value = elem.ConnectionDefinition.Departure.Name;
+                //dataGridView1.Rows[0].Cells[1].Value = elem.ConnectionDefinition.Arrival.Name;
+                //dataGridView1.Rows[0].Cells[2].Value = elem.DepartureTime;
+                //dataGridView1.Rows[0].Cells[3].Value = elem.ArrivalTime;
 
-                dataGridView1.Rows.Add(x);
-                dataGridView1.Rows[0].Cells[0].Value = elem.ConnectionDefinition.Departure.Name;
-                dataGridView1.Rows[0].Cells[1].Value = elem.ConnectionDefinition.Arrival.Name;
-                dataGridView1.Rows[0].Cells[2].Value = elem.DepartureTime;
-                dataGridView1.Rows[0].Cells[3].Value = elem.ArrivalTime;
-
-                dataGridView1.Rows[0].Cells[5].Value = elem.ConnectionDefinition.Price;
-                if (seat == -1)
-                {
-                    dataGridView1.Rows[0].Cells[4].Value = "Stojące";
-                }
-                else dataGridView1.Rows[0].Cells[4].Value = seat;
+                //dataGridView1.Rows[0].Cells[5].Value = elem.ConnectionDefinition.Price;
+                //if (seat == -1)
+                //{
+                //    dataGridView1.Rows[0].Cells[4].Value = "Stojące";
+                //}
+                //else dataGridView1.Rows[0].Cells[4].Value = seat;
             }
         }
         public void TicketsView()
         {
             try
             {
-                //ReservationManagmentClient rm = new ReservationManagmentClient();
-                //rm.ClientCredentials.UserName.UserName = loginUser;
-                //rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
-                //rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
-                //    System.ServiceModel.Security.X509CertificateValidationMode.None;
-                listofticekets =
-            reservationManagment.AllUserReservations(loginUser);
-
-             
+                ReservationManagmentClient rm = new ReservationManagmentClient();
+                rm.ClientCredentials.UserName.UserName = loginUser;
+                rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
+                rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
+                    System.ServiceModel.Security.X509CertificateValidationMode.None;
+                listofticekets = rm.AllUserReservations(loginUser);
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show("Nie możemy wyświetlić twoich biletów. Klops :( ");
                 return;
             }
             
             dataGridView1.Rows.Clear();
-            var x = new DataGridViewRow();
+            
             int i = 0;
             foreach (var ticket in listofticekets)
             {
+                var x = new DataGridViewRow();
                 x.Tag = ticket;
 
                 dataGridView1.Rows.Add(x);
                 dataGridView1.Rows[i].Cells[0].Value = ticket.Connection.ConnectionDefinition.Departure.Name;
                 dataGridView1.Rows[i].Cells[1].Value = ticket.Connection.ConnectionDefinition.Arrival.Name;
                 dataGridView1.Rows[i].Cells[2].Value = ticket.Connection.DepartureTime;
-                dataGridView1.Rows[i].Cells[2].Value = ticket.Connection.ArrivalTime;
-                dataGridView1.Rows[i].Cells[3].Value = ticket.Seat;
-                dataGridView1.Rows[i].Cells[4].Value = ticket.Connection.ConnectionDefinition.Price; ;
+                dataGridView1.Rows[i].Cells[3].Value = ticket.Connection.ArrivalTime;
+                dataGridView1.Rows[i].Cells[4].Value = ticket.Seat;
+                dataGridView1.Rows[i].Cells[5].Value = ticket.Connection.ConnectionDefinition.Price; ;
 
                 i++;
             }
