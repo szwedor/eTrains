@@ -99,8 +99,8 @@ namespace AdminGUI.Forms
             Price = new Label();
             Price.Location = new Point(Background.Width - 3 * SaveButton.Width / 2, SaveButton.Location.Y + 4 * SaveButton.Height);
             Price.Font = Program.DefaultFont;
-            Price.Size = new Size(150, 40);
-            Price.Text = "Podaj cenę";
+            Price.Size = new Size(150, 70);
+            Price.Text = "Podaj cenę (PLN)";
             Background.Controls.Add(Price);
 
             _priceBox = new TextBox();
@@ -141,7 +141,7 @@ namespace AdminGUI.Forms
             _selectStationArrival.Text = "Wybierz stacje końcową";
             _selectStationDeparture.Text = "Wybierz stacje początkową";
             _departureStation = _arrivalStation = null;
-            SaveButton.Enabled = false;
+          //  SaveButton.Enabled = false;
             //       ListOfStations.DataSource = sm.AllStations();
 
             _listOfStations.DataSource = _stationList.Result;
@@ -156,7 +156,7 @@ namespace AdminGUI.Forms
         {
             if (_listOfStations.SelectedItem == null) return;
             Background.Visible = true;
-            SaveButton.Enabled = true;
+           // SaveButton.Enabled = true;
             if (_departure)
             {
                 _departure = false;

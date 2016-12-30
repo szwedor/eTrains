@@ -152,30 +152,30 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\ServiceReference1\UserManagment.wsdl" />
-    <None Include="Service References\ServiceReference1\UserManagment.xsd">
+    <None Include="Service References\ServiceReference1\UserManagment1.wsdl" />
+    <None Include="Service References\ServiceReference1\UserManagment4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\UserManagment1.xsd">
+    <None Include="Service References\ServiceReference1\UserManagment41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\UserManagment2.xsd">
+    <None Include="Service References\ServiceReference1\UserManagment42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference1\UserManagment3.xsd">
+    <None Include="Service References\ServiceReference1\UserManagment43.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference2\ReservationManagment.wsdl" />
-    <None Include="Service References\ServiceReference2\ReservationManagment.xsd">
+    <None Include="Service References\ServiceReference2\ReservationManagment1.wsdl" />
+    <None Include="Service References\ServiceReference2\ReservationManagment4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference2\ReservationManagment1.xsd">
+    <None Include="Service References\ServiceReference2\ReservationManagment41.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference2\ReservationManagment2.xsd">
+    <None Include="Service References\ServiceReference2\ReservationManagment42.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\ServiceReference2\ReservationManagment3.xsd">
+    <None Include="Service References\ServiceReference2\ReservationManagment43.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -219,9 +219,6 @@
     <WCFMetadataStorage Include="Service References\ServiceReference2\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference1\UserManagment.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -234,9 +231,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\ServiceReference2\ReservationManagment.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\ServiceReference2\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -247,6 +241,12 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference1\UserManagment1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\ServiceReference2\ReservationManagment1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

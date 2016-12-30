@@ -122,10 +122,15 @@ namespace AdminGUI.Forms
         private void AcceptStationClick(object sender, EventArgs e)
         {
             if (_listOfStations.SelectedItem == null) return;
-            Background.Visible = true;
+            
 
             if (_departure)
             {
+                if((_listOfStations.SelectedItem as DomainModel.Models.Station)==_arrivalStation)
+                {
+                    MessageBox.Show("Wybrano tą samą stacje jako stacje odjazdu oraz stacje przyjazdu");
+                    return;
+                }
                 _departure = false;
                 _departureStation= (_listOfStations.SelectedItem as DomainModel.Models.Station);
                 _selectStationArrival.Enabled = true;
@@ -133,12 +138,17 @@ namespace AdminGUI.Forms
             }
             else if (_arrival)
             {
+                if ((_listOfStations.SelectedItem as DomainModel.Models.Station) == _departureStation)
+                {
+                    MessageBox.Show("Wybrano tą samą stacje jako stacje odjazdu oraz stacje przyjazdu");
+                    return;
+                }
                 _departure = false;
                 _arrivalStation = (_listOfStations.SelectedItem as DomainModel.Models.Station);
                 _selectStationArrival.Text = "Stacja końcowa: " + _arrivalStation.Name;
             }
             _ok.Visible = false;
-
+            Background.Visible = true;
         }
 
         private void SelectStationArrivalClick(object sender, EventArgs e)
@@ -176,6 +186,7 @@ namespace AdminGUI.Forms
 
         protected override void SaveClick(object sender, EventArgs e)
         {
+            
             AC.AddNewConnection(_departureStation, _arrivalStation, _hourTimePicker.Value.Hour,
                   _minutesTimePicker.Value.Minute, _price, _departureStation.Name + " " + _arrivalStation.Name);
             {

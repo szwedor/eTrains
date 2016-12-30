@@ -29,10 +29,11 @@ namespace GUI
                 return;
             }
             dataGridView.Rows.Clear();
-            var x = new DataGridViewRow();
-            int i = 0;
-            foreach (var elem in listofticekets)
+            for(int i=0;i<listofticekets.Count;i++)
+           // foreach (var elem in listofticekets)
             {
+                var elem = listofticekets[listofticekets.Count-1-i];
+            var x = new DataGridViewRow();
                 x.Tag = elem;
 
                 dataGridView.Rows.Add(x);
@@ -41,7 +42,7 @@ namespace GUI
                 dataGridView.Rows[i].Cells[2].Value = elem.DepartureTime;
                 dataGridView.Rows[i].Cells[3].Value = elem.ArrivalTime;
                 dataGridView.Rows[i].Cells[4].Value = elem.ConnectionDefinition.Price;
-                i++;
+               
             }
         }
 

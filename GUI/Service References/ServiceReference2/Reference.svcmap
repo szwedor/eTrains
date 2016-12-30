@@ -23,15 +23,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:2106/ReservationManagment.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://iliketrainssomuch.azurewebsites.net/ReservationManagment.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="ReservationManagment.wsdl" MetadataType="Wsdl" ID="b74880df-08cb-4641-ab08-ba57799dbf4d" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?wsdl" />
-    <MetadataFile FileName="ReservationManagment.xsd" MetadataType="Schema" ID="2043175e-2fe2-4a7f-947a-dfccac1d4c11" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?xsd=xsd3" />
-    <MetadataFile FileName="ReservationManagment1.xsd" MetadataType="Schema" ID="9d1f1a6a-ae9a-406e-aaaa-753e30cbce8e" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?xsd=xsd2" />
-    <MetadataFile FileName="ReservationManagment2.xsd" MetadataType="Schema" ID="eb7c1d90-4302-4ea9-8eb3-d4185e1ac5ed" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?xsd=xsd1" />
-    <MetadataFile FileName="ReservationManagment.disco" MetadataType="Disco" ID="775dc16f-ba35-4441-bc27-2bc2b0008d8b" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?disco" />
-    <MetadataFile FileName="ReservationManagment3.xsd" MetadataType="Schema" ID="20d80c6a-54b5-411c-a582-c8d066db5330" SourceId="1" SourceUrl="http://localhost:2106/ReservationManagment.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReservationManagment4.xsd" MetadataType="Schema" ID="8c15db14-9c2c-42a0-9abb-0ce093ca508a" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/ReservationManagment.svc?xsd=xsd3" />
+    <MetadataFile FileName="ReservationManagment41.xsd" MetadataType="Schema" ID="091318b1-26d3-4ae0-a93b-99c279477733" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/ReservationManagment.svc?xsd=xsd0" />
+    <MetadataFile FileName="ReservationManagment1.wsdl" MetadataType="Wsdl" ID="d5d9345a-89c6-4bb9-90d2-91f089d2b391" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/ReservationManagment.svc?wsdl" />
+    <MetadataFile FileName="ReservationManagment42.xsd" MetadataType="Schema" ID="9a77441f-edf4-4a89-b0ed-00bce9010d93" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/ReservationManagment.svc?xsd=xsd2" />
+    <MetadataFile FileName="ReservationManagment43.xsd" MetadataType="Schema" ID="b39e3ca0-4ad4-457d-8468-8af58566fefd" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/ReservationManagment.svc?xsd=xsd1" />
+    <MetadataFile FileName="ReservationManagment1.disco" MetadataType="Disco" ID="729af72b-f6ec-4e2d-b9e3-0f194521f813" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/ReservationManagment.svc?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

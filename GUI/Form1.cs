@@ -66,7 +66,6 @@ namespace GUI
 
             //    r=new Reservation();
             //    listBoxFrom.DataSource= r.DepartureStations();
-            
             listBoxTo.DataSource = reservationManagmentUnsecureClient.AllStations();
             listBoxTo.DisplayMember = "Name";
             listBoxFrom.DataSource = reservationManagmentUnsecureClient.AllStations();
@@ -128,23 +127,24 @@ namespace GUI
                     var x = new DataGridViewRow();
                     x.Tag = elem;
                     dataGridView1.Rows.Add(x);
-                    dataGridView1.Rows[i].Cells[0].Value = elem.First().ConnectionDefinition.Departure.Name;
-                    dataGridView1.Rows[i].Cells[1].Value = elem.Last().ConnectionDefinition.Arrival.Name;
-                    dataGridView1.Rows[i].Cells[2].Value = elem.First().DepartureTime;
+                    dataGridView1.Rows[i].Cells[0].Value = elem.Last().ConnectionDefinition.Departure.Name;
+                    dataGridView1.Rows[i].Cells[1].Value = elem.First().ConnectionDefinition.Arrival.Name;
+                    dataGridView1.Rows[i].Cells[2].Value = elem.Last().DepartureTime;
                     int h = 0;
                     int m = 0;
                     int s = 0;
                     int totalPrice = 0;
                     foreach (var con in elem)
                     {
-                        h += con.ConnectionDefinition.TravelTime.Hours;
-                        m += con.ConnectionDefinition.TravelTime.Minutes;
-                        s += con.ConnectionDefinition.TravelTime.Seconds;
+                        //h += con.ConnectionDefinition.TravelTime.Hours;
+                        //m += con.ConnectionDefinition.TravelTime.Minutes;
+                        //s += con.ConnectionDefinition.TravelTime.Seconds;
 
                         totalPrice += con.ConnectionDefinition.Price;
                     }
-                
-                    TimeSpan totalTime = new TimeSpan(h, m, s);
+
+
+                    TimeSpan totalTime =   elem.First().ArrivalTime-elem.Last().DepartureTime;
                     dataGridView1.Rows[i].Cells[3].Value = totalTime;
                     dataGridView1.Rows[i].Cells[5].Value = totalPrice;
                     dataGridView1.Rows[i].Cells[4].Value = elem.Count() - 1;

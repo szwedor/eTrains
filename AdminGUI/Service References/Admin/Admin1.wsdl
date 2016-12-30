@@ -103,10 +103,10 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:2106/Admin.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:2106/Admin.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:2106/Admin.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DomainModel.Models" />
-      <xsd:import schemaLocation="http://localhost:2106/Admin.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/DomainModel" />
+      <xsd:import schemaLocation="http://iliketrainssomuch.azurewebsites.net/Admin.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://iliketrainssomuch.azurewebsites.net/Admin.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://iliketrainssomuch.azurewebsites.net/Admin.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DomainModel.Models" />
+      <xsd:import schemaLocation="http://iliketrainssomuch.azurewebsites.net/Admin.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/DomainModel" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IAdmin_Login_InputMessage">
@@ -326,9 +326,9 @@
   </wsdl:binding>
   <wsdl:service name="Admin">
     <wsdl:port name="WSHttpBinding_IAdmin" binding="tns:WSHttpBinding_IAdmin">
-      <soap12:address location="https://localhost:44300/Admin.svc" />
+      <soap12:address location="https://iliketrainssomuch.azurewebsites.net/Admin.svc" />
       <wsa10:EndpointReference>
-        <wsa10:Address>https://localhost:44300/Admin.svc</wsa10:Address>
+        <wsa10:Address>https://iliketrainssomuch.azurewebsites.net/Admin.svc</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>

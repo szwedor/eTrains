@@ -211,7 +211,7 @@ namespace GUI
                     reservationManagment.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
                     reservationManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                         System.ServiceModel.Security.X509CertificateValidationMode.None;
-
+                    System.Net.ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => { return true; };
                     var choosedtic = dataGridView1.SelectedRows[0].Tag as Ticket;
                     reservationManagment.DeleteReservation(loginUser, choosedtic);
                 }
@@ -240,6 +240,7 @@ namespace GUI
             UserManagmentUnsecureClient userManagmentUnsecureClient = new UserManagmentUnsecureClient();
             try
             {
+                System.Net.ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => { return true; };
                 userManagment.ClientCredentials.UserName.UserName = loginUser;
                 userManagment.ClientCredentials.UserName.Password = OldPassBox.Text.ToString();
 

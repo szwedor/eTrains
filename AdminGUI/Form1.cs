@@ -118,7 +118,7 @@ namespace AdminGUI
                        System.Drawing.GraphicsUnit.Point, ((byte)(0))),
                 Size = LoginButton.Size,
                 ForeColor = System.Drawing.Color.White,
-                Text = "Podaj login"
+                Text = "Email"
             };
             Background.Controls.Add(EmailLabel);
 
@@ -136,7 +136,7 @@ namespace AdminGUI
                       System.Drawing.GraphicsUnit.Point, ((byte)(0))),
                 Size = LoginButton.Size,
                 ForeColor = System.Drawing.Color.White,
-                Text = "Podaj hasło"
+                Text = "Hasło"
             };
             Background.Controls.Add(PasswordLabel);
 
@@ -164,20 +164,21 @@ namespace AdminGUI
             //                addStation.Visible =
             //                    editStation.Visible =
             //                        archiveStation.Visible = false;
-            AC = new Admin.AdminClient();
+           
             Password.PasswordChar = '*';
         }
 
         private void LoginClick(object sender, EventArgs e)
         {
+            AC = new Admin.AdminClient();
             {
-                Email.Text = "admin@admin.pl";
+               // Email.Text = "admin@admin.pl";
                 if (Email.Text.Length == 0)
                 {
                     MessageBox.Show("Brak loginu! ");
                     return;
                 }
-                Password.Text = "Admin1";
+              //  Password.Text = "Admin1";
                 if (Password.Text.Length == 0)
                 {
                     MessageBox.Show("Brak hasła! ");
@@ -191,7 +192,7 @@ namespace AdminGUI
 
                     AC.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                     System.ServiceModel.Security.X509CertificateValidationMode.None;
-
+                    System.Net.ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => { return true; };
                     AC.Login();
                     _stationsList = AC.AllStationsAsync();
                 }
@@ -295,6 +296,8 @@ namespace AdminGUI
                 this.Controls.Add(addStation = new AddStation(ClientSize, Background, AC, _stationsList, this));
                 addStation.Visible = false;
             }
+            else
+                addStation.sync();
             Background.Visible = false;
             addStation.Visible = true;
         }

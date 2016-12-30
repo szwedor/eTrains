@@ -52,7 +52,7 @@
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=4.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -174,19 +174,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="Service References\Admin\Admin.wsdl" />
-    <None Include="Service References\Admin\Admin.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Admin\Admin1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Admin\Admin2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Service References\Admin\Admin3.xsd">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -218,9 +205,19 @@
     <WCFMetadataStorage Include="Service References\Admin\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\Admin\Admin.disco" />
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="Service References\Admin\Admin1.wsdl" />
+    <None Include="Service References\Admin\Admin4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Admin\Admin41.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Admin\Admin42.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\Admin\Admin43.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\Admin\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +228,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\Admin\Admin1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

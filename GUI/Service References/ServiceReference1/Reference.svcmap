@@ -19,15 +19,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:2106/UserManagment.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://iliketrainssomuch.azurewebsites.net/UserManagment.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="UserManagment.xsd" MetadataType="Schema" ID="a07f7cda-3232-48c8-a8d4-7cd01d0189c7" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd0" />
-    <MetadataFile FileName="UserManagment1.xsd" MetadataType="Schema" ID="19fdbd4d-949c-4acc-abb6-a4d73e91f872" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd3" />
-    <MetadataFile FileName="UserManagment2.xsd" MetadataType="Schema" ID="2689f6a6-ca29-420d-8310-1a03e3353bee" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd1" />
-    <MetadataFile FileName="UserManagment.wsdl" MetadataType="Wsdl" ID="8739c63a-63fd-4989-865f-ea7f4e1607fa" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?wsdl" />
-    <MetadataFile FileName="UserManagment.disco" MetadataType="Disco" ID="7c40d685-d497-4d9b-977a-a5f6dd7a5b2a" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?disco" />
-    <MetadataFile FileName="UserManagment3.xsd" MetadataType="Schema" ID="34d5e868-f562-46c6-aa41-8ee39e50b81d" SourceId="1" SourceUrl="http://localhost:2106/UserManagment.svc?xsd=xsd2" />
+    <MetadataFile FileName="UserManagment4.xsd" MetadataType="Schema" ID="cc57e800-acba-4fc9-a862-8e58b2579be0" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/UserManagment.svc?xsd=xsd3" />
+    <MetadataFile FileName="UserManagment41.xsd" MetadataType="Schema" ID="9583aece-861a-43b8-9f76-2d9e5acee9c5" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/UserManagment.svc?xsd=xsd0" />
+    <MetadataFile FileName="UserManagment42.xsd" MetadataType="Schema" ID="6eb3ce4f-e341-42c3-8dfc-f18fec493162" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/UserManagment.svc?xsd=xsd1" />
+    <MetadataFile FileName="UserManagment1.disco" MetadataType="Disco" ID="7426bd3e-c2ef-475b-9a8d-40bc800ac922" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/UserManagment.svc?disco" />
+    <MetadataFile FileName="UserManagment1.wsdl" MetadataType="Wsdl" ID="a6070a26-e9ff-416d-9365-7ae0f7c2c9c9" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/UserManagment.svc?wsdl" />
+    <MetadataFile FileName="UserManagment43.xsd" MetadataType="Schema" ID="4a68421b-cb0f-4058-89d2-89c86b95caa4" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/UserManagment.svc?xsd=xsd2" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

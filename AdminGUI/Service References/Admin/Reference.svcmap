@@ -21,15 +21,15 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:2106/Admin.svc" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://iliketrainssomuch.azurewebsites.net/Admin.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="Admin.xsd" MetadataType="Schema" ID="2eed3187-2b01-49a4-ba44-8b7cb1a06bd9" SourceId="1" SourceUrl="http://localhost:2106/Admin.svc?xsd=xsd1" />
-    <MetadataFile FileName="Admin.disco" MetadataType="Disco" ID="10f9011d-a514-4997-aa49-cbffe806ad9f" SourceId="1" SourceUrl="http://localhost:2106/Admin.svc?disco" />
-    <MetadataFile FileName="Admin.wsdl" MetadataType="Wsdl" ID="b574c141-3f56-4ff7-aedf-e331ed12f015" SourceId="1" SourceUrl="http://localhost:2106/Admin.svc?wsdl" />
-    <MetadataFile FileName="Admin1.xsd" MetadataType="Schema" ID="fc40f276-fd2a-4ff0-b25c-4f8c75a6f226" SourceId="1" SourceUrl="http://localhost:2106/Admin.svc?xsd=xsd0" />
-    <MetadataFile FileName="Admin2.xsd" MetadataType="Schema" ID="dfd1b458-8943-4b64-acf9-5b50bfb270ac" SourceId="1" SourceUrl="http://localhost:2106/Admin.svc?xsd=xsd2" />
-    <MetadataFile FileName="Admin3.xsd" MetadataType="Schema" ID="7480c3bc-d937-4b87-9184-dad9b93625c4" SourceId="1" SourceUrl="http://localhost:2106/Admin.svc?xsd=xsd3" />
+    <MetadataFile FileName="Admin1.disco" MetadataType="Disco" ID="a25772cd-62fb-4a8d-9128-38a845504785" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/Admin.svc?disco" />
+    <MetadataFile FileName="Admin4.xsd" MetadataType="Schema" ID="3aff629c-e5c7-4a12-aca7-aef6c086c84e" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/Admin.svc?xsd=xsd3" />
+    <MetadataFile FileName="Admin41.xsd" MetadataType="Schema" ID="069ce1b2-dd08-48ef-886a-6de161934f65" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/Admin.svc?xsd=xsd2" />
+    <MetadataFile FileName="Admin1.wsdl" MetadataType="Wsdl" ID="522aca00-b26b-457f-b7c4-d2f4ed7f316b" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/Admin.svc?wsdl" />
+    <MetadataFile FileName="Admin42.xsd" MetadataType="Schema" ID="a140f5aa-5b36-4ff5-8c22-a6c73ca54a80" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/Admin.svc?xsd=xsd0" />
+    <MetadataFile FileName="Admin43.xsd" MetadataType="Schema" ID="92bc4216-878c-4a50-a276-0a7fac6eccbc" SourceId="1" SourceUrl="http://iliketrainssomuch.azurewebsites.net/Admin.svc?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
