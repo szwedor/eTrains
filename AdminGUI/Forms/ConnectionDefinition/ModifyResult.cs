@@ -116,6 +116,11 @@ namespace AdminGUI.Forms.ConnectionDefinition
             DoubleBuffered = true;
         }
 
+        protected override void ReturnPanelClick(object sender, EventArgs e)
+        {
+            base.ReturnPanelClick(sender, e);
+            ss.add(_cd);
+        }
         private void RemoveClick(object sender, EventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Czy chcesz usunąć to połączenie?", "Usunięcie", MessageBoxButtons.YesNo);
