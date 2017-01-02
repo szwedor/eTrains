@@ -189,7 +189,7 @@ namespace AdminGUI.Forms
            
            
             AC.AddNewConnection(_departureStation, _arrivalStation, _hourTimePicker.Value.Hour,
-                  _minutesTimePicker.Value.Minute, _price,"l");
+                  _minutesTimePicker.Value.Minute, _price,_departureStation.Name+" "+_arrivalStation.Name);
             {
                  base.SaveClick(sender, e);
                 base.ReturnButton.PerformClick();
