@@ -206,7 +206,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             ss.add(_cd);
             base.ReturnPanelClick(sender,e);
             base.SaveClick(sender, e);
-            AC.UpdateConnectionAsync(_cd);
+            AC.UpdateConnectionAsync(_cd,_departureStation,_departureStation,_price,_cd.TravelTime);
             this.Dispose();
         }
     }

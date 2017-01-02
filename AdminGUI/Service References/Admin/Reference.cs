@@ -27,6 +27,12 @@ namespace AdminGUI.Admin {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdmin/AllStations", ReplyAction="http://tempuri.org/IAdmin/AllStationsResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.List<DomainModel.Models.Station>> AllStationsAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdmin/AllConnectionsButActive", ReplyAction="http://tempuri.org/IAdmin/AllConnectionsButActiveResponse")]
+        System.Collections.Generic.List<DomainModel.Models.ConnectionDefinition> AllConnectionsButActive();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdmin/AllConnectionsButActive", ReplyAction="http://tempuri.org/IAdmin/AllConnectionsButActiveResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.List<DomainModel.Models.ConnectionDefinition>> AllConnectionsButActiveAsync();
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdmin/Add", ReplyAction="http://tempuri.org/IAdmin/AddResponse")]
         DomainModel.Models.Station Add(string newStationText);
         
@@ -64,10 +70,10 @@ namespace AdminGUI.Admin {
         System.Threading.Tasks.Task<System.Collections.Generic.List<DomainModel.Models.ConnectionDefinition>> AllConnectionsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdmin/UpdateConnection", ReplyAction="http://tempuri.org/IAdmin/UpdateConnectionResponse")]
-        bool UpdateConnection(DomainModel.Models.ConnectionDefinition cd);
+        bool UpdateConnection(DomainModel.Models.ConnectionDefinition cd, DomainModel.Models.Station d, DomainModel.Models.Station a, int p, System.TimeSpan ts);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdmin/UpdateConnection", ReplyAction="http://tempuri.org/IAdmin/UpdateConnectionResponse")]
-        System.Threading.Tasks.Task<bool> UpdateConnectionAsync(DomainModel.Models.ConnectionDefinition cd);
+        System.Threading.Tasks.Task<bool> UpdateConnectionAsync(DomainModel.Models.ConnectionDefinition cd, DomainModel.Models.Station d, DomainModel.Models.Station a, int p, System.TimeSpan ts);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAdmin/MakeArchival", ReplyAction="http://tempuri.org/IAdmin/MakeArchivalResponse")]
         bool MakeArchival(DomainModel.Models.ConnectionDefinition cd);
@@ -125,6 +131,14 @@ namespace AdminGUI.Admin {
             return base.Channel.AllStationsAsync();
         }
         
+        public System.Collections.Generic.List<DomainModel.Models.ConnectionDefinition> AllConnectionsButActive() {
+            return base.Channel.AllConnectionsButActive();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.List<DomainModel.Models.ConnectionDefinition>> AllConnectionsButActiveAsync() {
+            return base.Channel.AllConnectionsButActiveAsync();
+        }
+        
         public DomainModel.Models.Station Add(string newStationText) {
             return base.Channel.Add(newStationText);
         }
@@ -173,12 +187,12 @@ namespace AdminGUI.Admin {
             return base.Channel.AllConnectionsAsync();
         }
         
-        public bool UpdateConnection(DomainModel.Models.ConnectionDefinition cd) {
-            return base.Channel.UpdateConnection(cd);
+        public bool UpdateConnection(DomainModel.Models.ConnectionDefinition cd, DomainModel.Models.Station d, DomainModel.Models.Station a, int p, System.TimeSpan ts) {
+            return base.Channel.UpdateConnection(cd, d, a, p, ts);
         }
         
-        public System.Threading.Tasks.Task<bool> UpdateConnectionAsync(DomainModel.Models.ConnectionDefinition cd) {
-            return base.Channel.UpdateConnectionAsync(cd);
+        public System.Threading.Tasks.Task<bool> UpdateConnectionAsync(DomainModel.Models.ConnectionDefinition cd, DomainModel.Models.Station d, DomainModel.Models.Station a, int p, System.TimeSpan ts) {
+            return base.Channel.UpdateConnectionAsync(cd, d, a, p, ts);
         }
         
         public bool MakeArchival(DomainModel.Models.ConnectionDefinition cd) {
