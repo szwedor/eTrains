@@ -206,14 +206,15 @@ namespace AdminGUI.Forms.ConnectionDefinition
       
             //m.ModifyConnection(cd.Id,departureStation, arrivalStation, hourTimePicker.Value.Hour,
             //    minutesTimePicker.Value.Minute, price);
-            _cd.Departure = _departureStation;
-            _cd.Arrival = _arrivalStation;
-            _cd.TravelTime=new TimeSpan(_hourTimePicker.Value.Hour,_minutesTimePicker.Value.Minute,0);
-            _cd.Price = _price;
+
          //   ss.add(_cd);
             base.ReturnPanelClick(sender,e);
             base.SaveClick(sender, e);
             await AC.UpdateConnectionAsync(_cd,_departureStation,_arrivalStation,_price,_cd.TravelTime);
+            _cd.Departure = _departureStation;
+            _cd.Arrival = _arrivalStation;
+            _cd.TravelTime=new TimeSpan(_hourTimePicker.Value.Hour,_minutesTimePicker.Value.Minute,0);
+            _cd.Price = _price;
             ss.refresh();
             this.Dispose();
         }
