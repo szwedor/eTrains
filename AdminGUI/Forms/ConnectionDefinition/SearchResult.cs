@@ -97,7 +97,9 @@ namespace AdminGUI.Forms.ConnectionDefinition
             {
                 
                    case Mode.Edit:
-                    ModifyResult mr = new ModifyResult(Size, Background, _l[(int)_result.SelectedRows[0].Index],AC,_stationList);
+                    var x = _l[(int)_result.SelectedRows[0].Index];
+                    ModifyResult mr = new ModifyResult(Size, Background, x,AC,_stationList,this);
+                    _l.Remove(x);
                     this.Controls.Add(mr);
                     break;
                    
@@ -111,7 +113,17 @@ namespace AdminGUI.Forms.ConnectionDefinition
             base.SaveClick(sender, e);
         }
 
-       
+       public void add(DomainModel.Models.ConnectionDefinition cd)
+        {
+            if(cd!=null)
+            _l.Add(cd);
+            _result.Rows.Clear();
+            for (int i = 0; i < _l.Count; i++)
+            {
+                _result.Rows.Add(_l[i].Name, _l[i].Departure.Name, _l[i].Arrival.Name, _l[i].Price, _l[i].TravelTime);
+
+            }
+        }
 
         private DomainModel.Models.Station _arivalStation;
         private DomainModel.Models.Station _departureStation;

@@ -23,9 +23,11 @@ namespace AdminGUI.Forms.ConnectionDefinition
         private TextBox _priceBox;
         private DomainModel.Models.ConnectionDefinition _cd;
         private Button _removeButton;
-        public ModifyResult(Size s, Panel returnP,DomainModel.Models.ConnectionDefinition cd, Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l) : base(s,returnP,ac,l)
+        SearchResult ss;
+        public ModifyResult(Size s, Panel returnP,DomainModel.Models.ConnectionDefinition cd, Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l,SearchResult sr) : base(s,returnP,ac,l)
         {
             InitializeComponent();
+            ss = sr;
             this._cd = cd;
             _departureStation = cd.Departure;
             _arrivalStation = cd.Arrival;
@@ -119,7 +121,8 @@ namespace AdminGUI.Forms.ConnectionDefinition
             DialogResult dialogResult = MessageBox.Show("Czy chcesz usunąć to połączenie?", "Usunięcie", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
-             
+
+                ss.add(null);
                 AC.MakeArchival(_cd);
                 base.ReturnPanelClick(sender, e);
                 base.SaveClick(sender, e);
@@ -200,7 +203,7 @@ namespace AdminGUI.Forms.ConnectionDefinition
             _cd.Arrival = _arrivalStation;
             _cd.TravelTime=new TimeSpan(_hourTimePicker.Value.Hour,_minutesTimePicker.Value.Minute,0);
             _cd.Price = _price;
-            
+            ss.add(_cd);
             base.ReturnPanelClick(sender,e);
             base.SaveClick(sender, e);
             AC.UpdateConnectionAsync(_cd);
