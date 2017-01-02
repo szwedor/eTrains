@@ -19,7 +19,16 @@ namespace GUI
             oldform = f;
             InitializeComponent();
             DetailsView();
+            this.FormClosing += F_closing;
         }
+
+        private void F_closing(object sender, FormClosingEventArgs e)
+        {
+            // if (oldform != null) oldform.;
+            if (Application.OpenForms.Count == 0) Application.Exit();
+        }
+
+       
         public void DetailsView()
         {
             var listofticekets = oldform.connectiontodetails;

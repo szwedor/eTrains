@@ -179,7 +179,7 @@ namespace GUI
 
             this.Hide();
             ua.Show();
-        }
+        }  FormToDetails ftd;
         private void ConnectionDetails_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
@@ -188,10 +188,13 @@ namespace GUI
                 return;
             }
             connectiontodetails = dataGridView1.SelectedRows[0].Tag as List<Connection>;
-            FormToDetails  ftd = new FormToDetails(this);
+           ftd= new FormToDetails(this);
             ftd.Show();
         }
-
+        private void Form1_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (ftd != null) ftd.Dispose();
+        }
         private void UserAccount_Click(object sender, EventArgs e)
         {
             if (!log)

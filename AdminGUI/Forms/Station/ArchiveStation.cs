@@ -82,12 +82,14 @@ namespace AdminGUI.Forms.Station
 
         protected override void SaveClick(object sender, EventArgs e)
         {
+            ListOfStations.DisplayMember = "Name";
             ListOfStations.Enabled = true;
+            (ListOfStations.SelectedItem as DomainModel.Models.Station).IsArchival = true;
             _locked = false;
             SelectStation.Text = "Wybierz stacje";
-            if (AC.ChangeStation2(ListOfStations.SelectedItem as DomainModel.Models.Station, Archival.Checked))
+            AC.ChangeStation2(ListOfStations.SelectedItem as DomainModel.Models.Station, true);
             {
-                if (Archival.Checked) 
+               
                 _stationList.Result.Remove(ListOfStations.SelectedItem as DomainModel.Models.Station);
                 base.SaveClick(sender, e);
                 this.ReturnButton.PerformClick();
