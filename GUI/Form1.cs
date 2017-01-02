@@ -108,7 +108,7 @@ namespace GUI
 
             myconnections= await reservationManagmentUnsecureClient.FindConnectionAsync(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
             
-            if (myconnections.Count == 0)
+            if (myconnections ==null || myconnections.Count == 0)
             {
                 MessageBox.Show("Nie mamy dostępnych przejazdów w wybranym terminie");
             }
@@ -179,7 +179,8 @@ namespace GUI
 
             this.Hide();
             ua.Show();
-        }  FormToDetails ftd;
+        }
+        FormToDetails ftd;
         private void ConnectionDetails_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)

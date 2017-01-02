@@ -235,7 +235,7 @@ namespace GUI
         private void LogOut_Click(object sender, EventArgs e)
         {
             oldform.log = false;
-            this.Close();
+            //this.Close();
             oldform.Show();
 
         }
