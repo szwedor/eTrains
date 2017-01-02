@@ -43,10 +43,6 @@
             this.dataGridView.AllowUserToDeleteRows = false;
             this.dataGridView.AllowUserToResizeColumns = false;
             this.dataGridView.AllowUserToResizeRows = false;
-          //  this.dataGridView1.BackgroundColor = System.Drawing.Color.MistyRose;
-        //    this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-
-
             this.dataGridView.BackgroundColor = System.Drawing.Color.Gainsboro;
             this.dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -55,16 +51,17 @@
             this.Czas,
             this.CzasPrzyjazdu,
             this.Cena});
-            this.dataGridView.Location = new System.Drawing.Point(12, 12);
+            this.dataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView.Location = new System.Drawing.Point(0, 0);
             this.dataGridView.Name = "dataGridView";
-            this.dataGridView.Size = new System.Drawing.Size(805, 150);
+            this.dataGridView.Size = new System.Drawing.Size(827, 176);
             this.dataGridView.TabIndex = 1;
             // 
             // Odjazd
             // 
             this.Odjazd.HeaderText = "Odjazd";
             this.Odjazd.Name = "Odjazd";
-            this.Odjazd.Width = 170;
+            this.Odjazd.Width = 173;
             // 
             // Przyjazd
             // 
@@ -88,6 +85,7 @@
             // 
             this.Cena.HeaderText = "Cena";
             this.Cena.Name = "Cena";
+            this.Cena.Width = 120;
             // 
             // FormToDetails
             // 
@@ -95,8 +93,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(827, 176);
             this.Controls.Add(this.dataGridView);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormToDetails";
-            this.Text = "FormToDetails";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Szczegóły";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView)).EndInit();
             this.ResumeLayout(false);
 

@@ -220,7 +220,7 @@
             this.RezervationButton.ForeColor = System.Drawing.Color.White;
             this.RezervationButton.Location = new System.Drawing.Point(187, 335);
             this.RezervationButton.Name = "RezervationButton";
-            this.RezervationButton.Size = new System.Drawing.Size(117, 49);
+            this.RezervationButton.Size = new System.Drawing.Size(146, 49);
             this.RezervationButton.TabIndex = 1;
             this.RezervationButton.Text = "Zarezerwuj";
             this.RezervationButton.UseVisualStyleBackColor = false;
@@ -318,10 +318,10 @@
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(502, 106);
+            this.webBrowser1.Location = new System.Drawing.Point(489, 89);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(471, 164);
+            this.webBrowser1.Size = new System.Drawing.Size(484, 181);
             this.webBrowser1.TabIndex = 59;
             // 
             // pictureBox3

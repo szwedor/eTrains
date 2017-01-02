@@ -234,7 +234,7 @@ namespace GUI
 
         }
 
-        private async void AddNewPass_Click(object sender, EventArgs e)
+        private void AddNewPass_Click(object sender, EventArgs e)
         {
 
             UserManagmentClient userManagment = new UserManagmentClient();
@@ -257,7 +257,7 @@ namespace GUI
 
                 userManagment2.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                 System.ServiceModel.Security.X509CertificateValidationMode.None;
-                await userManagment2.LoginAsync();
+                userManagment2.LoginAsync();
             }
             catch (Exception ex)
             {
