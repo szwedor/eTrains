@@ -148,5 +148,17 @@ namespace AdminGUI.Forms.ConnectionDefinition
             Background.Visible = true;
             
         }
+        public async void refresh()
+        {
+            _l = await AC.FindAsync(_departureStation, _arivalStation, _price, _hour);
+
+            _result.Rows.Clear();
+            for (int i = 0; i < _l.Count; i++)
+            {
+                _result.Rows.Add(_l[i].Name, _l[i].Departure.Name, _l[i].Arrival.Name, _l[i].Price, _l[i].TravelTime);
+
+            }
+            Background.Visible = true;
+        }
     }
 }

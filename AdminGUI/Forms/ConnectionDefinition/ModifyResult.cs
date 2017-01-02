@@ -197,10 +197,12 @@ namespace AdminGUI.Forms.ConnectionDefinition
             }
 
         }
+        bool b = false;
       //   ConnectionManagment m=new ConnectionManagment();
-        protected override void SaveClick(object sender, EventArgs e)
+        protected override async void SaveClick(object sender, EventArgs e)
         {
-          
+            if (b) return;
+            b = true;
       
             //m.ModifyConnection(cd.Id,departureStation, arrivalStation, hourTimePicker.Value.Hour,
             //    minutesTimePicker.Value.Minute, price);
@@ -208,10 +210,11 @@ namespace AdminGUI.Forms.ConnectionDefinition
             _cd.Arrival = _arrivalStation;
             _cd.TravelTime=new TimeSpan(_hourTimePicker.Value.Hour,_minutesTimePicker.Value.Minute,0);
             _cd.Price = _price;
-            ss.add(_cd);
+         //   ss.add(_cd);
             base.ReturnPanelClick(sender,e);
             base.SaveClick(sender, e);
-            AC.UpdateConnectionAsync(_cd,_departureStation,_departureStation,_price,_cd.TravelTime);
+            await AC.UpdateConnectionAsync(_cd,_departureStation,_arrivalStation,_price,_cd.TravelTime);
+            ss.refresh();
             this.Dispose();
         }
     }
