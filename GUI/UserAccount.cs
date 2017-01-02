@@ -47,6 +47,12 @@ namespace GUI
             boxPass.PasswordChar = '*';
             textBox3.PasswordChar = '*';
 
+            this.FormClosing += F_closing;
+        }
+
+        private void F_closing(object sender, FormClosingEventArgs e)
+        {
+        Application.Exit();
         }
 
         private void Mytickets_Click(object sender, EventArgs e)

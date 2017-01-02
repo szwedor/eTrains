@@ -186,9 +186,10 @@ namespace AdminGUI.Forms
 
         protected override void SaveClick(object sender, EventArgs e)
         {
-            
+           
+           
             AC.AddNewConnection(_departureStation, _arrivalStation, _hourTimePicker.Value.Hour,
-                  _minutesTimePicker.Value.Minute, _price, _departureStation.Name + " " + _arrivalStation.Name);
+                  _minutesTimePicker.Value.Minute, _price,"l");
             {
                  base.SaveClick(sender, e);
                 base.ReturnButton.PerformClick();
