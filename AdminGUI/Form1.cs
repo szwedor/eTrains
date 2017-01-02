@@ -27,6 +27,7 @@ namespace AdminGUI
 
         private Button Search;
         private TextBox Email;
+
         private TextBox Password;
         private List<Button> Buttons;
         private Label EmailLabel;
@@ -168,7 +169,7 @@ namespace AdminGUI
             Password.PasswordChar = '*';
         }
 
-        private void LoginClick(object sender, EventArgs e)
+        private async void LoginClick(object sender, EventArgs e)
         {
             AC = new Admin.AdminClient();
             {
@@ -193,7 +194,7 @@ namespace AdminGUI
                     AC.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                     System.ServiceModel.Security.X509CertificateValidationMode.None;
                     System.Net.ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => { return true; };
-                    AC.Login();
+                    await AC.LoginAsync();
                     _stationsList = AC.AllStationsAsync();
                 }
                 catch (Exception ex)

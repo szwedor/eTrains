@@ -118,14 +118,14 @@ namespace AdminGUI.Forms.ConnectionDefinition
         private int _price;
         private int _hour;
         //ConnectionManagment m = new ConnectionManagment();
-        public  void NewSearch(DomainModel.Models.Station departure, DomainModel.Models.Station arrival, int price, int hour)
+        public async void NewSearch(DomainModel.Models.Station departure, DomainModel.Models.Station arrival, int price, int hour)
         {
             //back = false;
             _departureStation = departure;
             _arivalStation = arrival;
             this._price = price;
             this._hour = hour;
-            _l= AC.Find(_departureStation, _arivalStation, price, hour);
+            _l= await AC.FindAsync(_departureStation, _arivalStation, price, hour);
 
             _result.Rows.Clear();
             for (int i = 0; i < _l.Count; i++)
