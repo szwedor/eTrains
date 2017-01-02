@@ -16,7 +16,7 @@ namespace AdminGUI.Forms.Station
         private List<DomainModel.Models.Station> _listOfStations;
         public ArchiveStation(Size s, Panel returnP, Admin.AdminClient ac, Task<List<DomainModel.Models.Station>> l) : base(s, returnP,ac,l)
         {
-            SaveButton.Text = "Archiwizuj";
+            SaveButton.Text = "Usuń";
             
             SelectStation = Program.MakeStylishButton(SaveButton.Size,
              new Point(SaveButton.Location.X, SaveButton.Location.Y + SaveButton.Size.Height + Program.Padding),

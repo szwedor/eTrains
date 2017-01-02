@@ -64,15 +64,16 @@ namespace AdminGUI
             };
             List<string> Names = new List<string>()
             {
-                "Dodaj połączenie",
-                "Edytuj połączenie",
-                "Usuń Połczenie",
+                "Dodaj Połączenie",
+                "Edytuj Połączenie",
+                "Usuń Połączenie",
                 "Dodaj Stacje",
                 "Edytuj Stacje",
                 "Usuń Stacje",
                 "Dodaj nowy przejazd"
 
             };
+
             this.Controls.Add(Background = new Panel());
             Background.BackColor = Program.BackGroundColor;
             int Margin = 60;
@@ -168,9 +169,11 @@ namespace AdminGUI
            
             Password.PasswordChar = '*';
         }
-
+        bool looginng = false;
         private async void LoginClick(object sender, EventArgs e)
         {
+            if (looginng) return;
+            looginng = true;
             AC = new Admin.AdminClient();
             {
                // Email.Text = "admin@admin.pl";
@@ -205,20 +208,6 @@ namespace AdminGUI
                     MessageBox.Show("Zły login/hasło");
                     return;
                 }
-
-
-
-
-
-
-
-
-
-
-
-
-                
-                
                 foreach (var b in Buttons)
                 {
                     b.Enabled = true;
@@ -233,22 +222,8 @@ namespace AdminGUI
                                     false;
                 Background.Height -= 200;
                 this.MaximumSize = this.MinimumSize = this.Size = new Size(Width, Height - 200);
-
-
-                
-                
-                
-              
-                
-                
-                
-           
             }
         }
-
-   
-        
-
         private void AddConectionDefinitionButtonClick(object sender, EventArgs e)
         {
             if (addConectionDefinition == null)
