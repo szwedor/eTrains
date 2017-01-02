@@ -69,7 +69,7 @@ namespace GUI
             oldform.Show();
         }
 
-        private void LogIn_Click(object sender, EventArgs e)
+        private async void LogIn_Click(object sender, EventArgs e)
         {
             textValidation.Visible = false;
             if (boxLogin.Text.Length == 0)
@@ -92,7 +92,8 @@ namespace GUI
                 userManagment.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                 System.ServiceModel.Security.X509CertificateValidationMode.None;
 
-                userManagment.Login();
+                //userManagment.Login();
+                await userManagment.LoginAsync();
             }
             catch (Exception ex)
             {
@@ -137,7 +138,7 @@ namespace GUI
             }
         }
 
-        private void AddAccount_Click(object sender, EventArgs e)
+        private async void AddAccount_Click(object sender, EventArgs e)
         {
             if (textBox5.Text.Any(x => char.IsLetter(x)))
             {
@@ -167,7 +168,7 @@ namespace GUI
             try {
                 if (!userManagmentUnsecureClient.IsEmailInDB(newUser.Email))
                 {
-                    userManagmentUnsecureClient.AddUser(newUser);
+                    await userManagmentUnsecureClient.AddUserAsync(newUser);
                 }
                 else
                 {
@@ -187,7 +188,7 @@ namespace GUI
         }
 
         
-        private void DeleteReservation_Click(object sender, EventArgs e)
+        private async void DeleteReservation_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -213,7 +214,7 @@ namespace GUI
                         System.ServiceModel.Security.X509CertificateValidationMode.None;
                     System.Net.ServicePointManager.ServerCertificateValidationCallback = (senderX, certificate, chain, sslPolicyErrors) => { return true; };
                     var choosedtic = dataGridView1.SelectedRows[0].Tag as Ticket;
-                    reservationManagment.DeleteReservation(loginUser, choosedtic);
+                    await reservationManagment.DeleteReservationAsync(loginUser, choosedtic);
                 }
                 catch (Exception ex)
                 {
@@ -233,7 +234,7 @@ namespace GUI
 
         }
 
-        private void AddNewPass_Click(object sender, EventArgs e)
+        private async void AddNewPass_Click(object sender, EventArgs e)
         {
 
             UserManagmentClient userManagment = new UserManagmentClient();
@@ -256,7 +257,7 @@ namespace GUI
 
                 userManagment2.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                 System.ServiceModel.Security.X509CertificateValidationMode.None;
-                userManagment2.Login();
+                await userManagment2.LoginAsync();
             }
             catch (Exception ex)
             {
@@ -278,7 +279,7 @@ namespace GUI
             MyticketsPanel.Visible = true;
         }//powrot
 
-        public void ReservationView(List<Connection> res)
+        public async void ReservationView(List<Connection> res)
         {
             foreach (var elem in res)
             {
@@ -290,7 +291,7 @@ namespace GUI
                     rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
                     rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                         System.ServiceModel.Security.X509CertificateValidationMode.None;
-                    seat= rm.MakeReservation(elem, loginUser);
+                    seat= await rm.MakeReservationAsync(elem, loginUser);
                 }
                 catch (Exception ex)
                 {
@@ -317,7 +318,7 @@ namespace GUI
                 //else dataGridView1.Rows[0].Cells[4].Value = seat;
             }
         }
-        public void TicketsView()
+        public async void TicketsView()
         {
             try
             {
@@ -326,7 +327,7 @@ namespace GUI
                 rm.ClientCredentials.UserName.Password = userManagment.ClientCredentials.UserName.Password;
                 rm.ClientCredentials.ServiceCertificate.Authentication.CertificateValidationMode =
                     System.ServiceModel.Security.X509CertificateValidationMode.None;
-                listofticekets = rm.AllUserReservations(loginUser);
+                listofticekets =  await rm.AllUserReservationsAsync(loginUser);
             }
             catch(Exception ex)
             {

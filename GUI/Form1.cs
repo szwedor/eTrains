@@ -11,6 +11,7 @@ using DomainModel.Models;
 using GUI.ServiceReference2;
 using System.Globalization;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace GUI
 {
@@ -91,9 +92,7 @@ namespace GUI
             TO.Text = "Do: " + listBoxTo.Text;
             listBoxTo.Visible = false;
         }
-       
-      
-        private void Find_Click(object sender, EventArgs e)
+        private async void Find_Click(object sender, EventArgs e)
         {
             pictureBox3.Visible = true;
             webBrowser1.Visible = true;
@@ -105,9 +104,10 @@ namespace GUI
             myconnections = null;
 
 
-            myconnections = reservationManagmentUnsecureClient.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
+            //myconnections = reservationManagmentUnsecureClient.FindConnection(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
 
-
+            myconnections= await reservationManagmentUnsecureClient.FindConnectionAsync(listBoxFrom.SelectedItem as Station, listBoxTo.SelectedItem as Station, dt);
+            
             if (myconnections.Count == 0)
             {
                 MessageBox.Show("Nie mamy dostępnych przejazdów w wybranym terminie");
@@ -121,9 +121,9 @@ namespace GUI
                 SearchPanel.Visible = true;
                 dataGridView1.Rows.Clear();
                 int i = 0;
-                foreach(var elem in myconnections)
-                { 
-                    
+                foreach (var elem in myconnections)
+                {
+
                     var x = new DataGridViewRow();
                     x.Tag = elem;
                     dataGridView1.Rows.Add(x);
@@ -144,7 +144,8 @@ namespace GUI
                     }
 
 
-                    TimeSpan totalTime =   elem.First().ArrivalTime-elem.Last().DepartureTime;
+                    TimeSpan totalTime = elem.First().ArrivalTime - elem.Last().DepartureTime;
+                    totalTime=new TimeSpan(totalTime.Hours,totalTime.Minutes,totalTime.Seconds);
                     dataGridView1.Rows[i].Cells[3].Value = totalTime;
                     dataGridView1.Rows[i].Cells[5].Value = totalPrice;
                     dataGridView1.Rows[i].Cells[4].Value = elem.Count() - 1;
