@@ -87,6 +87,7 @@ namespace AdminGUI.Forms.Station
             SelectStation.Text = "Wybierz stacje";
             if (AC.ChangeStation2(ListOfStations.SelectedItem as DomainModel.Models.Station, Archival.Checked))
             {
+                if (Archival.Checked) 
                 _stationList.Result.Remove(ListOfStations.SelectedItem as DomainModel.Models.Station);
                 base.SaveClick(sender, e);
                 this.ReturnButton.PerformClick();

@@ -79,25 +79,23 @@ namespace AdminGUI.Forms.ConnectionDefinition
             Edit,Remove,NewConnection
         }
 
-       
 
 
+     //   bool back = true;
 
         private void Loading(object sender, EventArgs e)
         {
+            _result.Visible = true;
 
-            _l=AC.Find(_departureStation, _arivalStation, _price, _hour);
-            _result.Rows.Clear();
-            for (int i = 0; i < _l.Count; i++)
-            {
-                _result.Rows.Add(_l[i].Name, _l[i].Departure.Name, _l[i].Arrival.Name, _l[i].Price, _l[i].TravelTime);
-
-            }
         }
-        protected override void SaveClick(object sender, EventArgs e)
+        protected override void  SaveClick(object sender, EventArgs e)
         {
+            if (_result.SelectedRows == null) return;
+            _result.Visible = false;
+        //    back = true;
             switch (_mode)
             {
+                
                    case Mode.Edit:
                     ModifyResult mr = new ModifyResult(Size, Background, _l[(int)_result.SelectedRows[0].Index],AC,_stationList);
                     this.Controls.Add(mr);
@@ -120,15 +118,23 @@ namespace AdminGUI.Forms.ConnectionDefinition
         private int _price;
         private int _hour;
         //ConnectionManagment m = new ConnectionManagment();
-        public void NewSearch(DomainModel.Models.Station departure, DomainModel.Models.Station arrival, int price, int hour)
+        public  void NewSearch(DomainModel.Models.Station departure, DomainModel.Models.Station arrival, int price, int hour)
         {
-          
+            //back = false;
             _departureStation = departure;
             _arivalStation = arrival;
             this._price = price;
             this._hour = hour;
-                  AC.Find(_departureStation, _arivalStation, price, hour);
+            _l= AC.Find(_departureStation, _arivalStation, price, hour);
+
+            _result.Rows.Clear();
+            for (int i = 0; i < _l.Count; i++)
+            {
+                _result.Rows.Add(_l[i].Name, _l[i].Departure.Name, _l[i].Arrival.Name, _l[i].Price, _l[i].TravelTime);
+
+            }
             Background.Visible = true;
+            
         }
     }
 }

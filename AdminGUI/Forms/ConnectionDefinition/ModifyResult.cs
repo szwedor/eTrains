@@ -201,9 +201,9 @@ namespace AdminGUI.Forms.ConnectionDefinition
             _cd.TravelTime=new TimeSpan(_hourTimePicker.Value.Hour,_minutesTimePicker.Value.Minute,0);
             _cd.Price = _price;
             
-            AC.UpdateConnectionAsync(_cd);
             base.ReturnPanelClick(sender,e);
             base.SaveClick(sender, e);
+            AC.UpdateConnectionAsync(_cd);
             this.Dispose();
         }
     }
