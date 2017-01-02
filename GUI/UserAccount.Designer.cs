@@ -299,7 +299,7 @@
             this.MyticketsPanel.Controls.Add(this.dataGridView1);
             this.MyticketsPanel.Location = new System.Drawing.Point(240, 396);
             this.MyticketsPanel.Name = "MyticketsPanel";
-            this.MyticketsPanel.Size = new System.Drawing.Size(697, 221);
+            this.MyticketsPanel.Size = new System.Drawing.Size(715, 221);
             this.MyticketsPanel.TabIndex = 50;
             // 
             // DeleteReservation
@@ -326,7 +326,7 @@
             this.Cena});
             this.dataGridView1.Location = new System.Drawing.Point(0, 4);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(694, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(712, 150);
             this.dataGridView1.TabIndex = 0;
             // 
             // Odjazd
